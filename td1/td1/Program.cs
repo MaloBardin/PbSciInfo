@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics;
+using System.Drawing;
 
 
 namespace td1
@@ -8,9 +9,12 @@ namespace td1
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            Bitmap FirstBitMap = new Bitmap("/Images/coucou.bmp");
+            Bitmap FirstBitMap = new Bitmap("./Images/coucou.bmp");
             FirstBitMap.RotateFlip(RotateFlipType.Rotate180FlipX);
-            FirstBitMap.Save("/Images/coucou.bmp");
+            FirstBitMap.Save("./Images/coucouuu.bmp");
+            
+         
+         
         }
     }
 }
