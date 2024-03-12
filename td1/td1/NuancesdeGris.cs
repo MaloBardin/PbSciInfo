@@ -24,6 +24,7 @@ namespace td1
             gris.B = valeur;
             return gris;
         }
+        /*
 
         public Pixel[,] ImageEnGris(Image dessin)
         {
@@ -36,6 +37,6 @@ namespace td1
                 }
             }
             return imageGris;
-        }
+        }*/
     }
 }

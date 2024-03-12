@@ -26,13 +26,19 @@ namespace td1
                 Console.Write(fichier[i] + " ");
             }
             Console.WriteLine("\n \nHEADER INFO");
+            int u = 0;
+            int total = 0;
             for (int i = 14; i < 54; i++)
             {
                 Console.Write(fichier[i] + " ");
+                
                 if (i >= 19 && i <= 23){
-                    //a finir
+                    total += fichier[i] ^ u;
+                    u++;
                 }
             }
+
+            total = tailleX;
             Console.WriteLine("\n \nIMAGE");
             for (int i = 54; i < fichier.Length; i=i+60)
             {
@@ -49,10 +55,14 @@ namespace td1
             int TailleMatriceLarg = 0;
             for (int i = 54; i < fichier.Length; i=i+3)
             {
-                //mettre condition ligne
-                MatricePixel[tailleMatrice, tailleMatrice].R = fichier[i];
-                MatricePixel[tailleMatrice, tailleMatrice].G = fichier[i];
-                MatricePixel[tailleMatrice, tailleMatrice].B = fichier[i];
+                if (TailleMatriceL> tailleX)
+                {
+                    TailleMatriceLarg++;
+                    TailleMatriceL = 0;
+                }
+                MatricePixel[TailleMatriceL, TailleMatriceLarg].R = fichier[i];
+                MatricePixel[TailleMatriceL, TailleMatriceLarg].G = fichier[i];
+                MatricePixel[TailleMatriceL, TailleMatriceLarg].B = fichier[i];
 
 
 
