@@ -23,16 +23,21 @@ namespace td1
             public int R
             {
                 get { return red; }
+                set { red = Convert.ToByte(value); }
             }
             public int G
             {
                 get { return green; }
-            }
-            public int B
+                set { green = Convert.ToByte(value); }
+
+        }
+        public int B
             {
                 get { return blue; }
-            }
-            public string toString()
+                set { blue = Convert.ToByte(value); }
+
+        }
+        public string toString()
             {
                 return "R" + red + " G" + green + " B" + blue;
             }
