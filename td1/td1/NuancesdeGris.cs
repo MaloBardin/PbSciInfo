@@ -27,7 +27,7 @@ namespace td1
 
         public Pixel[,] ImageEnGris(Image dessin)
         {
-            Pixel[,] imageGris;
+            Pixel[,] imageGris = new Pixel[dessin.];
             for (int i=0; i<dessin.matricePixel.GetLength(0); i++)
             {
                 for (int j=0; j<dessin.matricePixel.GetLength(1); j++)
