@@ -1,0 +1,12 @@
+
+*.vsidx
+*.vsidx
+*.vsidx
+td1/.vs/td1/v17/.suo
+*.cache
+*.lock
+*.props
+*.json
+*.editorconfig
+*.cache
+*.v2
