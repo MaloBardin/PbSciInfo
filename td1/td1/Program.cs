@@ -8,7 +8,7 @@ namespace td1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine("Hello, Wor!");
             Bitmap FirstBitMap = new Bitmap("./Images/coucou.bmp");
             FirstBitMap.RotateFlip(RotateFlipType.Rotate180FlipX);
             FirstBitMap.Save("./Images/coucouuu.bmp");
