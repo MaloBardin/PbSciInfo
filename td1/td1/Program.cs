@@ -8,7 +8,9 @@ namespace td1
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            Bitmap d = new Bitmap(200,100);
+            Bitmap FirstBitMap = new Bitmap("/Images/coucou.bmp");
+            FirstBitMap.RotateFlip(RotateFlipType.Rotate180FlipX);
+            FirstBitMap.Save("/Images/coucou.bmp");
         }
     }
 }
