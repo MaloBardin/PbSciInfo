@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Pi1218am1MMvpI79TPxPpE8tCf9skHlirdEWQ4Su2CJIQ4Mqy9G/QeImpJrBT5s4Z/67nUMs+M4xoLbUm/FeIw==",
+  "dgSpecHash": "tU56oh9nxt8eB0Zfp/ebGeFhIXtruaB5OnHQBRWbUqr95Qd9N5iaIkf/vuydkrBqicqOSicMWyja2Xfk2gB1dg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\maxar\\OneDrive\\Documents\\GitHub\\PbSciInfo\\td1\\td1\\td1.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\visual\\Desktop\\PbSciInfo\\td1\\td1\\td1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Malob\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
+    "C:\\Users\\Malob\\.nuget\\packages\\system.drawing.common\\8.0.2\\system.drawing.common.8.0.2.nupkg.sha512"
+  ],
   "logs": []
 }
