@@ -10,3 +10,6 @@ td1/.vs/td1/v17/.suo
 *.editorconfig
 *.cache
 *.v2
+/td1/td1/obj
+/td1/td1/bin
+*.dll
