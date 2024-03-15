@@ -16,6 +16,7 @@ namespace td1
             string filename= "./Images/test2416.bmp";
             Image NouvelleImage = new Image();
             NouvelleImage.Lecture(filename);
+            NouvelleImage.PrintImage(filename);
 
 
         }

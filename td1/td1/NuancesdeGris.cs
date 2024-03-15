@@ -25,7 +25,6 @@ namespace td1
             return gris;
         }
         /*
-
         public Pixel[,] ImageEnGris(Image dessin)
         {
             Pixel[,] imageGris = new Pixel[dessin.];
