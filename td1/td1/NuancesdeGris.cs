@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,9 @@ namespace td1
     {
         Pixel couleur;
         Image dessin;
-        public NuancesGris(Pixel couleur)
+        public NuancesGris()
         {
-            this.couleur = couleur;
+           
         }
         public Pixel PixelEnGris(Pixel couleur)
         {
@@ -24,18 +25,22 @@ namespace td1
             gris.B = valeur;
             return gris;
         }
-        /*
-        public Pixel[,] ImageEnGris(Image dessin)
+        
+        public Image ImageEnGris(Image dessin)
         {
-            Pixel[,] imageGris = new Pixel[dessin.];
-            for (int i=0; i<dessin.matricePixel.GetLength(0); i++)
+            Pixel[,] imageGris = new Pixel[dessin.MatricePixel.GetLength(0), dessin.MatricePixel.GetLength(1)];
+
+            for (int i=0; i<dessin.MatricePixel.GetLength(0); i++)
             {
-                for (int j=0; j<dessin.matricePixel.GetLength(1); j++)
+                for (int j=0; j<dessin.MatricePixel.GetLength(1); j++)
                 {
-                    imageGris[i, j] = PixelEnGris(matricePixel[i, j]); 
+                    imageGris[i, j] = PixelEnGris(dessin.MatricePixel[i, j]);
                 }
             }
-            return imageGris;
-        }*/
+
+            dessin.MatricePixel = imageGris;
+
+            return dessin;
+        }
     }
 }
