@@ -102,6 +102,10 @@ namespace td1
 
         }
 
+        public Image SauvegardeImage(Pixel[] MatriceSauvegardePixels, string filename, Image ImageModifie)
+        {
+            return 
+        }
         /*public Image CraftingNewImage(Pixel[,] MatriceNouveauxPixels, string filename, Image MonImageAEdit)
         {
             byte[] fichier = File.ReadAllBytes(filename);
