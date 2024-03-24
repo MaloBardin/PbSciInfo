@@ -102,9 +102,19 @@ namespace td1
 
         }
 
-        public Image SauvegardeImage(Pixel[] MatriceSauvegardePixels, string filename, Image ImageModifie)
+        public void SauvegardeImage(Image Imagesauvegarder)
         {
-            return 
+            Pixel[,] NvMatricePixel = Imagesauvegarder.MatricePixel;
+            byte[] Nvfichier = new byte[54 + 3 * Imagesauvegarder.tailleX * Imagesauvegarder.tailleY];
+            for (int a=0;a < Nvfichier.Length - 54; a++) {            
+                for (int i = 54; i < Imagesauvegarder.tailleY; i++)          
+                {          
+                    for (int j = 54; j < Imagesauvegarder.tailleX; j++)           
+                    {           
+                        Nvfichier[a]=           
+                    }
+                }
+            }
         }
         /*public Image CraftingNewImage(Pixel[,] MatriceNouveauxPixels, string filename, Image MonImageAEdit)
         {
