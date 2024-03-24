@@ -11,7 +11,7 @@ namespace td1
         public class Pixel
         {
             byte red;
-            byte green;
+            byte green; 
             byte blue;
 
             public Pixel(byte r, byte g, byte b)

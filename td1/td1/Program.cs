@@ -13,7 +13,7 @@ namespace td1
             Console.SetCursorPosition(57, 5);  Console.WriteLine("Le convertisseur");
             Console.SetCursorPosition(20, 8); Console.WriteLine("1. Lire et écrire une image");
 
-            string filename= "./Images/Test.bmp";
+            string filename= "./Images/pixel.bmp";
             Image NouvelleImage = new Image();
             Pixel[,] MatriceDePixelCouleur= NouvelleImage.Lecture(filename);
             //NouvelleImage.CraftingNewImage(MatriceDePixelCouleur, filename, NouvelleImage);
@@ -25,6 +25,9 @@ namespace td1
             Image ImageDecoloree = Decoloration.ImageEnGris(NouvelleImage);
             //matrice en n&b
 
+            NouvelleImage.SauvegardeImage(filename, ImageDecoloree);
+
+            Console.WriteLine("done");
 
 
 

@@ -24,9 +24,10 @@ namespace td1
             gris.G = valeur;
             gris.B = valeur;
             return gris;
-        }
+        } 
         
         public Image ImageEnGris(Image dessin)
+             
         {
             Pixel[,] imageGris = new Pixel[dessin.MatricePixel.GetLength(0), dessin.MatricePixel.GetLength(1)];
 
