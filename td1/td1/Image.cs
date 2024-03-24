@@ -107,15 +107,18 @@ namespace td1
             string filename = "./Images";
             Pixel[,] NvMatricePixel = Imagesauvegarder.MatricePixel;
             byte[] Nvfichier = new byte[54 + 3 * Imagesauvegarder.tailleX * Imagesauvegarder.tailleY];
-            for (int a=0;a < Nvfichier.Length - 54; a++) {            
-                for (int i = 54; i < Imagesauvegarder.tailleY; i++)          
-                {          
-                    for (int j = 54; j < Imagesauvegarder.tailleX; j++)           
-                    {
-                        Nvfichier[a] = NvMatricePixel[i, j];       
-                    }
+            int a = 54;
+            for (int i = 54; i < Imagesauvegarder.tailleY; i++)                         
+            {                         
+                for (int j = 54; j < Imagesauvegarder.tailleX; j++)                         
+                {               
+                    Nvfichier[a++] = Convert.ToByte(NvMatricePixel[i, j].R);                   
+                    Nvfichier[a++] = Convert.ToByte(NvMatricePixel[i, j].G);                   
+                    Nvfichier[a++] = Convert.ToByte(NvMatricePixel[i, j].B);                    
                 }
+                
             }
+            File.WriteAllBytes(filename, Nvfichier);
         }
         /*public Image CraftingNewImage(Pixel[,] MatriceNouveauxPixels, string filename, Image MonImageAEdit)
         {
