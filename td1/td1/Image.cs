@@ -102,12 +102,23 @@ namespace td1
 
         }
 
-        public void SauvegardeImage(Image Imagesauvegarder)
+        public void SauvegardeImage(string file, Image Imagesauvegarder)
         {
-            string filename = "./Images";
-            Pixel[,] NvMatricePixel = Imagesauvegarder.MatricePixel;
+            byte[] fichier = File.ReadAllBytes(file);
             byte[] Nvfichier = new byte[54 + 3 * Imagesauvegarder.tailleX * Imagesauvegarder.tailleY];
             int a = 54;
+            for (int i = 0; i < 54; i++)
+            {
+                Nvfichier[i]= fichier[i];
+            }
+
+            string filename = "./Images";
+            Pixel[,] NvMatricePixel = Imagesauvegarder.MatricePixel;
+            for(int b = 0; b < 54; b++)
+            {
+
+            }
+            
             for (int i = 54; i < Imagesauvegarder.tailleY; i++)                         
             {                         
                 for (int j = 54; j < Imagesauvegarder.tailleX; j++)                         
