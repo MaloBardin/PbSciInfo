@@ -15,7 +15,7 @@ namespace td1
         public int tailleY;
         public Pixel[,] MatricePixel;
         int[] Header;
-        int[] HeaderInfo;
+        
 
 
         public Pixel[,] Lecture(string filename)
@@ -49,7 +49,7 @@ namespace td1
                 Console.WriteLine();
             }*/
             
-
+          
 
 
             Console.WriteLine();
@@ -104,12 +104,17 @@ namespace td1
 
         }
 
-        public void SauvegardeImage(string file, Image Imagesauvegarder)
+        public void SauvegardeImage(string wantedFileName, string file, Image Imagesauvegarder)
         {
             byte[] fichier = File.ReadAllBytes(file);
-           
-            
 
+            /*
+            //pour le moment on écrase le fichier avec des nouvelles données mais l'idée c'est de créer son propre truc à terme
+            for (int i = 0; i < 54; i++)
+            {
+                fichier[i] = Convert.ToByte(Imagesauvegarder.Header[i]);
+            }
+            */
             int a = 54; // Position de début des données de pixel dans le fichier BMP
 
             Pixel[,] NvMatricePixel = Imagesauvegarder.MatricePixel;
@@ -125,7 +130,7 @@ namespace td1
                 }
             }
 
-            File.WriteAllBytes("aalezptn.bmp", fichier);
+            File.WriteAllBytes(wantedFileName+".bmp", fichier);
         }
 
     }
