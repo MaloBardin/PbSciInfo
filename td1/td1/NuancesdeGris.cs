@@ -29,17 +29,17 @@ namespace td1
         public Image ImageEnGris(Image dessin)
              
         {
-            Pixel[,] imageGris = new Pixel[dessin.MatricePixel.GetLength(0), dessin.MatricePixel.GetLength(1)];
+            Pixel[,] pixelGris = new Pixel[dessin.MatricePixel.GetLength(0), dessin.MatricePixel.GetLength(1)];
 
             for (int i=0; i<dessin.MatricePixel.GetLength(0); i++)
             {
                 for (int j=0; j<dessin.MatricePixel.GetLength(1); j++)
                 {
-                    imageGris[i, j] = PixelEnGris(dessin.MatricePixel[i, j]);
+                    pixelGris[i, j] = PixelEnGris(dessin.MatricePixel[i, j]);
                 }
             }
 
-            dessin.MatricePixel = imageGris;
+            dessin.MatricePixel = pixelGris;
 
             return dessin;
         }

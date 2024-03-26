@@ -106,7 +106,7 @@ namespace td1
 
         public void SauvegardeImage(string wantedFileName, string file, Image Imagesauvegarder)
         {
-            byte[] fichier = File.ReadAllBytes(file);
+            byte[] fichier = File.ReadAllBytes(file); //coucouououu
 
             /*
             //pour le moment on écrase le fichier avec des nouvelles données mais l'idée c'est de créer son propre truc à terme
