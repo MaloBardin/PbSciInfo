@@ -12,7 +12,7 @@ namespace td1
             //choix de l'image 
             Console.SetCursorPosition(35, 10); Console.WriteLine("Bienvenue sur le convertisseur, merci d'indiquer le nom de votre image");
             Console.SetCursorPosition(35, 11); string filename = Console.ReadLine(); string filesource = "./Images/" + filename + ".bmp";
-            Console.SetCursorPosition(25, 12); Console.WriteLine("Nous allons donc convertir le fichier " + filename+". Merci de patienter");
+            Console.SetCursorPosition(35, 12); Console.WriteLine("Nous allons donc convertir le fichier " + filename+". Merci de patienter");
             Thread.Sleep(3000);
 
 
