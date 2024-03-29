@@ -10,7 +10,7 @@ namespace td1
     {
         Image image;
         Image imagefiltre;
-        Pixel[,] Matricefiltre = new Pixel[3, 3];
+        int[,] Matricefiltre = new int[3, 3];
         public Filtre(Image image, Image imagefiltre)
         {
             this.image = image;
@@ -28,11 +28,30 @@ namespace td1
                     switch (degre)
                     {
                         case "1":
-                            Matricefiltre = []
+                            Matricefiltre[0, 0] = -1;
+                            Matricefiltre[0, 1] = 0;
+                            Matricefiltre[0, 2] = 1;
+                            Matricefiltre[1, 0] = -1;
+                            break;
+                        
+                        case "2":
+                            
                         break;
+                            
+                        case "3":
+                            
+                        break;
+
                     }
                     break;
 
+                case "2":
+                
+                break;
+                   
+                case "3":
+                    
+                break;
 
 
             }
