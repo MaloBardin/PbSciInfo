@@ -37,9 +37,13 @@ namespace td1
                             Matricefiltre[2, 0] = -1;
                             Matricefiltre[2, 1] = 0;
                             Matricefiltre[2, 2] = 1;
-                            for(int i = 54; i < image.MatricePixel.GetLength(0); i++)
+                            imagefiltre.MatricePixel = new Pixel[image.MatricePixel.GetLength(0), image.MatricePixel.GetLength(1)];
+                            for (int i = 1; i < image.MatricePixel.GetLength(0); i++)
                             {
-
+                                for(int j = 1;j < image.MatricePixel.GetLength(1); j++)
+                                {
+                                    imagefiltre.MatricePixel = 
+                                }
                             }
                             break;
                         
