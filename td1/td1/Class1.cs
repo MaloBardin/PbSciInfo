@@ -28,32 +28,79 @@ namespace td1
                     switch (degre)
                     {
                         case "1":
-                            Matricefiltre[0, 0] = -1;
+                            Matricefiltre[0, 0] = 1;
                             Matricefiltre[0, 1] = 0;
-                            Matricefiltre[0, 2] = 1;
-                            Matricefiltre[1, 0] = -1;
+                            Matricefiltre[0, 2] = -1;
+                            Matricefiltre[1, 0] = 0;
+                            Matricefiltre[1, 1] = 0;
+                            Matricefiltre[1, 2] = 0;
+                            Matricefiltre[2, 0] = -1;
+                            Matricefiltre[2, 1] = 0;
+                            Matricefiltre[2, 2] = 1;
                             break;
                         
                         case "2":
-                            
-                        break;
+                            Matricefiltre[0, 0] = 0;
+                            Matricefiltre[0, 1] = 1;
+                            Matricefiltre[0, 2] = 0;
+                            Matricefiltre[1, 0] = 1;
+                            Matricefiltre[1, 1] = -4;
+                            Matricefiltre[1, 2] = 1;
+                            Matricefiltre[2, 0] = 0;
+                            Matricefiltre[2, 1] = 1;
+                            Matricefiltre[2, 2] = 0;
+                            break;
                             
                         case "3":
-                            
-                        break;
+                            Matricefiltre[0, 0] = -1;
+                            Matricefiltre[0, 1] = -1;
+                            Matricefiltre[0, 2] = -1;
+                            Matricefiltre[1, 0] = -1;
+                            Matricefiltre[1, 1] = 8;
+                            Matricefiltre[1, 2] = -1;
+                            Matricefiltre[2, 0] = -1;
+                            Matricefiltre[2, 1] = -1;
+                            Matricefiltre[2, 2] = -1;
+                            break;
 
                     }
-                    break;
+                break;
 
                 case "2":
-                
+                    Matricefiltre[0, 0] = 0;
+                    Matricefiltre[0, 1] = 0;
+                    Matricefiltre[0, 2] = 0;
+                    Matricefiltre[1, 0] = -1;
+                    Matricefiltre[1, 1] = 1;
+                    Matricefiltre[1, 2] = 0;
+                    Matricefiltre[2, 0] = 0;
+                    Matricefiltre[2, 1] = 0;
+                    Matricefiltre[2, 2] = 0;
                 break;
                    
                 case "3":
-                    
+                    Matricefiltre[0, 0] = 1;
+                    Matricefiltre[0, 1] = 1;
+                    Matricefiltre[0, 2] = 1;
+                    Matricefiltre[1, 0] = 1;
+                    Matricefiltre[1, 1] = 1;
+                    Matricefiltre[1, 2] = 1;
+                    Matricefiltre[2, 0] = 1;
+                    Matricefiltre[2, 1] = 1;
+                    Matricefiltre[2, 2] = 1;
                 break;
 
-
+                case "4":
+                    Matricefiltre[0, 0] = -2;
+                    Matricefiltre[0, 1] = -1;
+                    Matricefiltre[0, 2] = 0;
+                    Matricefiltre[1, 0] = -1;
+                    Matricefiltre[1, 1] = 1;
+                    Matricefiltre[1, 2] = 1;
+                    Matricefiltre[2, 0] = 0;
+                    Matricefiltre[2, 1] = 1;
+                    Matricefiltre[2, 2] = 2;
+                break;
             }
         }
 
