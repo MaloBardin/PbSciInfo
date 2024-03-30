@@ -11,7 +11,7 @@ namespace td1
         Image image;
         Image imagefiltre;
         int[,] Matricefiltre = new int[3, 3];
-        public Filtre(Image image, Image imagefiltre)
+        public Filtre(Image image)
         {
             this.image = image;
         }
@@ -37,6 +37,10 @@ namespace td1
                             Matricefiltre[2, 0] = -1;
                             Matricefiltre[2, 1] = 0;
                             Matricefiltre[2, 2] = 1;
+                            for(int i = 54; i < image.MatricePixel.GetLength(0); i++)
+                            {
+
+                            }
                             break;
                         
                         case "2":
