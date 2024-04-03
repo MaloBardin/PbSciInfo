@@ -120,16 +120,7 @@ namespace td1
             }
             */
 
-            int height = Imagesauvegardee.MatricePixel.GetLength(0);
-            int width = Imagesauvegardee.MatricePixel.GetLength(1);
-
-            // Convert the dimensions to bytes
-            byte byteHeight = Convert.ToByte(height);
-            byte byteWidth = Convert.ToByte(width);
-
-            // Store the bytes in the fichier array
-            fichier[18] = byteHeight;
-            fichier[22] = byteWidth;
+            
             int a = 54; // Position de début des données de pixel dans le fichier BMP
 
             Pixel[,] NvMatricePixel = Imagesauvegardee.MatricePixel;
