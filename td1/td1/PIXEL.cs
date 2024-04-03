@@ -10,11 +10,13 @@ namespace td1
 
         public class Pixel
         {
-            byte red;
-            byte green; 
             byte blue;
+            byte green;
+            byte red;
+            
+            
 
-            public Pixel(byte r, byte g, byte b)
+            public Pixel(byte b, byte g, byte r)
             {
                 this.red = r;
                 this.green = g;

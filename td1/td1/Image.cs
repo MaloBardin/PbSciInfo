@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace td1
 {
     internal class Image
@@ -14,14 +13,13 @@ namespace td1
         public int tailleX;
         public int tailleY;
         public Pixel[,] MatricePixel;
-        public byte[] Header = new byte[54];
-
+        public byte[] Header;
 
 
         public Pixel[,] Lecture(string filename)
         {
             byte[] fichier = File.ReadAllBytes(filename);
-
+            Header = new byte[54];
 
 
             /*
@@ -49,10 +47,13 @@ namespace td1
                 Console.WriteLine();
             }*/
 
+
+
             for (int i = 0; i < 54; i++)
             {
                 Header[i] = fichier[i];
             }
+
 
 
 
