@@ -10,7 +10,7 @@ namespace td1
     {
         Image image;
         Image imagefiltre;
-        int[,] Matricefiltre = new int[3, 3];
+        
         public Filtre(Image image)
         {
             this.image = image;
@@ -18,6 +18,7 @@ namespace td1
 
         public void Main(string[] args)
         {
+            int[,] Matricefiltre = { { 1, 0, -1 }, { 0, 0, 0 }, { -1, 0, 1 } };
             Console.WriteLine("Quel filtre souhaitez-vous?:");
             string num = Console.ReadLine();
             switch (num)
@@ -28,21 +29,13 @@ namespace td1
                     switch (degre)
                     {
                         case "1":
-                            Matricefiltre[0, 0] = 1;
-                            Matricefiltre[0, 1] = 0;
-                            Matricefiltre[0, 2] = -1;
-                            Matricefiltre[1, 0] = 0;
-                            Matricefiltre[1, 1] = 0;
-                            Matricefiltre[1, 2] = 0;
-                            Matricefiltre[2, 0] = -1;
-                            Matricefiltre[2, 1] = 0;
-                            Matricefiltre[2, 2] = 1;
+                            
                             imagefiltre.MatricePixel = new Pixel[image.MatricePixel.GetLength(0), image.MatricePixel.GetLength(1)];
                             for (int i = 1; i < image.MatricePixel.GetLength(0); i++)
                             {
                                 for(int j = 1;j < image.MatricePixel.GetLength(1); j++)
                                 {
-                                    imagefiltre.MatricePixel = 
+                                    //imagefiltre.MatricePixel = 
                                 }
                             }
                             break;

@@ -14,8 +14,8 @@ namespace td1
         public int tailleX;
         public int tailleY;
         public Pixel[,] MatricePixel;
-        int[] Header;
-        
+        public byte[] Header = new byte[54];
+
 
 
         public Pixel[,] Lecture(string filename)
@@ -48,8 +48,12 @@ namespace td1
                 }
                 Console.WriteLine();
             }*/
-            
-          
+
+            for (int i = 0; i < 54; i++)
+            {
+                Header[i] = fichier[i];
+            }
+
 
 
             Console.WriteLine();
@@ -83,9 +87,9 @@ namespace td1
 
             return MatricePixel;
         }
-
-        public void PrintImage(string filename)
-        {
+    
+        public void PrintImage(string filename) { 
+        
             Console.WriteLine("\n\n\n fichier image Matrice");
             for (int i = 0; i < tailleY; i++)
             {
@@ -104,7 +108,7 @@ namespace td1
 
         }
 
-        public void SauvegardeImage(string wantedFileName, string file, Image Imagesauvegarder)
+        public void SauvegardeImage(string wantedFileName, string file, Image Imagesauvegardee)
         {
             byte[] fichier = File.ReadAllBytes(file); //coucouououu
 
@@ -115,14 +119,25 @@ namespace td1
                 fichier[i] = Convert.ToByte(Imagesauvegarder.Header[i]);
             }
             */
+
+            int height = Imagesauvegardee.MatricePixel.GetLength(0);
+            int width = Imagesauvegardee.MatricePixel.GetLength(1);
+
+            // Convert the dimensions to bytes
+            byte byteHeight = Convert.ToByte(height);
+            byte byteWidth = Convert.ToByte(width);
+
+            // Store the bytes in the fichier array
+            fichier[18] = byteHeight;
+            fichier[22] = byteWidth;
             int a = 54; // Position de début des données de pixel dans le fichier BMP
 
-            Pixel[,] NvMatricePixel = Imagesauvegarder.MatricePixel;
+            Pixel[,] NvMatricePixel = Imagesauvegardee.MatricePixel;
 
             // Copie des données de pixel dans le fichier BMP
-            for (int i = 0; i < Imagesauvegarder.tailleX; i++)
+            for (int i = 0; i < Imagesauvegardee.tailleX; i++)
             {
-                for (int j = 0; j < Imagesauvegarder.tailleY; j++)
+                for (int j = 0; j < Imagesauvegardee.tailleY; j++)
                 {
                     fichier[a++] = Convert.ToByte(NvMatricePixel[i, j].B); // Rouge
                     fichier[a++] = Convert.ToByte(NvMatricePixel[i, j].G); // Vert
