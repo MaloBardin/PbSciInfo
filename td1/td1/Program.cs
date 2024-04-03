@@ -34,7 +34,7 @@ namespace td1
                 Console.SetCursorPosition(57, 5); Console.WriteLine("Le convertisseur");
                 Console.SetCursorPosition(20, 8); Console.WriteLine("1 Noir et Blanc");
                 Console.SetCursorPosition(20, 9); Console.WriteLine("2 Agrandissement");
-                Console.SetCursorPosition(20, 10); Console.WriteLine("3 A FAIRE");
+                Console.SetCursorPosition(20, 10); Console.WriteLine("3 Rotation");
                 Console.SetCursorPosition(20, 11); Console.WriteLine("4 A FAIRE");
                 Console.SetCursorPosition(20, 12); Console.WriteLine("5 Changement image (à faire)");
                 Console.SetCursorPosition(20, 13); Console.WriteLine("6 Sauvegarder de votre image");
@@ -69,6 +69,17 @@ namespace td1
                         Aumgentation.MultiplicationMatrice(ImageEnCours, tailleMult);
                         turnModifOnMessage = 1;
                         break;
+                    
+                    case "3":
+                        Console.Clear();
+                        //On va faire une rotation de notre image
+                        Rotation Rot = new Rotation();
+                        Console.SetCursorPosition(25, 7); Console.WriteLine("De combien de degrés voulez vous tourner votre image ?");
+                        Console.SetCursorPosition(25, 8); int degre = Convert.ToInt32(Console.ReadLine());
+
+                         ImageEnCours.MatricePixel = Rot.RotationDegre(ImageEnCours, degre);
+                        break;
+                        
 
                     case "6":
                         Console.Clear();

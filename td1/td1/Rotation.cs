@@ -31,16 +31,26 @@ namespace td1
             {
                 for (int y = 0; y < TailleY; y++)
                 {
+                    
                     int nouveauX = (int)((x - centreX) * cosTheta - (y - centreY) * sinTheta + centreX);
                     int nouveauY = (int)((x - centreX) * sinTheta + (y - centreY) * cosTheta + centreY);
 
-                    if (nouveauX >= 0 && nouveauX < TailleX && nouveauY >= 0 && nouveauY < TailleY)
+                    if (nouveauX >= 0 && nouveauX < TailleX && nouveauY >= 0 && nouveauY < TailleY) 
                     {
                         rotatedImage[nouveauX, nouveauY] = Dessin.MatricePixel[x, y];
                     }
                 }
             }
-
+            for(int i = 0; i<rotatedImage.GetLength(0); i++)
+            {
+                for(int j = 0; j<rotatedImage.GetLength(1); j++)
+                {
+                    if (rotatedImage[i,j] == null)
+                    {
+                        rotatedImage[i, j] = new Pixel(255, 255, 255);
+                    }
+                }
+            }   
             return rotatedImage;
         }
 
