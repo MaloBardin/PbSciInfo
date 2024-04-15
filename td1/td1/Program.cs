@@ -65,6 +65,7 @@ namespace td1
                         Console.Clear();
                         //On va agrandir notre image
                         int tailleMult=1; //par quelle int on multiplie notre taille
+                        Console.SetCursorPosition(30, 16); Console.Write("Combien de fois voulez-vous agrandir votre image ? : "); Console.SetCursorPosition(100, 16); tailleMult = int.Parse(Console.ReadLine());
                         Agrandissement Aumgentation = new Agrandissement();
                         Aumgentation.MultiplicationMatrice(ImageEnCours, tailleMult);
                         turnModifOnMessage = 1;

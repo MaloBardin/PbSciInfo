@@ -88,6 +88,20 @@ namespace td1
 
             return MatricePixel;
         }
+
+        public byte[] Int2ToByte(int nombre)
+        {
+            byte[] byteTab = new byte[4];
+            byteTab[0] = (byte)(nombre % 256);
+            nombre = nombre/256;
+            byteTab[1] = (byte)(nombre % 256);
+            nombre = nombre/256;
+            byteTab[2] = (byte)(nombre % 256);
+            nombre = nombre/ 256;
+            byteTab[3] = (byte)(nombre % 256);
+
+            return byteTab;
+        }
     
         public void PrintImage(string filename) { 
         
@@ -109,19 +123,33 @@ namespace td1
 
         }
 
-        public void SauvegardeImage(string wantedFileName, string file, Image Imagesauvegardee)
+        public byte[] BuildLeBonHeader(Image ImageAvecLeHeader)
         {
-            byte[] fichier = File.ReadAllBytes(file); //coucouououu
+            byte[] cacao = new byte[54];
 
-            /*
-            //pour le moment on écrase le fichier avec des nouvelles données mais l'idée c'est de créer son propre truc à terme
+
+
             for (int i = 0; i < 54; i++)
             {
-                fichier[i] = Convert.ToByte(Imagesauvegarder.Header[i]);
+                cacao[i] = ImageAvecLeHeader.Header[i];
             }
-            */
 
+            ImageAvecLeHeader.tailleX=ImageAvecLeHeader.MatricePixel.GetLength(0);
+            ImageAvecLeHeader.tailleY=ImageAvecLeHeader.MatricePixel.GetLength(1); // on remet la bonne taille au cas ou
+
+            Array.Copy(Int2ToByte(ImageAvecLeHeader.MatricePixel.GetLength(0)), 0, cacao, 18, 4);
+            Array.Copy(Int2ToByte(ImageAvecLeHeader.MatricePixel.GetLength(1)), 0, cacao, 22, 4);
             
+            
+            return cacao;
+        }
+
+        public void SauvegardeImage(string wantedFileName, string file, Image Imagesauvegardee)
+        {
+            byte[] fichier = new byte[54 + (Imagesauvegardee.MatricePixel.GetLength(0) * Imagesauvegardee.MatricePixel.GetLength(1) * 3)]; //coucouououu
+            byte[] header = BuildLeBonHeader(Imagesauvegardee);
+            Array.Copy(header, fichier, header.Length);
+
             int a = 54; // Position de début des données de pixel dans le fichier BMP
 
             Pixel[,] NvMatricePixel = Imagesauvegardee.MatricePixel;
@@ -131,9 +159,9 @@ namespace td1
             {
                 for (int j = 0; j < Imagesauvegardee.tailleY; j++)
                 {
-                    fichier[a++] = Convert.ToByte(NvMatricePixel[i, j].B); // Rouge
-                    fichier[a++] = Convert.ToByte(NvMatricePixel[i, j].G); // Vert
-                    fichier[a++] = Convert.ToByte(NvMatricePixel[i, j].R); // Bleu
+                    fichier[a++] = Convert.ToByte(NvMatricePixel[i, j].B); // Rouge           // A FAIRE EN LITTLE INDIANNN
+                    fichier[a++] = Convert.ToByte(NvMatricePixel[i, j].G); // Vert       // A FAIRE EN LITTLE INDIANNN
+                    fichier[a++] = Convert.ToByte(NvMatricePixel[i, j].R); // Bleu            // A FAIRE EN LITTLE INDIANNN
                 }
             }
 
