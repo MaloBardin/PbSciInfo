@@ -146,26 +146,31 @@ namespace td1
 
         public void SauvegardeImage(string wantedFileName, string file, Image Imagesauvegardee)
         {
-            byte[] fichier = new byte[54 + (Imagesauvegardee.MatricePixel.GetLength(0) * Imagesauvegardee.MatricePixel.GetLength(1) * 3)]; //coucouououu
+            // Construction du header du fichier BMP
             byte[] header = BuildLeBonHeader(Imagesauvegardee);
+
+            // Création du tableau de bytes pour le fichier BMP en incluant le header
+            byte[] fichier = new byte[header.Length + (Imagesauvegardee.MatricePixel.GetLength(0) * Imagesauvegardee.MatricePixel.GetLength(1) * 3)];
+
+            // Copie du header dans le tableau fichier
             Array.Copy(header, fichier, header.Length);
 
-            int a = 54; // Position de début des données de pixel dans le fichier BMP
-
-            Pixel[,] NvMatricePixel = Imagesauvegardee.MatricePixel;
+            int a = header.Length; // Position de début des données de pixel dans le fichier BMP
 
             // Copie des données de pixel dans le fichier BMP
             for (int i = 0; i < Imagesauvegardee.tailleX; i++)
             {
                 for (int j = 0; j < Imagesauvegardee.tailleY; j++)
                 {
-                    fichier[a++] = Convert.ToByte(NvMatricePixel[i, j].B); // Rouge           // A FAIRE EN LITTLE INDIANNN
-                    fichier[a++] = Convert.ToByte(NvMatricePixel[i, j].G); // Vert       // A FAIRE EN LITTLE INDIANNN
-                    fichier[a++] = Convert.ToByte(NvMatricePixel[i, j].R); // Bleu            // A FAIRE EN LITTLE INDIANNN
+                    // Copie des composantes de couleur dans le bon ordre (BGR)
+                    fichier[a++] = Convert.ToByte(Imagesauvegardee.MatricePixel[i, j].B);
+                    fichier[a++] = Convert.ToByte(Imagesauvegardee.MatricePixel[i, j].G);
+                    fichier[a++] = Convert.ToByte(Imagesauvegardee.MatricePixel[i, j].R);
                 }
             }
 
-            File.WriteAllBytes(wantedFileName+".bmp", fichier);
+            // Écriture du fichier BMP
+            File.WriteAllBytes(wantedFileName + ".bmp", fichier);
         }
 
     }

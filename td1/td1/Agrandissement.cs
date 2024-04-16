@@ -10,28 +10,33 @@ namespace td1
     {
         public void MultiplicationMatrice(Image ImageEnCours, int CoefAggrandissement)
         {
-            //modif de l'header pour mettre la bonne taille
+            // Obtention des dimensions de l'image d'origine
             int tailleX = ImageEnCours.MatricePixel.GetLength(0);
             int tailleY = ImageEnCours.MatricePixel.GetLength(1);
 
+            // Création de la matrice agrandie
+            Pixel[,] matriceAgrandie = new Pixel[tailleX * CoefAggrandissement, tailleY * CoefAggrandissement];
 
-            Pixel[,] matriceAgrandie = new Pixel[tailleX*CoefAggrandissement,tailleY*CoefAggrandissement];
-
+            // Parcours de chaque pixel de l'image d'origine
             for (int i = 0; i < tailleX; i++)
             {
                 for (int j = 0; j < tailleY; j++)
                 {
                     for (int k = 0; k < CoefAggrandissement; k++)
                     {
-                        for (int l = 0; l < CoefAggrandissement; l++) // PROBLEME ICI ALEDDD
+                        for (int l = 0; l < CoefAggrandissement; l++)
                         {
-                            matriceAgrandie[i * CoefAggrandissement + k, j * CoefAggrandissement + l] = ImageEnCours.MatricePixel[i, j];
+                            matriceAgrandie[i * CoefAggrandissement + l, j * CoefAggrandissement + k] = ImageEnCours.MatricePixel[i, j];
                         }
                     }
                 }
             }
+
+
+            // Assignation de la matrice agrandie à l'image en cours
+            ImageEnCours.tailleX = tailleX * CoefAggrandissement;
+            ImageEnCours.tailleY = tailleY * CoefAggrandissement;
             ImageEnCours.MatricePixel = matriceAgrandie;
-          
         }
 
 

@@ -15,7 +15,7 @@ namespace td1
         {
             this.image = image;
         }
-
+        /*
         public Image Main(string[] args)
         {
             imagefiltre.MatricePixel = new Pixel[image.MatricePixel.GetLength(0), image.MatricePixel.GetLength(1)];
@@ -94,6 +94,7 @@ namespace td1
 
             return imagefiltre;
         }
+        */
 
     }
 }
