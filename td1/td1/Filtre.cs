@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace td1
 {
     internal class Filtre
-    {
+    {/**
         Image image;
         Image imagefiltre;
         
@@ -15,11 +15,11 @@ namespace td1
         {
             this.image = image;
         }
-
-        /*public Image Main(string[] args)
+        
+        public Image Filtrerimage(Image image)
         {
             imagefiltre.MatricePixel = new Pixel[image.MatricePixel.GetLength(0), image.MatricePixel.GetLength(1)];
-
+            imagefiltre.Header = image.Header;
             Console.WriteLine("Quel filtre souhaitez-vous?:");
             string num = Console.ReadLine();
             switch (num)
@@ -30,8 +30,7 @@ namespace td1
                     switch (degre)
                     {
                         case "1":
-                            int[,] Matricefiltre = { { 1, 0, -1 }, { 0, 0, 0 }, { -1, 0, 1 } };
-                            imagefiltre.MatricePixel = new Pixel[image.MatricePixel.GetLength(0), image.MatricePixel.GetLength(1)];
+                            int[,] Matricefiltre11 = { { 1, 0, -1 }, { 0, 0, 0 }, { -1, 0, 1 } };
                             for (int i = 1; i < image.MatricePixel.GetLength(0); i++)
                             {
                                 for (int j = 1; j < image.MatricePixel.GetLength(1); j++)
@@ -42,11 +41,11 @@ namespace td1
                             break;
 
                         case "2":
-                           // int[,] Matricefiltre = { { 0, 1, 0 }, { 1, -4, 1 }, { 0, 1, 0 } };
+                            int[,] Matricefiltre12 = { { 0, 1, 0 }, { 1, -4, 1 }, { 0, 1, 0 } };
                             break;
 
                         case "3":
-                           // int[,] Matricefiltre = { { -1, -1, -1 }, { -1, 8, -1 }, { -1, -1, -1 } };
+                            int[,] Matricefiltre13 = { { -1, -1, -1 }, { -1, 8, -1 }, { -1, -1, -1 } };
                             break;
 
                     }
@@ -54,16 +53,8 @@ namespace td1
 
                 case "2":
 
+                    int[,] Matricefiltre2 = { { 0, 0, 0 }, { -1, 1, 0 }, { 0, 0, 0 } };
 
-                    Matricefiltre[0, 0] = 0;
-                    Matricefiltre[0, 1] = 0;
-                    Matricefiltre[0, 2] = 0;
-                    Matricefiltre[1, 0] = -1;
-                    Matricefiltre[1, 1] = 1;
-                    Matricefiltre[1, 2] = 0;
-                    Matricefiltre[2, 0] = 0;
-                    Matricefiltre[2, 1] = 0;
-                    Matricefiltre[2, 2] = 0;
                     break;
 
                 case "3":
@@ -71,30 +62,33 @@ namespace td1
                     {
                         for(int j= 1; j < image.MatricePixel.GetLength(1)-1; j++)
                         {
-                            imagefiltre.MatricePixel[i, j] = 
-                                (image.MatricePixel[i - 1, j - 1] + image.MatricePixel[i - 1, j] + image.MatricePixel[i - 1, j + 1]
-                                + image.MatricePixel[i, j - 1] + image.MatricePixel[i, j] + image.MatricePixel[i, j + 1]
-                                + image.MatricePixel[i + 1, j - 1] + image.MatricePixel[i + 1, j] + image.MatricePixel[i + 1, j + 1]) / 9;
+                            imagefiltre.MatricePixel[i, j].R = 
+                                (image.MatricePixel[i - 1, j - 1].R + image.MatricePixel[i - 1, j].R + image.MatricePixel[i - 1, j + 1].R
+                                + image.MatricePixel[i, j - 1].R + image.MatricePixel[i, j].R + image.MatricePixel[i, j + 1].R
+                                + image.MatricePixel[i + 1, j - 1].R + image.MatricePixel[i + 1, j].R + image.MatricePixel[i + 1, j + 1].R) / 9;
+
+                            imagefiltre.MatricePixel[i, j].G =
+                                (image.MatricePixel[i - 1, j - 1].G + image.MatricePixel[i - 1, j].G + image.MatricePixel[i - 1, j + 1].G
+                                + image.MatricePixel[i, j - 1].G + image.MatricePixel[i, j].G + image.MatricePixel[i, j + 1].G
+                                + image.MatricePixel[i + 1, j - 1].G + image.MatricePixel[i + 1, j].G + image.MatricePixel[i + 1, j + 1].G) / 9;
+
+                            imagefiltre.MatricePixel[i, j].B =
+                                (image.MatricePixel[i - 1, j - 1].B + image.MatricePixel[i - 1, j].B + image.MatricePixel[i - 1, j + 1].B
+                                + image.MatricePixel[i, j - 1].B + image.MatricePixel[i, j].B + image.MatricePixel[i, j + 1].B
+                                + image.MatricePixel[i + 1, j - 1].B + image.MatricePixel[i + 1, j].B + image.MatricePixel[i + 1, j + 1].B) / 9;
                         }
                     }
                     break;
 
                 case "4":
-                    Matricefiltre[0, 0] = -2;
-                    Matricefiltre[0, 1] = -1;
-                    Matricefiltre[0, 2] = 0;
-                    Matricefiltre[1, 0] = -1;
-                    Matricefiltre[1, 1] = 1;
-                    Matricefiltre[1, 2] = 1;
-                    Matricefiltre[2, 0] = 0;
-                    Matricefiltre[2, 1] = 1;
-                    Matricefiltre[2, 2] = 2;
+                    int[,] Matricefiltre4 = { { -2, -1, 0 }, { -1, 1, 1 }, { 0, 1, 2 } };
                 break;
             }
-
+            
             return imagefiltre;
-        } */
+        }
+        */
 
-    } 
+    }
 }
 
