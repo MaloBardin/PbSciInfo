@@ -149,6 +149,12 @@ namespace td1
             byte[] fichier = new byte[54 + (Imagesauvegardee.MatricePixel.GetLength(0) * Imagesauvegardee.MatricePixel.GetLength(1) * 3)]; //coucouououu
             byte[] header = BuildLeBonHeader(Imagesauvegardee);
             Array.Copy(header, fichier, header.Length);
+            Array.Copy(Int2ToByte(Imagesauvegardee.MatricePixel.GetLength(0) * Imagesauvegardee.MatricePixel.GetLength(1) * 3), 0, fichier, 2, Int2ToByte(Imagesauvegardee.MatricePixel.GetLength(0) * Imagesauvegardee.MatricePixel.GetLength(1) * 3).Length);
+            Console.WriteLine("taille : " + Int2ToByte(Imagesauvegardee.MatricePixel.GetLength(0) * Imagesauvegardee.MatricePixel.GetLength(1) * 3));
+            Console.WriteLine("LongeurX : " + Int2ToByte(Imagesauvegardee.MatricePixel.GetLength(0)));
+            Console.WriteLine("LongeurY : " + Int2ToByte(Imagesauvegardee.MatricePixel.GetLength(1)));
+            Console.ReadLine();
+
 
             int a = 54; // Position de début des données de pixel dans le fichier BMP
 
