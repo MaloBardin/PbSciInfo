@@ -38,7 +38,8 @@ namespace td1
             ImageEnCours.tailleY = tailleY * CoefAggrandissement;
             ImageEnCours.MatricePixel = matriceAgrandie;
         }
-
-
     }
 }
+
+
+
