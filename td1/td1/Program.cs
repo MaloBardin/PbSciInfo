@@ -19,11 +19,12 @@ namespace td1
 
 
 
-            
+
             Image ImageEnCours = new Image();
-            Pixel[,] MatriceDePixelCouleur = ImageEnCours.Lecture(filesource); //on récupère içi notre matrice d'image 
+            Pixel[,] MatriceDePixelCouleur = ImageEnCours.Lecture(filesource);//on récupère içi notre matrice d'image 
+            ImageEnCours.CorrigerImageApresModif(ImageEnCours);                 // on met les modifs de notre image
                                                                                //on peut y accèder via ImageEnCours.MatricePixel
-            
+
 
             Console.Clear();// vidange 
 
@@ -56,7 +57,8 @@ namespace td1
                         Console.Clear();
                         //creation de la partie noir et blanc
                         NuancesGris Decoloration = new NuancesGris();
-                        Image ImageDecoloree = Decoloration.ImageEnGris(ImageEnCours);
+                        Decoloration.ImageEnGris(ImageEnCours);
+                        ImageEnCours.CorrigerImageApresModif(ImageEnCours);
                         //matrice en n&b ImageDecoloRee si on veut l'utiliser -> on utilise image en cours classiquement
                         turnModifOnMessage = 1;
                         break;
@@ -64,10 +66,9 @@ namespace td1
                     case "2":
                         Console.Clear();
                         //On va agrandir notre image
-                        int tailleMult=1; //par quelle int on multiplie notre taille
+                        int tailleMult; //par quelle int on multiplie notre taille
                         Console.SetCursorPosition(30, 16); Console.Write("Combien de fois voulez-vous agrandir votre image ? : "); Console.SetCursorPosition(100, 16); tailleMult = int.Parse(Console.ReadLine());
-                        Agrandissement Aumgentation = new Agrandissement();
-                        Aumgentation.MultiplicationMatrice(ImageEnCours, tailleMult);
+                        ImageEnCours.Agrandissement(tailleMult);
                         turnModifOnMessage = 1;
                         break;
                     
@@ -86,7 +87,7 @@ namespace td1
                         Console.Clear();
                         Console.SetCursorPosition(25, 7); Console.WriteLine("Sous quel nom voulez vous sauvegarder votre image ?");
                         Console.SetCursorPosition(25, 8); string wantedFileName = Console.ReadLine();
-                        ImageEnCours.SauvegardeImage(wantedFileName, filesource, ImageEnCours); //sauvegarde de notre image en n&b  | On peut aussi utiliser image en cours -> SAUVEGARDE A DEPLACER !
+                        ImageEnCours.SauvegardeImage(wantedFileName, ImageEnCours); //sauvegarde de notre image en n&b  | On peut aussi utiliser image en cours -> SAUVEGARDE A DEPLACER !
                         turnModifOnMessage = 2;
                         break;
                     default:
