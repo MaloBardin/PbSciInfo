@@ -69,6 +69,7 @@ namespace td1
                         int tailleMult; //par quelle int on multiplie notre taille
                         Console.SetCursorPosition(30, 16); Console.Write("Combien de fois voulez-vous agrandir votre image ? : "); Console.SetCursorPosition(100, 16); tailleMult = int.Parse(Console.ReadLine());
                         ImageEnCours.Agrandissement(tailleMult);
+                        ImageEnCours.CorrigerImageApresModif(ImageEnCours);
                         turnModifOnMessage = 1;
                         break;
                     

@@ -64,34 +64,25 @@ namespace td1
 
         public void Agrandissement(int coefficient)
         {
-            int Newlargeur = (int)(this.tailleX * coefficient);
-            int Newhauteur = (int)(this.tailleY * coefficient);
-            while (Newlargeur % 4 != 0)
-            {
-                Newlargeur++;
-            }
+            int largeurApresCoef = this.tailleX * coefficient;
+            int hauteurApresCoef = this.tailleY * coefficient;
 
-            Pixel[,] ImageAggrandie = new Pixel[Newlargeur,Newhauteur];
+            Pixel[,] MatriceAgrandie = new Pixel[largeurApresCoef,hauteurApresCoef];
 
-            for (int i = 0; i < Newlargeur; i++)
+            for (int i=0; i< largeurApresCoef; i++)
             {
-                for (int j = 0; j < Newhauteur; j++)
+                for (int j = 0; j < hauteurApresCoef; j++)
                 {
-                    int ancienneX = (int)(i / coefficient);
-                    int ancienneY = (int)(j / coefficient);
-
-                    // Assurer que les coordonnées restent à l'intérieur des limites de l'image
-                    ancienneX = Math.Min(ancienneX, this.tailleX - 1);
-                    ancienneY = Math.Min(ancienneY, this.tailleY - 1);
-
-                    ImageAggrandie[i, j] = this.MatricePixel[ancienneX,ancienneY];
+                    int posX = i  / coefficient;
+                    int posY = j / coefficient;
+                    MatriceAgrandie[i, j] = this.MatricePixel[i/coefficient,j/coefficient];
                 }
             }
+                
 
 
 
-            Image Nouveau = new Image(ImageAggrandie, this.Header, Newlargeur, Newhauteur, Newlargeur * Newhauteur * 3 + 54, Newlargeur * Newhauteur * 3, this.nombreBits, this.decalage); ; ;
-            SauvegardeImage("allezgo",Nouveau);
+            this.MatricePixel = MatriceAgrandie;
         }
 
 
@@ -115,27 +106,15 @@ namespace td1
             MatricePixel = new Pixel[tailleX, tailleY];
             int TailleMatriceX = 0;
             int TailleMatriceY = 0;
-            for (int i = 54; i < fichier.Length; i = i + 3)
+            int a = 54;
+            for (int y=0; y < tailleY; y++)
             {
-                if (TailleMatriceY >= tailleY)
+                for (int x=0; x < tailleX; x++)
                 {
-                    TailleMatriceX++; //on augmente de 1 la hauteur
-                    TailleMatriceY = 0; //on remet x a 0
-
-                    if (TailleMatriceX >= tailleX)
-                    {
-
-                        break; // on detecte la fin de l'image (on est en dehors des limites de l'image)
-                    }
+                    MatricePixel[x, y] = new Pixel(fichier[a], fichier[a+1], fichier[a+2]);
+                    a = a + 3;
                 }
-
-                MatricePixel[TailleMatriceX, TailleMatriceY] = new Pixel(fichier[i], fichier[i + 1], fichier[i + 2]);
-                TailleMatriceY++; // on incremente pour aller a droite automatiquement
-
             }
-
-
-
             return MatricePixel;
         }
 
@@ -224,9 +203,9 @@ namespace td1
             int a = header.Length; // Position de début des données de pixel dans le fichier BMP
 
             // Copie des données de pixel dans le fichier BMP
-            for (int i = 0; i < Imagesauvegardee.tailleX; i++)
+            for (int j = 0; j < Imagesauvegardee.tailleY; j++)
             {
-                for (int j = 0; j < Imagesauvegardee.tailleY; j++)
+                for (int i = 0; i < Imagesauvegardee.tailleX; i++)
                 {
                     // Copie des composantes de couleur dans le bon ordre (BGR)
                     fichier[a++] = Convert.ToByte(Imagesauvegardee.MatricePixel[i, j].B);
