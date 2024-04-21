@@ -38,7 +38,7 @@ namespace td1
                 Console.SetCursorPosition(20, 10); Console.WriteLine("3 Rotation");
                 Console.SetCursorPosition(20, 11); Console.WriteLine("4 Filtres");
                 Console.SetCursorPosition(20, 12); Console.WriteLine("5 Fractales");
-                Console.SetCursorPosition(20, 13); Console.WriteLine("6 Sauvegarder de votre image");
+                Console.SetCursorPosition(20, 13); Console.WriteLine("6 Sauvegarde de votre image");
                 Console.SetCursorPosition(20, 14); Console.WriteLine("7 Changer votre image");
                 Console.SetCursorPosition(30, 19); Console.Write("Faites votre choix avec 1,2,3,4,5,6 ou 7 : ");
 

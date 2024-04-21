@@ -174,6 +174,15 @@ namespace td1
             int nvtailleX = Convert.ToInt32(Dessin.tailleX * Math.Abs(Math.Cos(theta)) + Dessin.tailleY * Math.Abs(Math.Sin(theta)));
             int nvtailleY = Convert.ToInt32(Dessin.tailleX * Math.Abs(Math.Sin(theta)) + Dessin.tailleY * Math.Abs(Math.Cos(theta)));
 
+            while (nvtailleX % 4 != 0)
+            {
+                nvtailleX++;
+            }
+            while (nvtailleY % 4 != 0)
+            {
+                nvtailleY++;
+            }
+
             // Création de l'image de sortie
             Pixel[,] rotatedImage = new Pixel[nvtailleX, nvtailleY];
 
@@ -184,6 +193,7 @@ namespace td1
             // Calcul des coordonnées du centre de l'image de sortie
             int nvcentreX = nvtailleX / 2;
             int nvcentreY = nvtailleY / 2;
+
 
             // Parcourir tous les pixels de l'image d'entrée et les placer dans l'image de sortie
             for (int x = 0; x < Dessin.tailleX; x++)
