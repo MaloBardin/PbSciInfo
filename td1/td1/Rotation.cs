@@ -211,6 +211,42 @@ namespace td1
                     }
                 }
             }
+            // vérifiee si les pixels adjacents à un pixel nul sont plus de 6 à etre non nuls, si oui on fait la moyenne des pixels non nuls du pixel en question
+            for (int x = 0; x < nvtailleX; x++)
+            {
+                for (int y = 0; y < nvtailleY; y++)
+                {
+                    if (rotatedImage[x, y] == null)
+                    {
+                        int nbPixelNonNuls = 0;
+                        int sommeB = 0;
+                        int sommeG = 0;
+                        int sommeR = 0;
+                        for (int i = -1; i <= 1; i++)
+                        {
+                            for (int j = -1; j <= 1; j++)
+                            {
+                                if (x + i >= 0 && x + i < nvtailleX && y + j >= 0 && y + j < nvtailleY)
+                                {
+                                    if (rotatedImage[x + i, y + j] != null)
+                                    {
+                                        nbPixelNonNuls++;
+                                        sommeB += rotatedImage[x + i, y + j].B;
+                                        sommeG += rotatedImage[x + i, y + j].G;
+                                        sommeR += rotatedImage[x + i, y + j].R;
+
+                                    }
+                                }
+                            }
+                        }
+                        if (nbPixelNonNuls >= 6)
+                        {
+                            rotatedImage[x, y] = new Pixel(Convert.ToByte(sommeB / nbPixelNonNuls), Convert.ToByte(sommeG / nbPixelNonNuls), Convert.ToByte(sommeR / nbPixelNonNuls));
+                        }
+                    }
+                }
+            }   
+
             // Remplir les pixels nuls avec des pixels noirs
             for (int x = 0; x < nvtailleX; x++)
             {
