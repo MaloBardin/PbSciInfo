@@ -21,7 +21,7 @@ namespace td1
 
 
             Image ImageEnCours = new Image();
-            Pixel[,] MatriceDePixelCouleur = ImageEnCours.Lecture(filesource);//on récupère içi notre matrice d'image 
+            ImageEnCours.Lecture(filesource);//on récupère içi notre matrice d'image 
             ImageEnCours.CorrigerImageApresModif(ImageEnCours);                 // on met les modifs de notre image
                                                                                //on peut y accèder via ImageEnCours.MatricePixel
 
@@ -36,10 +36,11 @@ namespace td1
                 Console.SetCursorPosition(20, 8); Console.WriteLine("1 Noir et Blanc");
                 Console.SetCursorPosition(20, 9); Console.WriteLine("2 Agrandissement");
                 Console.SetCursorPosition(20, 10); Console.WriteLine("3 Rotation");
-                Console.SetCursorPosition(20, 11); Console.WriteLine("4 A FAIRE");
-                Console.SetCursorPosition(20, 12); Console.WriteLine("5 Changement image (à faire)");
+                Console.SetCursorPosition(20, 11); Console.WriteLine("4 Filtres");
+                Console.SetCursorPosition(20, 12); Console.WriteLine("5 Fractales");
                 Console.SetCursorPosition(20, 13); Console.WriteLine("6 Sauvegarder de votre image");
-                Console.SetCursorPosition(30, 19); Console.Write("Faites votre choix avec 1,2,3,4 ou 5 : ");
+                Console.SetCursorPosition(20, 14); Console.WriteLine("7 Changer votre image");
+                Console.SetCursorPosition(30, 19); Console.Write("Faites votre choix avec 1,2,3,4,5,6 ou 7 : ");
 
                 if (turnModifOnMessage == 1)
                 {
@@ -90,6 +91,13 @@ namespace td1
                         Console.SetCursorPosition(25, 8); string wantedFileName = Console.ReadLine();
                         ImageEnCours.SauvegardeImage(wantedFileName, ImageEnCours); //sauvegarde de notre image en n&b  | On peut aussi utiliser image en cours -> SAUVEGARDE A DEPLACER !
                         turnModifOnMessage = 2;
+                        break;
+                    case "7":
+                        Console.Clear();
+                        Console.SetCursorPosition(35, 10); Console.WriteLine("Merci d'indiquer le nom de votre image");
+                        Console.SetCursorPosition(35, 11); filename = Console.ReadLine();filesource = "./Images/" + filename + ".bmp";
+                        ImageEnCours.Lecture(filesource);//on récupère içi notre matrice d'image 
+                        ImageEnCours.CorrigerImageApresModif(ImageEnCours);
                         break;
                     default:
                         Console.SetCursorPosition(20, 20); Console.WriteLine("Erreur choix invalide");
