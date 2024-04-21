@@ -109,7 +109,7 @@ namespace td1
 
             return rotatedImage;
         }*/
-        
+        /*
         public Pixel[,] RotationDegre(Image Dessin, int degre)
         {
             int TailleX = Dessin.tailleX;
@@ -164,8 +164,88 @@ namespace td1
 
             return rotatedImage;
         }
+         */
+        
+        public Pixel[,] RotationDegre(Image Dessin, int degre)
+        {
+            // Calcul des dimensions de l'image de sortie
+
+            double theta = degre * Math.PI / 180.0;
+            int nvtailleX = Convert.ToInt32(Dessin.tailleX * Math.Abs(Math.Cos(theta)) + Dessin.tailleY * Math.Abs(Math.Sin(theta)));
+            int nvtailleY = Convert.ToInt32(Dessin.tailleX * Math.Abs(Math.Sin(theta)) + Dessin.tailleY * Math.Abs(Math.Cos(theta)));
+
+            // Création de l'image de sortie
+            Pixel[,] rotatedImage = new Pixel[nvtailleX, nvtailleY];
+
+            // Calcul des coordonnées du centre de l'image d'entrée
+            int centreX = Dessin.tailleX / 2;
+            int centreY = Dessin.tailleY / 2;
+
+            // Calcul des coordonnées du centre de l'image de sortie
+            int nvcentreX = nvtailleX / 2;
+            int nvcentreY = nvtailleY / 2;
+
+            // Parcourir tous les pixels de l'image d'entrée et les placer dans l'image de sortie
+            for (int x = 0; x < Dessin.tailleX; x++)
+            {
+                for (int y = 0; y < Dessin.tailleY; y++)
+                {
+                    // Calcul des coordonnées du pixel dans l'image de sortie
+                    int nvx = Convert.ToInt32(((x - centreX) * Math.Cos(theta) - (y - centreY) * Math.Sin(theta) + nvcentreX));
+                    int nvy = Convert.ToInt32(((x - centreX) * Math.Sin(theta) + (y - centreY) * Math.Cos(theta) + nvcentreY));
+
+                    // Copier le pixel de l'image d'entrée dans l'image de sortie
+                    if (nvx >= 0 && nvx < nvtailleX && nvy >= 0 && nvy < nvtailleY)
+                    {
+                        rotatedImage[nvx, nvy] = Dessin.MatricePixel[x, y];
+                    }
+                }
+            }
+            // Remplir les pixels nuls avec des pixels noirs
+            for (int x = 0; x < nvtailleX; x++)
+            {
+                for (int y = 0; y < nvtailleY; y++)
+                {
+                    if (rotatedImage[x, y] == null)
+                    {
+                        rotatedImage[x, y] = new Pixel(0, 0, 0); 
+                    }
+                }
+            }
+            return rotatedImage;
+        }
+        
 
 
+        // TEST D'IMAGE NOIRE JUSTE EN DESSOUS
+        // VRAI CODE ACTUEL JUSTE AU DESSUS
+
+        /*
+        public Pixel[,] RotationDegre(Image Dessin, int degre)
+        {
+            // Calcul des dimensions de l'image de sortie
+
+            double theta = degre * Math.PI / 180.0;
+            int nvtailleX = Convert.ToInt32(Dessin.tailleX * Math.Abs(Math.Cos(theta)) + Dessin.tailleY * Math.Abs(Math.Sin(theta)));
+            int nvtailleY = Convert.ToInt32(Dessin.tailleX * Math.Abs(Math.Sin(theta)) + Dessin.tailleY * Math.Abs(Math.Cos(theta)));
+
+            // Création de l'image de sortie
+            Pixel[,] rotatedImage = new Pixel[nvtailleX, nvtailleY];
+
+            // Remplir les pixels nuls avec des pixels noirs
+            for (int x = 0; x < nvtailleX; x++)
+            {
+                for (int y = 0; y < nvtailleY; y++)
+                {
+                    if (rotatedImage[x, y] == null)
+                    {
+                        rotatedImage[x, y] = new Pixel(0, 0, 0);
+                    }
+                }
+            }
+            return rotatedImage;
+        }
+        */
 
     }
 }

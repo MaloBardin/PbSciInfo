@@ -81,7 +81,8 @@ namespace td1
                         Console.SetCursorPosition(25, 7); Console.WriteLine("De combien de degrés voulez vous tourner votre image ?");
                         Console.SetCursorPosition(25, 8); int degre = Convert.ToInt32(Console.ReadLine());
 
-                         ImageEnCours.MatricePixel = Rot.RotationDegre(ImageEnCours, degre);
+                        ImageEnCours.MatricePixel = Rot.RotationDegre(ImageEnCours, degre);
+                        ImageEnCours.CorrigerImageApresModif(ImageEnCours);
                         break;
                         
 
