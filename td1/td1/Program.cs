@@ -84,7 +84,14 @@ namespace td1
                         ImageEnCours.MatricePixel = Rot.RotationDegre(ImageEnCours, degre);
                         ImageEnCours.CorrigerImageApresModif(ImageEnCours);
                         break;
-                        
+
+                    case "4":
+                        Console.Clear();
+                        //On va appliquer un filtre sur notre image
+                        Filtre Filt = new Filtre(ImageEnCours);
+                        ImageEnCours.MatricePixel = Filt.Filtrerimage(ImageEnCours);
+                        break;
+
 
                     case "6":
                         Console.Clear();
