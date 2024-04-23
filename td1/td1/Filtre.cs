@@ -573,23 +573,23 @@ namespace td1
                     break;
 
             }
-            /*
+
             ///On remplit les coins
             MatricePixel[0, 0] = MatricePixel[1, 1];
             MatricePixel[0, 1] = MatricePixel[1, 1];
             MatricePixel[1, 0] = MatricePixel[1, 1]; /// Coin 1
 
-            MatricePixel[0, image.MatricePixel.GetLength(1)] = MatricePixel[1, image.MatricePixel.GetLength(1)-1];
-            MatricePixel[0, image.MatricePixel.GetLength(1) - 1] = MatricePixel[1, image.MatricePixel.GetLength(1) - 1];
-            MatricePixel[1, image.MatricePixel.GetLength(1)] = MatricePixel[1, image.MatricePixel.GetLength(1) - 1]; /// Coin 2
+            MatricePixel[0, image.tailleY] = MatricePixel[1, image.tailleY-1];
+            MatricePixel[0, image.tailleY - 1] = MatricePixel[1, image.tailleY - 1];
+            MatricePixel[1, image.tailleY] = MatricePixel[1, image.tailleY - 1]; /// Coin 2
 
-            MatricePixel[image.MatricePixel.GetLength(0), 0] = MatricePixel[image.MatricePixel.GetLength(0) - 1, 1];
-            MatricePixel[image.MatricePixel.GetLength(0), 1] = MatricePixel[image.MatricePixel.GetLength(0) - 1, 1];
-            MatricePixel[image.MatricePixel.GetLength(0) - 1, 0] = MatricePixel[image.MatricePixel.GetLength(0) - 1, 1]; /// Coin 3
+            MatricePixel[image.tailleX, 0] = MatricePixel[image.tailleX - 1, 1];
+            MatricePixel[image.tailleX, 1] = MatricePixel[image.tailleX - 1, 1];
+            MatricePixel[image.tailleX - 1, 0] = MatricePixel[image.tailleX - 1, 1]; /// Coin 3
 
-            MatricePixel[image.MatricePixel.GetLength(0), image.MatricePixel.GetLength(1)] = MatricePixel[image.MatricePixel.GetLength(0) - 1, image.MatricePixel.GetLength(1)-1];
-            MatricePixel[image.MatricePixel.GetLength(0) - 1, image.MatricePixel.GetLength(1)]= MatricePixel[image.MatricePixel.GetLength(0) - 1, image.MatricePixel.GetLength(1) - 1];
-            MatricePixel[image.MatricePixel.GetLength(0), image.MatricePixel.GetLength(1) - 1] = MatricePixel[image.MatricePixel.GetLength(0) - 1, image.MatricePixel.GetLength(1) - 1]; /// Coin 4
+            MatricePixel[image.tailleX, image.tailleY] = MatricePixel[image.tailleX - 1, image.tailleY - 1];
+            MatricePixel[image.tailleX - 1, image.tailleY] = MatricePixel[image.tailleX - 1, image.tailleY - 1];
+            MatricePixel[image.tailleX, image.tailleY - 1] = MatricePixel[image.tailleX - 1, image.tailleY - 1]; /// Coin 4
 
             for (int i = 2; i < image.MatricePixel.GetLength(0)-2; i++) ///On remplit les côtés
             {
@@ -601,7 +601,7 @@ namespace td1
                 MatricePixel[0, j] = MatricePixel[1, j];
                 MatricePixel[image.MatricePixel.GetLength(0), j] = MatricePixel[image.MatricePixel.GetLength(0) - 1, j];
             }
-            **/
+            
 
             return MatricePixel;
                 
