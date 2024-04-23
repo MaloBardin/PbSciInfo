@@ -14,166 +14,18 @@ namespace td1
         {
             
         }
-        /*
-        public Pixel[,] RotationDegre(Image Dessin, int degre)
-        {
-            int TailleX = Dessin.tailleX;
-            int TailleY = Dessin.tailleY;
-            Pixel[,] rotatedImage = new Pixel[TailleX, TailleY];
-
-            double angle = degre * Math.PI / 180.0;
-            double cosTheta = Math.Cos(angle);
-            double sinTheta = Math.Sin(angle);
-
-            int centreX = TailleX / 2;
-            int centreY = TailleY / 2;
-
-            for (int x = 0; x < TailleX; x++)
-            {
-                for (int y = 0; y < TailleY; y++)
-                {
-                    
-                    int nouveauX = (int)((x - centreX) * cosTheta - (y - centreY) * sinTheta + centreX);
-                    int nouveauY = (int)((x - centreX) * sinTheta + (y - centreY) * cosTheta + centreY);
-
-                    if (nouveauX >= 0 && nouveauX < TailleX && nouveauY >= 0 && nouveauY < TailleY) 
-                    {
-                        rotatedImage[nouveauX, nouveauY] = Dessin.MatricePixel[x, y];
-                    }
-                }
-            }
-            for(int i = 0; i<rotatedImage.GetLength(0); i++)
-            {
-                for(int j = 0; j<rotatedImage.GetLength(1); j++)
-                {
-                    if (rotatedImage[i,j] == null)
-                    {
-                        rotatedImage[i, j] = new Pixel(255, 255, 255);
-                    }
-                }
-            }   
-            return rotatedImage;
-        }*/
-        /*
-        public Pixel[,] RotationDegre(Image Dessin, int degre)
-        {
-            int TailleX = Dessin.tailleX;
-            int TailleY = Dessin.tailleY;
-
-            double angle = degre * Math.PI / 180.0;
-            double cosTheta = Math.Cos(angle);
-            double sinTheta = Math.Sin(angle);
-
-            Pixel[,] rotatedImage = new Pixel[TailleX, TailleY];
-
-            // Calcul des coordonnées du centre de l'image
-            double centreX = TailleX / 2.0;
-            double centreY = TailleY / 2.0;
-
-            // Parcourir tous les pixels de l'image résultante
-            for (int x = 0; x < TailleX; x++)
-            {
-                for (int y = 0; y < TailleY; y++)
-                {
-                    // Déplacer le centre de l'image aux coordonnées du pixel actuel
-                    double offsetX = x - centreX;
-                    double offsetY = y - centreY;
-
-                    // Appliquer la rotation
-                    double nouveauX = offsetX * cosTheta - offsetY * sinTheta + centreX;
-                    double nouveauY = offsetX * sinTheta + offsetY * cosTheta + centreY;
-
-                    // Convertir les coordonnées en entiers
-                    int intNouveauX = (int)Math.Round(nouveauX);
-                    int intNouveauY = (int)Math.Round(nouveauY);
-
-                    // Copier le pixel de l'image d'origine dans l'image résultante
-                    if (intNouveauX >= 0 && intNouveauX < TailleX && intNouveauY >= 0 && intNouveauY < TailleY)
-                    {
-                        rotatedImage[intNouveauX, intNouveauY] = Dessin.MatricePixel[x, y];
-                    }
-                }
-            }
-
-            // Remplir les pixels nuls avec des pixels noirs
-            for (int x = 0; x < TailleX; x++)
-            {
-                for (int y = 0; y < TailleY; y++)
-                {
-                    if (rotatedImage[x, y] == null)
-                    {
-                        rotatedImage[x, y] = new Pixel(255, 255, 255); // Pixel noir
-                    }
-                }
-            }
-
-            return rotatedImage;
-        }*/
-        /*
-        public Pixel[,] RotationDegre(Image Dessin, int degre)
-        {
-            int TailleX = Dessin.tailleX;
-            int TailleY = Dessin.tailleY;
-
-            double angle = degre * Math.PI / 180.0;
-            double cosTheta = Math.Cos(angle);
-            double sinTheta = Math.Sin(angle);
-
-            Pixel[,] rotatedImage = new Pixel[TailleX, TailleY];
-
-            // Calcul des coordonnées du centre de l'image
-            double centreX = TailleX / 2.0;
-            double centreY = TailleY / 2.0;
-
-            // Parcourir tous les pixels de l'image résultante
-            for (int x = 0; x < TailleX; x++)
-            {
-                for (int y = 0; y < TailleY; y++)
-                {
-                    // Déplacer les coordonnées au centre de l'image
-                    double offsetX = x - centreX;
-                    double offsetY = y - centreY;
-
-                    // Appliquer la rotation autour du centre de l'image
-                    double nouveauX = offsetX * cosTheta - offsetY * sinTheta + centreX;
-                    double nouveauY = offsetX * sinTheta + offsetY * cosTheta + centreY;
-
-                    // Convertir les coordonnées en entiers
-                    int intNouveauX = (int)Math.Round(nouveauX);
-                    int intNouveauY = (int)Math.Round(nouveauY);
-
-                    // Copier le pixel de l'image d'origine dans l'image résultante
-                    if (intNouveauX >= 0 && intNouveauX < TailleX && intNouveauY >= 0 && intNouveauY < TailleY)
-                    {
-                        rotatedImage[intNouveauX, intNouveauY] = Dessin.MatricePixel[x, y];
-                    }
-                }
-            }
-
-            // Remplir les pixels nuls avec des pixels noirs
-            for (int x = 0; x < TailleX; x++)
-            {
-                for (int y = 0; y < TailleY; y++)
-                {
-                    if (rotatedImage[x, y] == null)
-                    {
-                        rotatedImage[x, y] = new Pixel(255,255,255); // Pixel noir
-                    }
-                }
-            }
-
-            return rotatedImage;
-        }
-         */
-        
+ 
         public Pixel[,] RotationDegre(Image Dessin, int degre)
         {
             // Calcul des dimensions de l'image de sortie
+            // nouvelle taille x = taille x * |cos(rad)| + taille y * |sin(rad)|
+            // nouvelle taille y = taille x * |sin(rad)| + taille y * |cos(rad)|
 
-            double theta = degre * Math.PI / 180.0;
-            int nvtailleX = Convert.ToInt32(Dessin.tailleX * Math.Abs(Math.Cos(theta)) + Dessin.tailleY * Math.Abs(Math.Sin(theta)));
-            int nvtailleY = Convert.ToInt32(Dessin.tailleX * Math.Abs(Math.Sin(theta)) + Dessin.tailleY * Math.Abs(Math.Cos(theta)));
+            double rad = degre * Math.PI / 180.0;
+            int nvtailleX = Convert.ToInt32(Dessin.tailleX * Math.Abs(Math.Cos(rad)) + Dessin.tailleY * Math.Abs(Math.Sin(rad)));
+            int nvtailleY = Convert.ToInt32(Dessin.tailleX * Math.Abs(Math.Sin(rad)) + Dessin.tailleY * Math.Abs(Math.Cos(rad)));
 
+            // Ajuster les dimensions pour qu'elles soient des multiples de 4 (sinon BMP pas lisible)
             while (nvtailleX % 4 != 0)
             {
                 nvtailleX++;
@@ -184,7 +36,7 @@ namespace td1
             }
 
             // Création de l'image de sortie
-            Pixel[,] rotatedImage = new Pixel[nvtailleX, nvtailleY];
+            Pixel[,] imageTournee = new Pixel[nvtailleX, nvtailleY];
 
             // Calcul des coordonnées du centre de l'image d'entrée
             int centreX = Dessin.tailleX / 2;
@@ -201,97 +53,78 @@ namespace td1
                 for (int y = 0; y < Dessin.tailleY; y++)
                 {
                     // Calcul des coordonnées du pixel dans l'image de sortie
-                    int nvx = Convert.ToInt32(((x - centreX) * Math.Cos(theta) - (y - centreY) * Math.Sin(theta) + nvcentreX));
-                    int nvy = Convert.ToInt32(((x - centreX) * Math.Sin(theta) + (y - centreY) * Math.Cos(theta) + nvcentreY));
+                    // nouveau x = (x - centreX) * cos(rad) - (y - centreY) * sin(rad) + nvcentreX
+                    // nouveau y = (x - centreX) * sin(rad) + (y - centreY) * cos(rad) + nvcentreY
+                    // on rajoute les nouveaux centres pour recentrer l'image autour du centre et pas en 0,0
+
+                    int nvx = Convert.ToInt32(((x - centreX) * Math.Cos(rad) - (y - centreY) * Math.Sin(rad) + nvcentreX));
+                    int nvy = Convert.ToInt32(((x - centreX) * Math.Sin(rad) + (y - centreY) * Math.Cos(rad) + nvcentreY));
 
                     // Copier le pixel de l'image d'entrée dans l'image de sortie
                     if (nvx >= 0 && nvx < nvtailleX && nvy >= 0 && nvy < nvtailleY)
                     {
-                        rotatedImage[nvx, nvy] = Dessin.MatricePixel[x, y];
+                        imageTournee[nvx, nvy] = Dessin.MatricePixel[x, y];
                     }
                 }
             }
-            // vérifiee si les pixels adjacents à un pixel nul sont plus de 6 à etre non nuls, si oui on fait la moyenne des pixels non nuls du pixel en question
+
+            // pour éviter des pixels noirs un peu partout (car la trigo implique qu'il y aura des pixels non remplis)
+
+            // vérifie si les pixels adjacents à un pixel nul sont plus de 6 à etre non nuls,
+            // si oui on fait la moyenne des pixels non nuls du pixel en question
+
             for (int x = 0; x < nvtailleX; x++)
             {
                 for (int y = 0; y < nvtailleY; y++)
                 {
-                    if (rotatedImage[x, y] == null)
+                    if (imageTournee[x, y] == null)
                     {
+                        // on initialise les sommes
                         int nbPixelNonNuls = 0;
                         int sommeB = 0;
                         int sommeG = 0;
                         int sommeR = 0;
+                        // On parcourt les pixels autour du pixel en question
                         for (int i = -1; i <= 1; i++)
                         {
                             for (int j = -1; j <= 1; j++)
                             {
+                                // On vérifie que le pixel est dans l'image
                                 if (x + i >= 0 && x + i < nvtailleX && y + j >= 0 && y + j < nvtailleY)
                                 {
-                                    if (rotatedImage[x + i, y + j] != null)
+                                    // On vérifie que le pixel n'est pas nul
+                                    if (imageTournee[x + i, y + j] != null)
                                     {
+                                        // On incrémente le nombre de pixels non nuls
                                         nbPixelNonNuls++;
-                                        sommeB += rotatedImage[x + i, y + j].B;
-                                        sommeG += rotatedImage[x + i, y + j].G;
-                                        sommeR += rotatedImage[x + i, y + j].R;
+                                        // On fait la somme des couleurs B,G,R des pixels non nuls
+                                        // (qu'on va ensuite diviser par le nb de pixels non nuls pour obtenir une moyenne)
+                                        sommeB += imageTournee[x + i, y + j].B;
+                                        sommeG += imageTournee[x + i, y + j].G;
+                                        sommeR += imageTournee[x + i, y + j].R;
 
                                     }
                                 }
                             }
                         }
+                        // Si plus de 6 pixels non nuls, on fait la moyenne des pixels non nuls (division par le nb de pixels non nuls)
                         if (nbPixelNonNuls >= 6)
                         {
-                            rotatedImage[x, y] = new Pixel(Convert.ToByte(sommeB / nbPixelNonNuls), Convert.ToByte(sommeG / nbPixelNonNuls), Convert.ToByte(sommeR / nbPixelNonNuls));
+                            imageTournee[x, y] = new Pixel(Convert.ToByte(sommeB / nbPixelNonNuls), Convert.ToByte(sommeG / nbPixelNonNuls), Convert.ToByte(sommeR / nbPixelNonNuls));
+                        }
+                        // Sinon on met un pixel noir (pour les pixels tout autour)
+                        else
+                        {
+                            imageTournee[x, y] = new Pixel(0, 0, 0); 
                         }
                     }
                 }
             }   
 
-            // Remplir les pixels nuls avec des pixels noirs
-            for (int x = 0; x < nvtailleX; x++)
-            {
-                for (int y = 0; y < nvtailleY; y++)
-                {
-                    if (rotatedImage[x, y] == null)
-                    {
-                        rotatedImage[x, y] = new Pixel(0, 0, 0); 
-                    }
-                }
-            }
-            return rotatedImage;
+            return imageTournee;
         }
         
 
-
-        // TEST D'IMAGE NOIRE JUSTE EN DESSOUS
-        // VRAI CODE ACTUEL JUSTE AU DESSUS
-
-        /*
-        public Pixel[,] RotationDegre(Image Dessin, int degre)
-        {
-            // Calcul des dimensions de l'image de sortie
-
-            double theta = degre * Math.PI / 180.0;
-            int nvtailleX = Convert.ToInt32(Dessin.tailleX * Math.Abs(Math.Cos(theta)) + Dessin.tailleY * Math.Abs(Math.Sin(theta)));
-            int nvtailleY = Convert.ToInt32(Dessin.tailleX * Math.Abs(Math.Sin(theta)) + Dessin.tailleY * Math.Abs(Math.Cos(theta)));
-
-            // Création de l'image de sortie
-            Pixel[,] rotatedImage = new Pixel[nvtailleX, nvtailleY];
-
-            // Remplir les pixels nuls avec des pixels noirs
-            for (int x = 0; x < nvtailleX; x++)
-            {
-                for (int y = 0; y < nvtailleY; y++)
-                {
-                    if (rotatedImage[x, y] == null)
-                    {
-                        rotatedImage[x, y] = new Pixel(0, 0, 0);
-                    }
-                }
-            }
-            return rotatedImage;
-        }
-        */
 
     }
 }
