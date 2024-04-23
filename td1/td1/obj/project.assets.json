@@ -128,19 +128,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Malob\\.nuget\\packages\\": {}
+    "C:\\Users\\theos\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\visual\\Desktop\\PbSciInfo\\td1\\td1\\td1.csproj",
+      "projectUniqueName": "C:\\Users\\theos\\OneDrive\\Documents\\GitHub\\PbSciInfo\\td1\\td1\\td1.csproj",
       "projectName": "td1",
-      "projectPath": "D:\\visual\\Desktop\\PbSciInfo\\td1\\td1\\td1.csproj",
-      "packagesPath": "C:\\Users\\Malob\\.nuget\\packages\\",
-      "outputPath": "D:\\visual\\Desktop\\PbSciInfo\\td1\\td1\\obj\\",
+      "projectPath": "C:\\Users\\theos\\OneDrive\\Documents\\GitHub\\PbSciInfo\\td1\\td1\\td1.csproj",
+      "packagesPath": "C:\\Users\\theos\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\theos\\OneDrive\\Documents\\GitHub\\PbSciInfo\\td1\\td1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Malob\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\theos\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -160,6 +160,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -187,7 +192,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
       }
     }
   }
