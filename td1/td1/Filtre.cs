@@ -175,74 +175,29 @@ namespace td1
                             break;
 
                         case "3": /// Filtre: Flou
-                           for (int i = 1; i < image.tailleX - 1; i++)
+                            for (int i = 1; i < image.tailleX - 1; i++)
                             {
                                 for (int j = 1; j < image.tailleY - 1; j++)
                                 {
                                     int ajouteurR = 0, ajouteurG = 0, ajouteurB = 0;
-                                    int indiceR = 0, indiceG = 0, indiceB = 0;
 
-                                    for (int k = 0; k <= 1; k++)
+                                    for (int k = -1; k <= 1; k++)
                                     {
-                                        for (int l = 0; l <= 1; l++)
+                                        for (int l = -1; l <= 1; l++)
                                         {
-
-                                            if (k == l && k != 0) 
-                                            {
-                                                ajouteurR += image.MatricePixel[i - k, j + l].R;
-                                                ajouteurG += image.MatricePixel[i - k, j + l].G;
-                                                ajouteurB += image.MatricePixel[i - k, j + l].B;
-                                                indiceR++;
-                                                indiceG++;
-                                                indiceB++;
-
-                                                ajouteurR += image.MatricePixel[i + k, j - l].R;
-                                                ajouteurG += image.MatricePixel[i + k, j - l].G;
-                                                ajouteurB += image.MatricePixel[i + k, j - l].B;
-                                                indiceR++;
-                                                indiceG++;
-                                                indiceB++;
-                                            }
-                                            else
-                                            {
-                                                if (image.MatricePixel[i - k, j - l] != null)
-                                                {
-                                                    ajouteurR += image.MatricePixel[i - k, j - l].R;
-                                                    ajouteurG += image.MatricePixel[i - k, j - l].G;
-                                                    ajouteurB += image.MatricePixel[i - k, j - l].B;
-                                                    indiceR++;
-                                                    indiceG++;
-                                                    indiceB++;
-
-                                                }
-
-                                                if (k != 0 && l != 0)
-                                                {
-                                                    if (image.MatricePixel[i + k, j + l] != null)
-                                                    {
-                                                        ajouteurR += image.MatricePixel[i + k, j + l].R;
-                                                        ajouteurG += image.MatricePixel[i + k, j + l].G;
-                                                        ajouteurB += image.MatricePixel[i + k, j + l].B;
-                                                        indiceR++;
-                                                        indiceG++;
-                                                        indiceB++;
-
-                                                    }
-                                                }
-                                            }
-
-                                            
+                                                ajouteurR -= image.MatricePixel[i + k, j + l].R;
+                                                ajouteurG -= image.MatricePixel[i + k, j + l].G;
+                                                ajouteurB -= image.MatricePixel[i + k, j + l].B;
                                         }
                                     }
-
-                                    MatricePixel[i, j].R = ajouteurR / indiceR;
-                                    MatricePixel[i, j].G = ajouteurG / indiceG;
-                                    MatricePixel[i, j].B = ajouteurB / indiceB;
-
-
+                                    MatricePixel[i, j].R = ajouteurR / 9;
+                                    MatricePixel[i, j].G = ajouteurG / 9;
+                                    MatricePixel[i, j].B = ajouteurB / 9;
 
                                 }
                             }
+
+
                             break;
 
                         case "4": /// Filtre: Repoussage
