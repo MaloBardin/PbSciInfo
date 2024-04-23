@@ -17,13 +17,19 @@ namespace td1
  
         public Pixel[,] RotationDegre(Image Dessin, int degre)
         {
+            int tailleX = Dessin.tailleX;
+            int tailleY = Dessin.tailleY;
+            
+
+            double rad = degre * Math.PI / 180.0;
+
             // Calcul des dimensions de l'image de sortie
             // nouvelle taille x = taille x * |cos(rad)| + taille y * |sin(rad)|
             // nouvelle taille y = taille x * |sin(rad)| + taille y * |cos(rad)|
 
-            double rad = degre * Math.PI / 180.0;
-            int nvtailleX = Convert.ToInt32(Dessin.tailleX * Math.Abs(Math.Cos(rad)) + Dessin.tailleY * Math.Abs(Math.Sin(rad)));
-            int nvtailleY = Convert.ToInt32(Dessin.tailleX * Math.Abs(Math.Sin(rad)) + Dessin.tailleY * Math.Abs(Math.Cos(rad)));
+
+            int nvtailleX = Convert.ToInt32(tailleX * Math.Abs(Math.Cos(rad)) + tailleY * Math.Abs(Math.Sin(rad)));
+            int nvtailleY = Convert.ToInt32(tailleX * Math.Abs(Math.Sin(rad)) + tailleY * Math.Abs(Math.Cos(rad)));
 
             // Ajuster les dimensions pour qu'elles soient des multiples de 4 (sinon BMP pas lisible)
             while (nvtailleX % 4 != 0)
@@ -39,8 +45,8 @@ namespace td1
             Pixel[,] imageTournee = new Pixel[nvtailleX, nvtailleY];
 
             // Calcul des coordonnées du centre de l'image d'entrée
-            int centreX = Dessin.tailleX / 2;
-            int centreY = Dessin.tailleY / 2;
+            int centreX = tailleX / 2;
+            int centreY = tailleY / 2;
 
             // Calcul des coordonnées du centre de l'image de sortie
             int nvcentreX = nvtailleX / 2;
@@ -48,9 +54,9 @@ namespace td1
 
 
             // Parcourir tous les pixels de l'image d'entrée et les placer dans l'image de sortie
-            for (int x = 0; x < Dessin.tailleX; x++)
+            for (int x = 0; x < tailleX; x++)
             {
-                for (int y = 0; y < Dessin.tailleY; y++)
+                for (int y = 0; y < tailleY; y++)
                 {
                     // Calcul des coordonnées du pixel dans l'image de sortie
                     // nouveau x = (x - centreX) * cos(rad) - (y - centreY) * sin(rad) + nvcentreX
@@ -60,7 +66,7 @@ namespace td1
                     int nvx = Convert.ToInt32(((x - centreX) * Math.Cos(rad) - (y - centreY) * Math.Sin(rad) + nvcentreX));
                     int nvy = Convert.ToInt32(((x - centreX) * Math.Sin(rad) + (y - centreY) * Math.Cos(rad) + nvcentreY));
 
-                    // Copier le pixel de l'image d'entrée dans l'image de sortie
+                    // Copier le pixel de l'image d'entrée dans l'image de sortie si les coordonnées sont valides
                     if (nvx >= 0 && nvx < nvtailleX && nvy >= 0 && nvy < nvtailleY)
                     {
                         imageTournee[nvx, nvy] = Dessin.MatricePixel[x, y];
