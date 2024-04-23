@@ -91,6 +91,19 @@ namespace td1
                         Filtre Filt = new Filtre(ImageEnCours);
                         ImageEnCours.MatricePixel = Filt.Filtrerimage(ImageEnCours);
                         break;
+                    case "5":
+                        Console.Clear();
+                        //On va créer une fractale
+                        Fractale Fract = new Fractale();
+                        Console.SetCursorPosition(25, 7);
+                        Console.WriteLine("Donnez les dimensions de votre fractale, d'abord la largeur puis la hauteur: ");
+                        Console.SetCursorPosition(25, 8); int tailleX = Convert.ToInt32(Console.ReadLine());
+                        Console.SetCursorPosition(25, 9); int tailleY = Convert.ToInt32(Console.ReadLine());
+                        Console.SetCursorPosition(25, 10); Console.WriteLine("Donnez le nombre d'itérations : ");
+                        Console.SetCursorPosition(25, 11); int nbIterations = Convert.ToInt32(Console.ReadLine());
+                        ImageEnCours.MatricePixel = Fract.FractaleMandelbrot(tailleX, tailleY, nbIterations);
+                        ImageEnCours.CorrigerImageApresModif(ImageEnCours);
+                        break;
 
 
                     case "6":
