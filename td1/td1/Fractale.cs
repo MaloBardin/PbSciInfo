@@ -33,9 +33,11 @@ namespace td1
                     matrice[x, y] = new Pixel(0, 0, 0);
                 }
             }
-            
+            // définition du centre de l'image
+            int centreX = 2*tailleX / 3; //on décale le x à 2/3 pour que ce soit plus joli
+            int centreY = tailleY / 2;
 
-            // crée une fractale avec des pixels b,g,r comme donnés, un nombre d'itératiions défini. je veux que l'intérieur de la fractale soit colorié et que le fond soit noir
+
             for (int x = 0; x < tailleX; x++)
             {
                 for (int y = 0; y < tailleY; y++)
