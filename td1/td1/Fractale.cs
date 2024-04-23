@@ -12,8 +12,17 @@ namespace td1
         {
 
         }
-        public Pixel[,] FractaleMandelbrot(int tailleX, int tailleY, int nbIterations) 
+        public Pixel[,] FractaleMandelbrot(int tailleX, int tailleY, int nbIterations, byte bleu, byte vert, byte rouge) 
         {
+            // on met les tailles données comme multiple de 4 au cas où
+            while(tailleX % 4 != 0)
+            {
+                tailleX++;
+            }
+            while (tailleY % 4 != 0)
+            {
+                tailleY++;
+            }
             //création de la matrice
             Pixel[,] matrice = new Pixel[tailleX, tailleY];
             //remplissage de la matrice en noir
@@ -24,11 +33,9 @@ namespace td1
                     matrice[x, y] = new Pixel(0, 0, 0);
                 }
             }
-            // définition du centre de l'image
-            int centreX = tailleX / 2;
-            int centreY = tailleY / 2;
+            
 
-            // crée une fractale de mandelbrot avec des pixels violets (B = 213, G = 72, R  199) et avec un nombre d'itérations défini
+            // crée une fractale avec des pixels b,g,r comme donnés, un nombre d'itératiions défini. je veux que l'intérieur de la fractale soit colorié et que le fond soit noir
             for (int x = 0; x < tailleX; x++)
             {
                 for (int y = 0; y < tailleY; y++)
@@ -51,12 +58,10 @@ namespace td1
                     }
                     else
                     {
-                        matrice[x, y] = new Pixel(213, 72, 199);
+                        matrice[x, y] = new Pixel(bleu, vert, rouge);
                     }
                 }
             }
-
-
 
             return matrice;
         }

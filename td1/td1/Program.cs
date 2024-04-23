@@ -96,12 +96,20 @@ namespace td1
                         //On va créer une fractale
                         Fractale Fract = new Fractale();
                         Console.SetCursorPosition(25, 7);
-                        Console.WriteLine("Donnez les dimensions de votre fractale, d'abord la largeur puis la hauteur: ");
+                        Console.WriteLine("Donnez la largeur de votre image voulue");
                         Console.SetCursorPosition(25, 8); int tailleX = Convert.ToInt32(Console.ReadLine());
-                        Console.SetCursorPosition(25, 9); int tailleY = Convert.ToInt32(Console.ReadLine());
-                        Console.SetCursorPosition(25, 10); Console.WriteLine("Donnez le nombre d'itérations : ");
-                        Console.SetCursorPosition(25, 11); int nbIterations = Convert.ToInt32(Console.ReadLine());
-                        ImageEnCours.MatricePixel = Fract.FractaleMandelbrot(tailleX, tailleY, nbIterations);
+                        Console.SetCursorPosition(25, 9); Console.WriteLine("Donnez la hauteur de votre image voulue");
+                        Console.SetCursorPosition(25, 10); int tailleY = Convert.ToInt32(Console.ReadLine());
+                        Console.SetCursorPosition(25, 11); Console.WriteLine("Donnez le nombre d'itérations : ");
+                        Console.SetCursorPosition(25, 12); int nbIterations = Convert.ToInt32(Console.ReadLine());
+                        Console.SetCursorPosition(25, 13); Console.WriteLine("Vous allez maintenant donner les valeurs RGB");
+                        Console.SetCursorPosition(25, 14); Console.WriteLine("Donnez la valeur du rouge :");
+                        Console.SetCursorPosition(25, 15); byte r = Convert.ToByte(Console.ReadLine());
+                        Console.SetCursorPosition(25, 16); Console.WriteLine("Donnez la valeur du vert :");
+                        Console.SetCursorPosition(25, 17); byte g = Convert.ToByte(Console.ReadLine());
+                        Console.SetCursorPosition(25, 18); Console.WriteLine("Donnez la valeur du bleu :");
+                        Console.SetCursorPosition(25, 19); byte b = Convert.ToByte(Console.ReadLine());
+                        ImageEnCours.MatricePixel = Fract.FractaleMandelbrot(tailleX, tailleY, nbIterations, b, g, r);
                         ImageEnCours.CorrigerImageApresModif(ImageEnCours);
                         break;
 
