@@ -934,9 +934,9 @@ namespace td1
                 break;
 
                 case "4":
-                Console.SetCursorPosition(25,7); Console.WriteLine("Veuillez entrer la taille de la matrice souhaitée:")
+                Console.SetCursorPosition(25,7); Console.WriteLine("Veuillez entrer la taille de la matrice souhaitée:");
                 int coeff = Convert.ToInt32(Console.ReadLine());
-                while (coeff % 2 = 0)
+                while (coeff % 2 == 0)
                 {
                 Console.Clear();
                 Console.SetCursorPosition(25,7); Console.WriteLine("Erreur, votre matrice ne fonctionne pas.")
@@ -1209,6 +1209,7 @@ namespace td1
                             }
                             break;
                     }
+                    break;
               
             }
 
