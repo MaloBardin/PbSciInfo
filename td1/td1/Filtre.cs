@@ -35,6 +35,7 @@ namespace td1
             Console.SetCursorPosition(15, 9); Console.WriteLine("1. (3x3)");
             Console.SetCursorPosition(15, 10); Console.WriteLine("2. (5x5)");
             Console.SetCursorPosition(15, 11); Console.WriteLine("3. (7x7)");
+            Console.SetCursorPosition(15, 12); Console.WriteLine("4. (nxn)");
             string num = Console.ReadLine();
             switch (num)
             {   
@@ -931,7 +932,23 @@ namespace td1
                             break;
                     }
                 break;
-                    
+
+                case "4":
+                Console.SetCursorPosition(25,7); Console.WriteLine("Veuillez entrer la taille de la matrice souhaitée:")
+                int coeff = Convert.ToInt32(Console.ReadLine());
+                while (coeff % 2 = 0)
+                {
+                Console.Clear();
+                Console.SetCursorPosition(25,7); Console.WriteLine("Erreur, votre matrice ne fonctionne pas.")
+                Console.SetCursorPosition(25,8); Console.WriteLine("Veuillez entrer la taille de la matrice souhaitée:")
+                coeff = Convert.ToInt32(Console.ReadLine());
+                }
+                int a = 0;
+                while (coeff !=1)
+                {
+                    coeff -= 2;
+                    a++;
+                }
 
               
             }
