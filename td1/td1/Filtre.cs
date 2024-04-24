@@ -397,9 +397,9 @@ namespace td1
                                             {
                                                 if((k == -1 || k == 0 || k == 1) && (l == -1 || l == 0 || l == 1))
                                                 {
-                                                ajouteurR -= image.MatricePixel[i + k, j + l].R;
-                                                ajouteurG -= image.MatricePixel[i + k, j + l].G;
-                                                ajouteurB -= image.MatricePixel[i + k, j + l].B;
+                                                ajouteurR += 2 * image.MatricePixel[i + k, j + l].R;
+                                                ajouteurG += 2 * image.MatricePixel[i + k, j + l].G;
+                                                ajouteurB += 2 * image.MatricePixel[i + k, j + l].B;
                                                 }
 
                                                 if((k == -2 || k == 0 || k == 2) && (l == -2 || l == 0 || l == 2))
