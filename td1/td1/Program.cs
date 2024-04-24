@@ -90,6 +90,7 @@ namespace td1
                         Console.SetCursorPosition(25, 8); int degre = Convert.ToInt32(Console.ReadLine());
                         ImageEnCours.RotationDegre(degre);
                         ImageEnCours.CorrigerImageApresModif(ImageEnCours);
+                        turnModifOnMessage = 1;
                         break;
 
                     case "4":
@@ -97,6 +98,8 @@ namespace td1
                         //On va appliquer un filtre sur notre image
                         Filtre Filt = new Filtre(ImageEnCours);
                         ImageEnCours.MatricePixel = Filt.Filtrerimage(ImageEnCours);
+                        ImageEnCours.CorrigerImageApresModif(ImageEnCours);
+                        turnModifOnMessage = 1;
                         break;
                     case "5":
                         Console.Clear();
@@ -118,6 +121,7 @@ namespace td1
                         Console.SetCursorPosition(25, 19); byte b = Convert.ToByte(Console.ReadLine());
                         ImageEnCours.MatricePixel = Fract.FractaleMandelbrot(tailleX, tailleY, nbIterations, b, g, r);
                         ImageEnCours.CorrigerImageApresModif(ImageEnCours);
+                        turnModifOnMessage = 1;
                         break;
 
 

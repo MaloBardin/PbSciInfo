@@ -21,9 +21,9 @@ namespace td1
             Image imagefiltrer;
             Pixel[,] MatricePixel = new Pixel[image.MatricePixel.GetLength(0), image.MatricePixel.GetLength(1)]; 
 
-            for (int i = 0; i < image.tailleX; i++)
+            for (int i = 0; i < image.TailleX; i++)
             {
-                for (int j = 0; j < image.tailleY; j++)
+                for (int j = 0; j < image.TailleY; j++)
                 {
                     MatricePixel[i, j] = new Pixel(0, 0, 0); /// On initialise notre matrice de sorte a qu'il soit rempli de pixels noirs
                 }
@@ -52,9 +52,9 @@ namespace td1
                     switch (answer3)
                     {
                         case "1": /// Filtre: Détection de contour
-                          for (int i = 1; i < image.tailleX - 1; i++)
+                          for (int i = 1; i < image.TailleX - 1; i++)
                           {
-                             for (int j = 1; j < image.tailleY - 1; j++)
+                             for (int j = 1; j < image.TailleY - 1; j++)
                              {
                                 int ajouteurR = 0, ajouteurG = 0, ajouteurB = 0;
 
@@ -114,9 +114,9 @@ namespace td1
                         break;
 
                         case "2":// Filtre: Renforcement des bords
-                            for (int i = 1; i < image.tailleX - 1; i++)
+                            for (int i = 1; i < image.TailleX - 1; i++)
                             {
-                                for (int j = 1; j < image.tailleY - 1; j++)
+                                for (int j = 1; j < image.TailleY - 1; j++)
                                 {
                                     int ajouteurR = 0, ajouteurG = 0, ajouteurB = 0;
                                                
@@ -164,9 +164,9 @@ namespace td1
                             break;
 
                         case "3": /// Filtre: Flou
-                            for (int i = 1; i < image.tailleX - 1; i++)
+                            for (int i = 1; i < image.TailleX - 1; i++)
                             {
-                                for (int j = 1; j < image.tailleY - 1; j++)
+                                for (int j = 1; j < image.TailleY - 1; j++)
                                 {
                                     int ajouteurR = 0, ajouteurG = 0, ajouteurB = 0;
 
@@ -315,9 +315,9 @@ namespace td1
                     switch (answer5)
                     {
                         case "1": /// Filtre: Détection de contour
-                            for (int i = 2; i < image.tailleX - 2; i++)
+                            for (int i = 2; i < image.TailleX - 2; i++)
                             {
-                                for (int j = 2; j < image.tailleY - 2; j++)
+                                for (int j = 2; j < image.TailleY - 2; j++)
                                 {
                                     int ajouteurR = 0, ajouteurG = 0, ajouteurB = 0;
 
@@ -518,9 +518,9 @@ namespace td1
                             break;
 
                         case "3": /// Filtre: Flou
-                            for (int i = 2; i < image.tailleX - 2; i++)
+                            for (int i = 2; i < image.TailleX - 2; i++)
                             {
-                                for (int j = 2; j < image.tailleY - 2; j++)
+                                for (int j = 2; j < image.TailleY - 2; j++)
                                 {
                                     int ajouteurR = 0, ajouteurG = 0, ajouteurB = 0;
 

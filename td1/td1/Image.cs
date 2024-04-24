@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 namespace td1
@@ -11,14 +12,49 @@ namespace td1
     internal class Image
     {
 
-        public Pixel[,] MatricePixel;
-        public byte[] Header;
-        public int tailleX;
-        public int tailleY;
-        public int tailleFichier;
-        public int tailleImage;
-        public int nombreBits;
-        public int decalage;// ENELVER PUBLIC
+        Pixel[,] matricePixel;
+        byte[] header;
+        int tailleX;
+        int tailleY;
+        int tailleFichier;
+        int tailleImage;
+
+        public Pixel[,] MatricePixel
+        {
+            get { return matricePixel; }
+            set { matricePixel = value; }
+        }
+
+        public byte[] Header
+        {
+            get { return header; }
+            set { header = value; }
+        }
+
+        public int TailleX
+        {
+            get { return tailleX; }
+            set { tailleX = value; }
+        }
+        public int TailleY
+        {
+            get { return tailleY; }
+            set { tailleY = value; }
+        }
+
+        public int TailleFichier
+        {
+            get { return tailleFichier; }
+            set { tailleFichier = value; }
+        }
+
+        public int TailleImage
+        {
+            get { return tailleImage; }
+            set { tailleImage = value; }
+        }
+
+
 
         public Image()
         {
@@ -89,7 +125,7 @@ namespace td1
 
 
 
-        public Image(Pixel[,] MatricePixel, byte[] Header, int tailleX, int tailleY, int tailleFichier, int tailleImage, int nombreBits, int decalage)
+        public Image(Pixel[,] MatricePixel, byte[] Header, int tailleX, int tailleY, int tailleFichier, int tailleImage)
         { 
             this.MatricePixel = MatricePixel;
             this.Header = Header;
@@ -97,8 +133,6 @@ namespace td1
             this.tailleY = tailleY;
             this.tailleFichier = tailleFichier;
             this.tailleImage = tailleImage;
-            this.nombreBits=nombreBits;
-            this.decalage = decalage;
         }
 
 
