@@ -57,8 +57,16 @@ namespace td1
                     case "1":
                         Console.Clear();
                         //creation de la partie noir et blanc
-                        NuancesGris Decoloration = new NuancesGris();
-                        Decoloration.ImageEnGris(ImageEnCours);
+                        Console.SetCursorPosition(20, 9); Console.WriteLine("Voulez vous une image en nuance de gris(1) ou en noir et blanc (2)");
+                        Console.SetCursorPosition(20, 11); int reponse = int.Parse(Console.ReadLine());
+                        if (reponse == 1)
+                        {
+                            ImageEnCours.ImageEnGris(ImageEnCours);
+                        } else
+                        {
+                            ImageEnCours.ImageEnNoir(ImageEnCours);
+                        }
+                       
                         ImageEnCours.CorrigerImageApresModif(ImageEnCours);
                         //matrice en n&b ImageDecoloRee si on veut l'utiliser -> on utilise image en cours classiquement
                         turnModifOnMessage = 1;
@@ -77,11 +85,10 @@ namespace td1
                     case "3":
                         Console.Clear();
                         //On va faire une rotation de notre image
-                        Rotation Rot = new Rotation();
+                        
                         Console.SetCursorPosition(25, 7); Console.WriteLine("De combien de degrés voulez vous tourner votre image ?");
                         Console.SetCursorPosition(25, 8); int degre = Convert.ToInt32(Console.ReadLine());
-
-                        ImageEnCours.MatricePixel = Rot.RotationDegre(ImageEnCours, degre);
+                        ImageEnCours.RotationDegre(degre);
                         ImageEnCours.CorrigerImageApresModif(ImageEnCours);
                         break;
 
