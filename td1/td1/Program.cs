@@ -105,8 +105,7 @@ namespace td1
                         break;
                     case "5":
                         Console.Clear();
-                        //On va créer une fractale
-                        Fractale Fract = new Fractale();
+
                         Console.SetCursorPosition(25, 7);
                         Console.WriteLine("Donnez la largeur de votre image voulue");
                         Console.SetCursorPosition(25, 8); int tailleX = Convert.ToInt32(Console.ReadLine());
@@ -126,7 +125,7 @@ namespace td1
                         Console.SetCursorPosition(25, 22); string chaleur = Console.ReadLine();
                         bool chal = false;
                         if (chaleur == "o") { chal = true; }
-                        ImageEnCours.MatricePixel = Fract.FractaleMandelbrot(tailleX, tailleY, nbIterations, b, g, r, chal) ;
+                        ImageEnCours.MatricePixel = ImageEnCours.FractaleMandelbrot(tailleX, tailleY, nbIterations, b, g, r, chal) ;
                         ImageEnCours.CorrigerImageApresModif(ImageEnCours);
                         turnModifOnMessage = 1;
                         break;
