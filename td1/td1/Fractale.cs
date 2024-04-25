@@ -12,10 +12,10 @@ namespace td1
         {
 
         }
-        public Pixel[,] FractaleMandelbrot(int tailleX, int tailleY, int nbIterations, byte bleu, byte vert, byte rouge) 
+        public Pixel[,] FractaleMandelbrot(int tailleX, int tailleY, int nbIterations, byte bleu, byte vert, byte rouge)
         {
             // on met les tailles données comme multiple de 4 au cas où
-            while(tailleX % 4 != 0)
+            while (tailleX % 4 != 0)
             {
                 tailleX++;
             }
@@ -33,25 +33,29 @@ namespace td1
                     matrice[x, y] = new Pixel(0, 0, 0);
                 }
             }
+
             // définition du centre de l'image
-            int centreX = 2*tailleX / 3; //on décale le x à 2/3 pour que ce soit plus joli
+            int centreX = 2 * tailleX / 3; //on décale le x à 2/3 pour que ce soit plus joli
             int centreY = tailleY / 2;
 
 
+
+
+            
             for (int x = 0; x < tailleX; x++)
             {
                 for (int y = 0; y < tailleY; y++)
                 {
-                    double a = 1.5 * (x - centreX) / (0.5 * tailleX);
-                    double b = (y - centreY) / (0.5 * tailleY);
-                    double a0 = a;
-                    double b0 = b;
+                    double reelZ = 1.5 * (x - centreX) / (0.5 * tailleX);
+                    double imZ = (y - centreY) / (0.5 * tailleY);
+                    double reelZ0 = reelZ;
+                    double imZ0 = imZ;
                     int i = 0;
-                    while (i < nbIterations && a * a + b * b < 4)
+                    while (i < nbIterations && reelZ * reelZ + imZ * imZ < 4)
                     {
-                        double aTemp = a * a - b * b + a0;
-                        b = 2 * a * b + b0;
-                        a = aTemp;
+                        double reelZTemp = reelZ * reelZ - imZ * imZ + reelZ0;
+                        imZ = 2 * reelZ * imZ + imZ0;
+                        reelZ = reelZTemp;
                         i++;
                     }
                     if (i == nbIterations)
@@ -67,5 +71,10 @@ namespace td1
 
             return matrice;
         }
+
+        
+
+
+        }
     }
-}
+
