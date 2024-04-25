@@ -322,7 +322,7 @@ namespace td1
             MatricePixel = matriceAgrandie; //on change notre matrice ainsi que les tailles de l'image
         }
 
-        public Pixel[,] FractaleMandelbrot(int tailleX, int tailleY, int nbIterations, byte bleu, byte vert, byte rouge, bool chaleur)
+        public void FractaleMandelbrot(int tailleX, int tailleY, int nbIterations, byte bleu, byte vert, byte rouge, bool chaleur)
         {
             // on met les tailles données comme multiple de 4 au cas où
             while (tailleX % 4 != 0)
@@ -388,7 +388,7 @@ namespace td1
                 }
             }
 
-            return matrice;
+            MatricePixel = matrice;
         }
 
         public Pixel[,] Lecture(string filename)

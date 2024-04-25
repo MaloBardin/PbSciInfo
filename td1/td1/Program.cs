@@ -125,7 +125,7 @@ namespace td1
                         Console.SetCursorPosition(25, 22); string chaleur = Console.ReadLine();
                         bool chal = false;
                         if (chaleur == "o") { chal = true; }
-                        ImageEnCours.MatricePixel = ImageEnCours.FractaleMandelbrot(tailleX, tailleY, nbIterations, b, g, r, chal) ;
+                        ImageEnCours.FractaleMandelbrot(tailleX, tailleY, nbIterations, b, g, r, chal) ;
                         ImageEnCours.CorrigerImageApresModif(ImageEnCours);
                         turnModifOnMessage = 1;
                         break;
