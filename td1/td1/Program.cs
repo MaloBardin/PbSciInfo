@@ -39,8 +39,10 @@ namespace td1
                 Console.SetCursorPosition(20, 11); Console.WriteLine("4 Filtres");
                 Console.SetCursorPosition(20, 12); Console.WriteLine("5 Fractales");
                 Console.SetCursorPosition(20, 13); Console.WriteLine("6 Sauvegarde de votre image");
-                Console.SetCursorPosition(20, 14); Console.WriteLine("7 Changer votre image");
-                Console.SetCursorPosition(30, 19); Console.Write("Faites votre choix avec 1,2,3,4,5,6 ou 7 : ");
+                Console.SetCursorPosition(20, 14); Console.WriteLine("7 Cacher une image");
+                Console.SetCursorPosition(20, 15); Console.WriteLine("8 Changer d'image");
+
+                Console.SetCursorPosition(30, 19); Console.Write("Faites votre choix avec 1,2,3,4,5,6,7 ou 8 : ");
 
                 if (turnModifOnMessage == 1)
                 {
@@ -133,6 +135,29 @@ namespace td1
                         turnModifOnMessage = 2;
                         break;
                     case "7":
+                        Console.Clear();
+                        Console.SetCursorPosition(25, 7); Console.WriteLine("Quel est le nom de l'image qui apparait ?");
+                        Console.SetCursorPosition(25, 8); string filesourcenameBackGround = Console.ReadLine();
+                        Image MonImageACacher = new Image();
+                        Image MonImageQuiCache = new Image();
+                        MonImageQuiCache.Lecture("./Images/" + filesourcenameBackGround + ".bmp");
+                        MonImageQuiCache.CorrigerImageApresModif(MonImageQuiCache);
+
+                        do
+                        {
+                            Console.SetCursorPosition(25, 10); Console.WriteLine("Attention à ne pas avoir une image à cacher plus grande que le fond !");
+                            Console.SetCursorPosition(25, 12); Console.WriteLine("Quel est le nom de l'image qui se cache ?");
+                            Console.SetCursorPosition(25, 13); string filesourcenameToHide = Console.ReadLine();
+                            MonImageACacher.Lecture("./Images/" + filesourcenameToHide + ".bmp");
+                            MonImageACacher.CorrigerImageApresModif(MonImageACacher);
+                        } while (MonImageACacher.TailleX>MonImageQuiCache.TailleX && MonImageACacher.TailleY > MonImageQuiCache.TailleY);
+
+
+                        MonImageQuiCache.CacherLimage(MonImageACacher);
+
+
+                        break;
+                    case "8":
                         Console.Clear();
                         Console.SetCursorPosition(35, 10); Console.WriteLine("Merci d'indiquer le nom de votre image");
                         Console.SetCursorPosition(35, 11); filename = Console.ReadLine();filesource = "./Images/" + filename + ".bmp";

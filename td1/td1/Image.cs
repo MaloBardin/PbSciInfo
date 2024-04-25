@@ -277,15 +277,17 @@ namespace td1
 
 
 
+        public void CacherLimage(Image ImageACacher)
+        {
+            for (int i = 0; i < TailleX; i++)
+            {
+                for (int j = 0; j < TailleY; j++)
+                {
+                    //j'ai dans MatricePixel[i,j] des bytes et j'aimerais un tableau de binaire comment faire ?
 
-
-
-
-
-
-
-
-
+                }
+            } 
+        }
         public void Agrandissement(int CoefAggrandissement)
         {
             
@@ -324,10 +326,12 @@ namespace td1
 
 
             Console.WriteLine();
-            tailleX = BitConverter.ToInt32(fichier, 18);// LITTLE INDIAN SVPPP
-            tailleY = BitConverter.ToInt32(fichier, 22);// LITTLE INDIAN SVPPP
-            Console.WriteLine("Largeur de l'image : " + tailleX);
-            Console.WriteLine("Hauteur de l'image : " + tailleY);
+            byte[] LaTailleX = { fichier[18], fichier[19], fichier[20], fichier[21] };
+            tailleX = Byte2Int(LaTailleX);
+            byte[] LaTailleY = { fichier[22], fichier[23], fichier[24], fichier[25] };
+            tailleY = Byte2Int(LaTailleY);
+            //Console.WriteLine("Largeur de l'image : " + tailleX);
+            //Console.WriteLine("Hauteur de l'image : " + tailleY);
             MatricePixel = new Pixel[tailleX, tailleY];
             int TailleMatriceX = 0;
             int TailleMatriceY = 0;
