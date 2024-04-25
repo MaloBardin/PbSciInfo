@@ -279,25 +279,46 @@ namespace td1
 
         public void CacherLimage(Image ImageACacher)
         {
+            for (int i = 0; i < ImageACacher.TailleX; i++)
+            {
+                for (int j = 0; j < ImageACacher.TailleY; j++)
+                {
+                    //bit point fort du background (donc devant)  bit point fort de l'image à cacher ( derriere)
+                    MatricePixel[i, j].R = 16 * (int)(MatricePixel[i, j].R / 16) + (int)(ImageACacher.MatricePixel[i, j].R/16);
+                    MatricePixel[i, j].G = 16 * (int)(MatricePixel[i, j].G / 16) + (int)(ImageACacher.MatricePixel[i, j].G / 16);
+                    MatricePixel[i, j].B = 16 * (int)(MatricePixel[i, j].B / 16) + (int)(ImageACacher.MatricePixel[i, j].B / 16);
+
+                    MatricePixel[i, j].R = 255; MatricePixel[i, j].G = 255; MatricePixel[i, j].B = 255;
+                }
+            }
+        }
+
+        public void RevelerLImage(int reponse)
+        {
             for (int i = 0; i < TailleX; i++)
             {
                 for (int j = 0; j < TailleY; j++)
                 {
-                    int[] binaryTabImageACacher= new int[8];
-                    int[] binaryTabImageBackground = new int[8];
-                    int index = 7;
-                    for (int k=7; k<0; k--)
+                    if (reponse == 1)
                     {
-                        binaryTabImageACacher[index] = ImageACacher.MatricePixel[i, j].R%((2)^k);
-                        binaryTabImageBackground[index] = MatricePixel[i, j].R%((2)^k);
-                        index++;
+                        // c'est l'image cachée dans l'image background
+                        MatricePixel[i, j].R = 16 * (int)(MatricePixel[i, j].R % 16); // % car on prend le bit de point faible que l'on remet en point fort ( d'ou me x16)
+                        MatricePixel[i, j].G = 16 * (int)(MatricePixel[i, j].G % 16);
+                        MatricePixel[i, j].B = 16 * (int)(MatricePixel[i, j].B % 16);
+                    } else
+                    {
+                        //matrice pixel donne juste l'image background sans limage cachée derrriere
+                        MatricePixel[i, j].R = 16 * (int)(MatricePixel[i, j].R / 16); // on divise par 16 car on garde que le bit de point fort  
+                        MatricePixel[i, j].G = 16 * (int)(MatricePixel[i, j].G / 16); ;
+                        MatricePixel[i, j].B = 16 * (int)(MatricePixel[i, j].B / 16);
                     }
+                   
 
-
-
+                  
                 }
-            } 
+            }
         }
+
         public void Agrandissement(int CoefAggrandissement)
         {
             

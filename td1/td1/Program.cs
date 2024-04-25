@@ -40,7 +40,8 @@ namespace td1
                 Console.SetCursorPosition(20, 12); Console.WriteLine("5 Fractales");
                 Console.SetCursorPosition(20, 13); Console.WriteLine("6 Sauvegarde de votre image");
                 Console.SetCursorPosition(20, 14); Console.WriteLine("7 Cacher une image");
-                Console.SetCursorPosition(20, 15); Console.WriteLine("8 Changer d'image");
+                Console.SetCursorPosition(20, 14); Console.WriteLine("8 Reveler une image");
+                Console.SetCursorPosition(20, 16); Console.WriteLine("9 Changer d'image");
 
                 Console.SetCursorPosition(30, 19); Console.Write("Faites votre choix avec 1,2,3,4,5,6,7 ou 8 : ");
 
@@ -138,15 +139,10 @@ namespace td1
                         ImageEnCours.SauvegardeImage(wantedFileName, ImageEnCours); //sauvegarde de notre image en n&b  | On peut aussi utiliser image en cours -> SAUVEGARDE A DEPLACER !
                         turnModifOnMessage = 2;
                         break;
+
                     case "7":
                         Console.Clear();
-                        Console.SetCursorPosition(25, 7); Console.WriteLine("Quel est le nom de l'image qui apparait ?");
-                        Console.SetCursorPosition(25, 8); string filesourcenameBackGround = Console.ReadLine();
                         Image MonImageACacher = new Image();
-                        Image MonImageQuiCache = new Image();
-                        MonImageQuiCache.Lecture("./Images/" + filesourcenameBackGround + ".bmp");
-                        MonImageQuiCache.CorrigerImageApresModif(MonImageQuiCache);
-
                         do
                         {
                             Console.SetCursorPosition(25, 10); Console.WriteLine("Attention à ne pas avoir une image à cacher plus grande que le fond !");
@@ -154,14 +150,23 @@ namespace td1
                             Console.SetCursorPosition(25, 13); string filesourcenameToHide = Console.ReadLine();
                             MonImageACacher.Lecture("./Images/" + filesourcenameToHide + ".bmp");
                             MonImageACacher.CorrigerImageApresModif(MonImageACacher);
-                        } while (MonImageACacher.TailleX>MonImageQuiCache.TailleX && MonImageACacher.TailleY > MonImageQuiCache.TailleY);
+                        } while (MonImageACacher.TailleX> ImageEnCours.TailleX && MonImageACacher.TailleY > ImageEnCours.TailleY);
 
 
-                        MonImageQuiCache.CacherLimage(MonImageACacher);
-
-
+                        ImageEnCours.CacherLimage(MonImageACacher);
+                        turnModifOnMessage = 1;
                         break;
+
                     case "8":
+                        Console.Clear();
+                        Console.SetCursorPosition(25, 9); Console.WriteLine("Vous souhaitez 1: garder l'image qui était cachée ou 2: sauvegarder l'image visible sans image qui se cache ?");
+                        Console.SetCursorPosition(25, 10); int reponseChoix = int.Parse(Console.ReadLine());
+                        ImageEnCours.RevelerLImage(reponseChoix);
+                        ImageEnCours.CorrigerImageApresModif(ImageEnCours);
+                        turnModifOnMessage = 1;
+                        break;
+
+                    case "9":
                         Console.Clear();
                         Console.SetCursorPosition(35, 10); Console.WriteLine("Merci d'indiquer le nom de votre image");
                         Console.SetCursorPosition(35, 11); filename = Console.ReadLine();filesource = "./Images/" + filename + ".bmp";
