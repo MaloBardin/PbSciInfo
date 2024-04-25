@@ -114,14 +114,19 @@ namespace td1
                         Console.SetCursorPosition(25, 10); int tailleY = Convert.ToInt32(Console.ReadLine());
                         Console.SetCursorPosition(25, 11); Console.WriteLine("Donnez le nombre d'itérations : ");
                         Console.SetCursorPosition(25, 12); int nbIterations = Convert.ToInt32(Console.ReadLine());
-                        Console.SetCursorPosition(25, 13); Console.WriteLine("Vous allez maintenant donner les valeurs RGB");
+                        Console.SetCursorPosition(25, 13); Console.WriteLine("Vous allez maintenant donner les valeurs RGB du fond de l'image");
                         Console.SetCursorPosition(25, 14); Console.WriteLine("Donnez la valeur du rouge :");
                         Console.SetCursorPosition(25, 15); byte r = Convert.ToByte(Console.ReadLine());
                         Console.SetCursorPosition(25, 16); Console.WriteLine("Donnez la valeur du vert :");
                         Console.SetCursorPosition(25, 17); byte g = Convert.ToByte(Console.ReadLine());
                         Console.SetCursorPosition(25, 18); Console.WriteLine("Donnez la valeur du bleu :");
                         Console.SetCursorPosition(25, 19); byte b = Convert.ToByte(Console.ReadLine());
-                        ImageEnCours.MatricePixel = Fract.FractaleMandelbrot(tailleX, tailleY, nbIterations, b, g, r);
+                        Console.SetCursorPosition(25, 20); Console.WriteLine("Voulez vous que la fractale ait une aura chaude autour de la fractale ? (o/n)");
+                        Console.SetCursorPosition(25, 21); Console.WriteLine("Attention, le byte rouge ne sera donc pas pris en compte");
+                        Console.SetCursorPosition(25, 22); string chaleur = Console.ReadLine();
+                        bool chal = false;
+                        if (chaleur == "o") { chal = true; }
+                        ImageEnCours.MatricePixel = Fract.FractaleMandelbrot(tailleX, tailleY, nbIterations, b, g, r, chal) ;
                         ImageEnCours.CorrigerImageApresModif(ImageEnCours);
                         turnModifOnMessage = 1;
                         break;
