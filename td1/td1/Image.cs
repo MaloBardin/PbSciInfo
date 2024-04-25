@@ -283,7 +283,17 @@ namespace td1
             {
                 for (int j = 0; j < TailleY; j++)
                 {
-                    //j'ai dans MatricePixel[i,j] des bytes et j'aimerais un tableau de binaire comment faire ?
+                    int[] binaryTabImageACacher= new int[8];
+                    int[] binaryTabImageBackground = new int[8];
+                    int index = 7;
+                    for (int k=7; k<0; k--)
+                    {
+                        binaryTabImageACacher[index] = ImageACacher.MatricePixel[i, j].R%((2)^k);
+                        binaryTabImageBackground[index] = MatricePixel[i, j].R%((2)^k);
+                        index++;
+                    }
+
+
 
                 }
             } 
