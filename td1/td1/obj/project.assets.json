@@ -128,19 +128,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\theos\\.nuget\\packages\\": {}
+    "C:\\Users\\mbard\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\theos\\OneDrive\\Documents\\GitHub\\PbSciInfo\\td1\\td1\\td1.csproj",
+      "projectUniqueName": "C:\\Users\\mbard\\Documents\\GitHub\\PbSciInfo\\td1\\td1\\td1.csproj",
       "projectName": "td1",
-      "projectPath": "C:\\Users\\theos\\OneDrive\\Documents\\GitHub\\PbSciInfo\\td1\\td1\\td1.csproj",
-      "packagesPath": "C:\\Users\\theos\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\theos\\OneDrive\\Documents\\GitHub\\PbSciInfo\\td1\\td1\\obj\\",
+      "projectPath": "C:\\Users\\mbard\\Documents\\GitHub\\PbSciInfo\\td1\\td1\\td1.csproj",
+      "packagesPath": "C:\\Users\\mbard\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mbard\\Documents\\GitHub\\PbSciInfo\\td1\\td1\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\theos\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mbard\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -160,11 +165,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -192,7 +192,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

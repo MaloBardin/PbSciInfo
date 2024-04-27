@@ -99,8 +99,7 @@ namespace td1
                     case "4":
                         Console.Clear();
                         //On va appliquer un filtre sur notre image
-                        Filtre Filt = new Filtre(ImageEnCours);
-                        ImageEnCours.MatricePixel = Filt.Filtrerimage(ImageEnCours);
+                        ImageEnCours.MatricePixel = ImageEnCours.Filtrerimage(ImageEnCours);
                         ImageEnCours.CorrigerImageApresModif(ImageEnCours);
                         turnModifOnMessage = 1;
                         break;

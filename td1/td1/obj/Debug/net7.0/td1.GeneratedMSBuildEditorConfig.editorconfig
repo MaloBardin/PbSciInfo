@@ -8,6 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = td1
-build_property.ProjectDir = C:\Users\theos\OneDrive\Documents\GitHub\PbSciInfo\td1\td1\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = C:\Users\mbard\Documents\GitHub\PbSciInfo\td1\td1\
