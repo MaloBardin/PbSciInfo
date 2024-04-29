@@ -26,11 +26,11 @@ namespace td1
             Parcours(racine, "");
         }
         // parcours de la matrice pour remplir le dico de fréquences
-        /*public void RemplissageDicoFq(Pixel[,] MatricePixel)
+        public void RemplissageDicoFq(Pixel[,] MatricePixel)
         {
                     foreach (Pixel p in MatricePixel)
                     {
-                        if (!dicofrequences.ContainsValue(p))
+                        if (!dicofrequences.ContainsKey(p))
                         {
                             dicofrequences.Add(p, 1);
                         }
@@ -38,7 +38,7 @@ namespace td1
                         { dicofrequences[p]++; }
                     }
                     
-        }*/
+        }
 
         // remplissage du dico
         public void RemplissageDico()
@@ -108,41 +108,66 @@ namespace td1
 
         // Encodage de l'image
         // On parcourt l'image et on remplace chaque pixel par son code binaire
-        /*
+        
         public string Encodage(Pixel[,] MatricePixel)
         {
             string res = "";
 
-            foreach (Pixel in MatricePixel)
+            foreach (Pixel p in MatricePixel)
             {
-                res += Convert.ToString(dico[b]);
+                res += Convert.ToString(dico[p]);
             }
             return res;
         }
 
-        public byte[] Decodage(string data)
+        public Pixel[,] Decodage(string entree, int tailleX, int tailleY)
         {
-            List<Pixel> res = new List<byte>();
+            Pixel[,] ResPixels = new Pixel[tailleX, tailleY];
             Noeud n = racine;
-            foreach (char c in data)
+            int x = 0;
+            int y = 0;
+            foreach (char c in entree)
             {
-                if (c == '0')
+                while(n.EstFeuille() == false)
                 {
-                    n = n.Gauche;
+                    if (c == '0')
+                    {
+                        n = n.Gauche;
+                    }
+                    else
+                    {
+                        n = n.Droit;
+                    }
+                }
+                ResPixels[x, y] = n.Pix;
+                if (x == tailleX - 1)
+                {
+                    x = 0;
+                    y++;
                 }
                 else
                 {
-                    n = n.Droit;
-                }
-                if (n.EstFeuille())
-                {
-                    res.Add(n.Pix);
-                    n = racine;
+                    x++;
                 }
             }
-            return res.ToArray();
+            return ResPixels;
         }
- */
+ 
+        public void AfficherDico()
+        {
+            foreach (KeyValuePair<Pixel, string> entry in dico)
+            {
+                Console.WriteLine(entry.Key + " : " + entry.Value);
+            }
+        }
+
+        public void AfficherDicoFq()
+        {
+            foreach (KeyValuePair<Pixel, int> entry in dicofrequences)
+            {
+                Console.WriteLine(entry.Key + " : " + entry.Value);
+            }
+        }
          
     }
 }
