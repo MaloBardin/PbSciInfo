@@ -6,10 +6,11 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 namespace td1
 {
-    internal class Image
+    public class Image
     {
 
         Pixel[,] matricePixel;
@@ -343,7 +344,7 @@ namespace td1
                     MatricePixel[i, j].G = 16 * (int)(MatricePixel[i, j].G / 16) + (int)(ImageACacher.MatricePixel[i, j].G / 16);
                     MatricePixel[i, j].B = 16 * (int)(MatricePixel[i, j].B / 16) + (int)(ImageACacher.MatricePixel[i, j].B / 16);
 
-                    MatricePixel[i, j].R = 255; MatricePixel[i, j].G = 255; MatricePixel[i, j].B = 255;
+                    
                 }
             }
         }
@@ -810,16 +811,41 @@ namespace td1
 
             Console.SetCursorPosition(104, 50);
             Console.WriteLine("Merci d'appuyer sur une touche pour continuer");
-            Console.ReadLine();//tempo le temps d'avoir l'image
+            Console.ReadKey();//tempo le temps d'avoir l'image
 
             Console.Clear();
-
-
-
-
         }
 
 
+
+        public void OuEstCharlie(Image Charlie)
+        {
+            Random r = new Random();
+
+            int randomX = r.Next(0, tailleX - Charlie.TailleX);
+            int randomY = r.Next(0, tailleY - Charlie.TailleY); // trouve un point bas gauche pour poser  charlie
+
+
+            for (int i = 0; i < tailleX; i++)
+            {
+                for (int j=0;j<tailleY;j++)
+                {
+                    if (i >= randomX && i < randomX + Charlie.TailleX && j >= randomY && j < randomY + Charlie.TailleY)
+                    {
+
+                        if (Charlie.MatricePixel[i-randomX,j-randomY].R==247 && Charlie.MatricePixel[i - randomX, j - randomY].G==247 && Charlie.MatricePixel[i - randomX, j - randomY].B == 247)
+                        {
+                            MatricePixel[i, j] = MatricePixel[i, j]; // on détoure le blanc autour de charlie
+                        } else
+                        {
+                            MatricePixel[i, j] = Charlie.MatricePixel[i - randomX, j - randomY];
+
+                        }
+                    }
+                }
+            }
+
+        }
 
 
         /// <summary>

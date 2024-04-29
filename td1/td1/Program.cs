@@ -115,11 +115,11 @@ namespace td1
             Console.SetCursorPosition(97, 29); Console.WriteLine("Reveler une image");
             Console.SetCursorPosition(132, 23); Console.Write("Huffman");
             Console.SetCursorPosition(132, 25); Console.WriteLine("Changer d'image");
-            Console.SetCursorPosition(132, 27); Console.WriteLine("Sauvegarder l'image");
-            Console.SetCursorPosition(132, 29); Console.WriteLine("Quitter");
+            Console.SetCursorPosition(132, 27); Console.WriteLine("Ou est Charlie");
+            Console.SetCursorPosition(132, 29); Console.WriteLine("Sauvegarder l'image");
             Console.SetCursorPosition(62, 31); Console.WriteLine("Changement de couleur");
             Console.SetCursorPosition(97, 31); Console.Write("Visualisation console");
-
+            Console.SetCursorPosition(132, 31); Console.Write("Quitter");
         }
 
 
@@ -252,8 +252,11 @@ namespace td1
                     choixMenu = "12";
                 } else if (posX==61 && posY == 30)
                 {
-                    choixMenu = "13";
+                    choixMenu = "15";
                 } else if (posX==96 && posY == 30)
+                {
+                    choixMenu = "13";
+                } else if (posX==131 && posY == 30)
                 {
                     choixMenu = "14";
                 }
@@ -477,7 +480,31 @@ namespace td1
                         //console
                         ImageEnCours.AffichageIntoConsole();
                         break;
-                                       
+
+                    case "15":
+                        Console.Clear();
+                        Dessin(); // on ramène nos colonnes
+                        Console.SetCursorPosition(52, 20); Console.Write("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
+                        Console.SetCursorPosition(52, 21); Console.Write("█                                                                                                     █");
+                        Console.SetCursorPosition(52, 22); Console.Write("█                                                                                                     █");
+                        Console.SetCursorPosition(52, 23); Console.Write("█                                                                                                     █");
+                        Console.SetCursorPosition(52, 24); Console.Write("█                                                                                                     █");
+                        Console.SetCursorPosition(52, 25); Console.Write("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
+                        Image charlie = new Image();
+                        charlie.Lecture("./Images/charlie.bmp");
+                        if (charlie.TailleX < ImageEnCours.TailleX && charlie.TailleY < ImageEnCours.TailleY)
+                        {
+                            Console.SetCursorPosition(75, 22); Console.Write("Charlie est caché ! Il est a trouvé dans le charlie.bmp !");
+                            ImageEnCours.OuEstCharlie(charlie);
+                            ImageEnCours.SauvegardeImage("Charlie", ImageEnCours);
+                            break;
+                        }
+                        Console.SetCursorPosition(75, 22); Console.Write("Charlie est trop grand pour être caché dans cette image !");
+                        Thread.Sleep(2000);
+
+                        break;
+
+
 
                     default:
                         Console.SetCursorPosition(90, 45); Console.WriteLine("Erreur choix invalide");
