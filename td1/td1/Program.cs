@@ -10,9 +10,7 @@ namespace td1
 
         static void Dessin()
         {
-            
-            Console.SetBufferSize(210,52);
-            Console.SetWindowSize(209,51);
+           
             
 
             //choix de l'image & MENU
@@ -121,7 +119,9 @@ namespace td1
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Veuillez mettre votre console en plein écran");
+            Console.WriteLine("Veuillez mettre votre console en plein écran et de suivre le tutoriel");
+            Console.WriteLine(" pdf fourni dans le projet afin d'avoir la meilleur expérience possible");
+            Console.WriteLine("\n\nMerci d'appuyer sur une touche lorsque cela a été effectué");
             Console.ReadKey();
             Console.Clear();
             Dessin();
@@ -156,7 +156,7 @@ namespace td1
 
                 AffichageMenu(filename, filesource);
                
-                Console.SetCursorPosition(91, 18); Console.Write("Faites votre choix : ");
+                Console.SetCursorPosition(83, 18); Console.Write("Faites votre choix en appuyant sur enter");
                 //Console.SetCursorPosition(112, 18); 
 
 
@@ -175,12 +175,12 @@ namespace td1
                 Console.SetCursorPosition(posX, posY + 1); Console.Write("█"); Console.SetCursorPosition(posX + 22, posY + 1); Console.Write("█");
                 Console.SetCursorPosition(posX, posY + 2); Console.Write("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
                 int initCancellatoucheclavier = 0;
-                Console.SetCursorPosition(112, 18); ConsoleKeyInfo toucheclavier=Console.ReadKey();
+                Console.SetCursorPosition(127, 18); ConsoleKeyInfo toucheclavier=Console.ReadKey();
                 
                 while (toucheclavier.Key != ConsoleKey.Enter) // validation du choix
                 {
                     if (initCancellatoucheclavier != 0) {
-                        Console.SetCursorPosition(112, 18);
+                        Console.SetCursorPosition(127, 18);
                         toucheclavier = Console.ReadKey();
                     }                                   //sert a éviter la double lecture de touche (du while et d'ici)
                     initCancellatoucheclavier = 1;
@@ -373,8 +373,8 @@ namespace td1
                         Console.SetCursorPosition(52, 23); Console.Write("█                                                                                                     █");
                         Console.SetCursorPosition(52, 24); Console.Write("█                                                                                                     █");
                         Console.SetCursorPosition(52, 25); Console.Write("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
-                        Console.SetCursorPosition(54, 22); Console.WriteLine("Vous souhaitez 1: garder l'image qui était cachée ou 2: sauvegarder l'image visible sans image qui se cache ?");
-                        Console.SetCursorPosition(104, 23); int reponseChoix = int.Parse(Console.ReadLine());
+                        Console.SetCursorPosition(70, 22); Console.WriteLine("Vous souhaitez 1: garder l'image qui était cachée ou "); Console.SetCursorPosition(70, 23); Console.Write(" 2: sauvegarder l'image visible sans image qui se cache ?");
+                        Console.SetCursorPosition(130, 23); int reponseChoix = int.Parse(Console.ReadLine());
                         ImageEnCours.RevelerLImage(reponseChoix);
                         ImageEnCours.CorrigerImageApresModif(ImageEnCours);
                         turnModifOnMessage = 1;
@@ -383,8 +383,14 @@ namespace td1
                     case "9":
                         Console.Clear();
                         Dessin(); // on ramène nos colonnes
-                        Console.SetCursorPosition(25, 7); Console.WriteLine("Sous quel nom voulez vous sauvegarder votre image ?");
-                        Console.SetCursorPosition(25, 8); string wantedFileName = Console.ReadLine();
+                        Console.SetCursorPosition(52, 20); Console.Write("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
+                        Console.SetCursorPosition(52, 21); Console.Write("█                                                                                                     █");
+                        Console.SetCursorPosition(52, 22); Console.Write("█                                                                                                     █");
+                        Console.SetCursorPosition(52, 23); Console.Write("█                                                                                                     █");
+                        Console.SetCursorPosition(52, 24); Console.Write("█                                                                                                     █");
+                        Console.SetCursorPosition(52, 25); Console.Write("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
+                        Console.SetCursorPosition(79, 22); Console.WriteLine("Sous quel nom voulez vous sauvegarder votre image ?");
+                        Console.SetCursorPosition(104, 23); string wantedFileName = Console.ReadLine();
                         ImageEnCours.SauvegardeImage(wantedFileName, ImageEnCours); //sauvegarde de notre image en n&b  | On peut aussi utiliser image en cours -> SAUVEGARDE A DEPLACER !
                         turnModifOnMessage = 2;
                         break;
@@ -398,12 +404,17 @@ namespace td1
                         Console.SetCursorPosition(52, 23); Console.Write("█                                                                                                     █");
                         Console.SetCursorPosition(52, 24); Console.Write("█                                                                                                     █");
                         Console.SetCursorPosition(52, 25); Console.Write("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
-                        Console.SetCursorPosition(90, 22); Console.WriteLine("Merci d'indiquer le nom de l'image");
+                        Console.SetCursorPosition(86, 22); Console.WriteLine("Merci d'indiquer le nom de l'image");
                         Console.SetCursorPosition(100, 23); filename = Console.ReadLine();filesource = "./Images/" + filename + ".bmp";
                         ImageEnCours.Lecture(filesource);//on récupère içi notre matrice d'image 
                         ImageEnCours.CorrigerImageApresModif(ImageEnCours);
                         break;
 
+                    case "11":
+
+                        Console.Clear();
+                        System.Environment.Exit(0); // exit  si on veut
+                        break;
                                        
 
                     default:
