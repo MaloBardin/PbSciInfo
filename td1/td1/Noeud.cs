@@ -43,7 +43,7 @@ namespace td1
             get { return droit; }
             set { droit = value; }
         }
-        
+
         public Pixel Pix
         {
             get { return pix; }
@@ -55,4 +55,5 @@ namespace td1
             return gauche == null && droit == null;
         }
 
+    }
 }
