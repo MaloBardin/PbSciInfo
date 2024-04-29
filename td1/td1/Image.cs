@@ -55,12 +55,48 @@ namespace td1
         }
 
 
-
-        public Image()
+        /// <summary>
+        /// remplissage de notre structure via un fichier bmp
+        /// </summary>
+        /// <param name="filename">nom du fichier</param>
+        /// <returns></returns>
+        public Pixel[,] Lecture(string filename)
         {
-            // création vide
+            byte[] fichier = File.ReadAllBytes(filename);
+            Header = new byte[54];
+
+            for (int i = 0; i < 54; i++)
+            {
+                Header[i] = fichier[i];
+            }
+
+
+            Console.WriteLine();
+            byte[] LaTailleX = { fichier[18], fichier[19], fichier[20], fichier[21] };
+            tailleX = Byte2Int(LaTailleX);
+            byte[] LaTailleY = { fichier[22], fichier[23], fichier[24], fichier[25] };
+            tailleY = Byte2Int(LaTailleY);
+            //Console.WriteLine("Largeur de l'image : " + tailleX);
+            //Console.WriteLine("Hauteur de l'image : " + tailleY);
+            MatricePixel = new Pixel[tailleX, tailleY];
+            int TailleMatriceX = 0;
+            int TailleMatriceY = 0;
+            int a = 54;
+            for (int y = 0; y < tailleY; y++)
+            {
+                for (int x = 0; x < tailleX; x++)
+                {
+                    MatricePixel[x, y] = new Pixel(fichier[a], fichier[a + 1], fichier[a + 2]);
+                    a = a + 3;
+                }
+            }
+            return MatricePixel;
         }
 
+
+        /// <summary>
+        /// Fonctions pour pixel en noir et gris
+        /// </summary>
         public Pixel PixelEnGris(Pixel couleur)
         {
             Pixel gris = couleur;
@@ -124,7 +160,14 @@ namespace td1
         }
 
 
+        /// <summary>
+        /// Constructeurs
+        /// </summary>
 
+        public Image()
+        {
+            // création vide
+        }
         public Image(Pixel[,] MatricePixel, byte[] Header, int tailleX, int tailleY, int tailleFichier, int tailleImage)
         { 
             this.MatricePixel = MatricePixel;
@@ -136,6 +179,11 @@ namespace td1
         }
 
 
+
+        /// <summary>
+        /// Convertion des nombre en int et byte
+        /// </summary>
+     
         public byte[] Int2ToByte(int nombre)
 
         {
@@ -161,11 +209,14 @@ namespace td1
             return resultat;
         }
 
-
+        /// <summary>
+        /// Fonction de rotation qui modifie la matrice pixel afin d'avoir une image tournée
+        /// </summary>
+        /// <param name="degre">le nombre de degré pour la rotation (en sens anti horaire)</param>
         public void RotationDegre(int degre)
         {
            
-            double rad = degre * Math.PI / 180.0;
+            double rad = degre * Math.PI / 180.0; //convertion en radiant
 
             // Calcul des dimensions de l'image de sortie
             // nouvelle taille x = taille x * |cos(rad)| + taille y * |sin(rad)|
@@ -174,6 +225,7 @@ namespace td1
 
             int nvtailleX = Convert.ToInt32(tailleX * Math.Abs(Math.Cos(rad)) + tailleY * Math.Abs(Math.Sin(rad)));
             int nvtailleY = Convert.ToInt32(tailleX * Math.Abs(Math.Sin(rad)) + tailleY * Math.Abs(Math.Cos(rad)));
+
 
             // Ajuster les dimensions pour qu'elles soient des multiples de 4 (sinon BMP pas lisible)
             while (nvtailleX % 4 != 0)
@@ -276,7 +328,10 @@ namespace td1
 
 
 
-
+        /// <summary>
+        /// Cache une image dans une autre
+        /// </summary>
+        /// <param name="ImageACacher">l'image a cacher</param>
         public void CacherLimage(Image ImageACacher)
         {
             for (int i = 0; i < ImageACacher.TailleX; i++)
@@ -293,6 +348,10 @@ namespace td1
             }
         }
 
+        /// <summary>
+        /// Fait apparaitre une image cachée
+        /// </summary>
+        /// <param name="reponse">permet de savoir si on sauvegarde l'imgae cachée ou l'autre</param>
         public void RevelerLImage(int reponse)
         {
             for (int i = 0; i < TailleX; i++)
@@ -320,7 +379,11 @@ namespace td1
         }
 
 
-
+        /// <summary>
+        /// Filtrage d'une image
+        /// </summary>
+        /// <param name="image">l'image qu'on souhaite modifier</param>
+        /// <returns></returns>
         public Pixel[,] Filtrerimage(Image image)
         {
             Pixel[,] MatricePixel = new Pixel[image.TailleX, image.TailleY];
@@ -332,14 +395,23 @@ namespace td1
                     MatricePixel[i, j] = new Pixel(0, 0, 0); /// On initialise notre matrice de sorte a qu'il soit rempli de pixels noirs
                 }
             }
+            Console.SetCursorPosition(52, 20); Console.Write("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
+            Console.SetCursorPosition(52, 21); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 22); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 23); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 24); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 25); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 26); Console.Write("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
 
-            Console.SetCursorPosition(25, 7); Console.WriteLine("Veuillez entrer la taille de la matrice souhaitée:");
+            Console.SetCursorPosition(54, 21);
+            Console.WriteLine("Veuillez entrer la taille de la matrice souhaitée: "); Console.SetCursorPosition(120, 21); 
             int coeff = Convert.ToInt32(Console.ReadLine());
             while (coeff % 2 == 0)
             {
-                Console.Clear();
-                Console.SetCursorPosition(25, 7); Console.WriteLine("Erreur, votre matrice n'est pas impair.");
-                Console.SetCursorPosition(25, 8); Console.WriteLine("Veuillez entrer la taille de la matrice souhaitée:");
+                
+                Console.SetCursorPosition(54, 22); Console.WriteLine("Erreur, votre matrice n'est pas impair.");
+                Console.SetCursorPosition(54, 23); Console.WriteLine("Veuillez entrer la taille de la matrice souhaitée: ");
+                Console.SetCursorPosition(120, 23);
                 coeff = Convert.ToInt32(Console.ReadLine());
             }
             int copy = coeff;
@@ -349,28 +421,47 @@ namespace td1
                 coeff -= 2;
                 a++;
             }
-            Console.Clear();
-            Console.WriteLine("Super! votre matrice (" + copy + "x" + copy + ") fonctionne avec notre programme");
+            Console.SetCursorPosition(52, 20); Console.Write("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
+            Console.SetCursorPosition(52, 21); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 22); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 23); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 24); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 25); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 26); Console.Write("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
 
-            Console.SetCursorPosition(25, 7); Console.WriteLine("Vos choix sont:");
-            Console.SetCursorPosition(25, 8); Console.WriteLine("1.Détection de contour");
-            Console.SetCursorPosition(25, 9); Console.WriteLine("2.Renforcement des bords");
-            Console.SetCursorPosition(25, 10); Console.WriteLine("3.Flou");
-            Console.SetCursorPosition(25, 11); Console.WriteLine("4.Repoussage");
-            Console.SetCursorPosition(15, 13); Console.Write("Quel filtre souhaitez-vous?");
-            Console.SetCursorPosition(15, 14); string answern = Console.ReadLine();
+           
+            Console.SetCursorPosition(95, 18); Console.WriteLine("Vos choix sont : ");
+            Console.SetCursorPosition(90, 21); Console.WriteLine("1.Détection de contour");
+            Console.SetCursorPosition(90, 22); Console.WriteLine("2.Renforcement des bords");
+            Console.SetCursorPosition(90, 23); Console.WriteLine("3.Flou");
+            Console.SetCursorPosition(90, 24); Console.WriteLine("4.Repoussage");
+            Console.SetCursorPosition(86, 25); Console.Write("Quel filtre souhaitez-vous?");
+            Console.SetCursorPosition(125, 18); string answern = Console.ReadLine();
             while (answern != "1" && answern != "2" && answern != "3" && answern != "4")
             {
-                Console.Clear();
-                Console.SetCursorPosition(25, 7); Console.WriteLine("Vos choix sont:");
-                Console.SetCursorPosition(25, 8); Console.WriteLine("1.Détection de contour");
-                Console.SetCursorPosition(25, 9); Console.WriteLine("2.Renforcement des bords");
-                Console.SetCursorPosition(25, 10); Console.WriteLine("3.Flou");
-                Console.SetCursorPosition(25, 11); Console.WriteLine("4.Repoussage");
-                Console.SetCursorPosition(15, 13); Console.WriteLine("Votre choix n'est pas valide. Veuillez réessayer:");
-                Console.SetCursorPosition(15, 14); answern = Console.ReadLine();
+                Console.SetCursorPosition(52, 20); Console.Write("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
+                Console.SetCursorPosition(52, 21); Console.Write("█                                                                                                     █");
+                Console.SetCursorPosition(52, 22); Console.Write("█                                                                                                     █");
+                Console.SetCursorPosition(52, 23); Console.Write("█                                                                                                     █");
+                Console.SetCursorPosition(52, 24); Console.Write("█                                                                                                     █");
+                Console.SetCursorPosition(52, 25); Console.Write("█                                                                                                     █");
+                Console.SetCursorPosition(52, 26); Console.Write("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
+                Console.SetCursorPosition(95, 18); Console.WriteLine("Vos choix sont : ");
+                Console.SetCursorPosition(90, 21); Console.WriteLine("1.Détection de contour");
+                Console.SetCursorPosition(90, 22); Console.WriteLine("2.Renforcement des bords");
+                Console.SetCursorPosition(90, 23); Console.WriteLine("3.Flou");
+                Console.SetCursorPosition(90, 24); Console.WriteLine("4.Repoussage");
+                Console.SetCursorPosition(86, 25); Console.Write("Quel filtre souhaitez-vous?");
+                Console.SetCursorPosition(125, 18); answern = Console.ReadLine();
             }
-            Console.Clear();
+            Console.SetCursorPosition(75, 18); Console.Write("                                                                           ");
+            Console.SetCursorPosition(52, 20); Console.Write("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
+            Console.SetCursorPosition(52, 21); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 22); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 23); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 24); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 25); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 26); Console.Write("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
             switch (answern)
             {
                 case "1": /// Filtre: Détection de contour                                          
@@ -381,16 +472,17 @@ namespace td1
                         {
                             for (int j = 0; j < copy; j++)
                             {
-                                Console.WriteLine("Veuillez saisir la valeur de la ligne" + i + " et de la colonne " + j);
+                                Console.SetCursorPosition(55, 22);
+                                Console.WriteLine("Veuillez saisir la valeur de la ligne" + i + " et de la colonne " + j+"                      ");
+                                Console.SetCursorPosition(115, 22);
                                 MatriceConvContour[i, j] = Convert.ToInt32(Console.ReadLine());
-                                Console.Clear();
                             }
                         }
                     }
                     if (copy == 3)
                     {
-                        Console.SetCursorPosition(25, 7); Console.WriteLine("On a déjà une matrice filtre pour (3x3)");
-                        Thread.Sleep(3000);
+                        Console.SetCursorPosition(80, 22); Console.WriteLine("Nous avons déjà une matrice filtre pour (3x3)");
+                        Thread.Sleep(1500);
                         MatriceConvContour = new int[,]
                         {
                                    {-1,-1,-1},
@@ -400,8 +492,8 @@ namespace td1
                     }
                     if (copy == 5)
                     {
-                        Console.SetCursorPosition(25, 7); Console.WriteLine("On a déjà une matrice filtre pour (3x3)");
-                        Thread.Sleep(3000);
+                        Console.SetCursorPosition(80, 22); Console.WriteLine("Nous avons déjà une matrice filtre pour (5x5)");
+                        Thread.Sleep(1500);
                         MatriceConvContour = new int[,]
                         {
                                    { 0, 0,-1, 0, 0},
@@ -465,7 +557,6 @@ namespace td1
                     break;
 
                 case "2":// Filtre: Renforcement des bords
-                    Console.Clear();
 
                     int[,] MatriceConvRenfort = new int[copy, copy];
                     if (copy != 3)
@@ -474,16 +565,18 @@ namespace td1
                         {
                             for (int j = 0; j < copy; j++)
                             {
-                                Console.WriteLine("Veuillez saisir la valeur de la ligne" + i + " et de la colonne " + j);
+                                Console.SetCursorPosition(55, 22);
+                                Console.WriteLine("Veuillez saisir la valeur de la ligne" + i + " et de la colonne " + j  + "                      ");
+                                Console.SetCursorPosition(115, 22);
                                 MatriceConvRenfort[i, j] = Convert.ToInt32(Console.ReadLine());
-                                Console.Clear();
+                                
                             }
                         }
                     }
                     else
                     {
-                        Console.SetCursorPosition(25, 7); Console.WriteLine("On a déjà une matrice filtre pour (3x3)");
-                        Thread.Sleep(3000);
+                        Console.SetCursorPosition(80, 22); Console.WriteLine("On a déjà une matrice filtre pour (3x3)");
+                        Thread.Sleep(1500);
                         MatriceConvRenfort = new int[,]
                         {
                                    { 0, 0, 0},
@@ -570,7 +663,6 @@ namespace td1
                     break;
 
                 case "4": /// Filtre: Repoussage
-                    Console.Clear();
 
                     int[,] MatriceConvRepoussage = new int[copy, copy];
                     if (copy != 3)
@@ -579,16 +671,17 @@ namespace td1
                         {
                             for (int j = 0; j < copy; j++)
                             {
-                                Console.WriteLine("Veuillez saisir la valeur de la ligne" + i + " et de la colonne " + j);
+                                Console.SetCursorPosition(55, 22);
+                                Console.WriteLine("Veuillez saisir la valeur de la ligne" + i + " et de la colonne " + j+"                         ");
+                                Console.SetCursorPosition(115, 22);
                                 MatriceConvRepoussage[i, j] = Convert.ToInt32(Console.ReadLine());
-                                Console.Clear();
                             }
                         }
                     }
                     else
                     {
-                        Console.SetCursorPosition(25, 7); Console.WriteLine("On a déjà une matrice filtre pour (3x3)");
-                        Thread.Sleep(3000);
+                        Console.SetCursorPosition(80, 22); Console.WriteLine("On a déjà une matrice filtre pour (3x3)");
+                        Thread.Sleep(1500);
                         MatriceConvRepoussage = new int[,]
                         {
                                    {-2,-1, 0},
@@ -652,7 +745,10 @@ namespace td1
         }
 
 
-
+        /// <summary>
+        /// Permet d'agrnadir une image avec un coefficient entier
+        /// </summary>
+        /// <param name="CoefAggrandissement">coefficient d'agrandissement</param>
         public void Agrandissement(int CoefAggrandissement)
         {
             
@@ -676,7 +772,16 @@ namespace td1
             tailleY = tailleY * CoefAggrandissement;
             MatricePixel = matriceAgrandie; //on change notre matrice ainsi que les tailles de l'image
         }
-
+        /// <summary>
+        /// Crééé une fractale 
+        /// </summary>
+        /// <param name="tailleX">taille de l'image longueur</param>
+        /// <param name="tailleY">taille de l'image hauteur</param>
+        /// <param name="nbIterations">précision</param>
+        /// <param name="bleu">valeur de la couleur bleu</param>
+        /// <param name="vert">valeur du vert</param>
+        /// <param name="rouge">valeur du rouge</param>
+        /// <param name="chaleur">permet de savoir si l'utilisateur souhaite un gradiant de couleur semblable à une aura</param>
         public void FractaleMandelbrot(int tailleX, int tailleY, int nbIterations, byte bleu, byte vert, byte rouge, bool chaleur)
         {
             // on met les tailles données comme multiple de 4 au cas où
@@ -746,39 +851,25 @@ namespace td1
             MatricePixel = matrice;
         }
 
-        public Pixel[,] Lecture(string filename)
+        public void ChangementCouleur()
         {
-            byte[] fichier = File.ReadAllBytes(filename);
-            Header = new byte[54];
-
-            for (int i = 0; i < 54; i++)
+            for (int i = 0; i < TailleX; i++)
             {
-                Header[i] = fichier[i];
-            }
-
-
-            Console.WriteLine();
-            byte[] LaTailleX = { fichier[18], fichier[19], fichier[20], fichier[21] };
-            tailleX = Byte2Int(LaTailleX);
-            byte[] LaTailleY = { fichier[22], fichier[23], fichier[24], fichier[25] };
-            tailleY = Byte2Int(LaTailleY);
-            //Console.WriteLine("Largeur de l'image : " + tailleX);
-            //Console.WriteLine("Hauteur de l'image : " + tailleY);
-            MatricePixel = new Pixel[tailleX, tailleY];
-            int TailleMatriceX = 0;
-            int TailleMatriceY = 0;
-            int a = 54;
-            for (int y=0; y < tailleY; y++)
-            {
-                for (int x=0; x < tailleX; x++)
+                for (int j = 0; j < TailleY; j++)
                 {
-                    MatricePixel[x, y] = new Pixel(fichier[a], fichier[a+1], fichier[a+2]);
-                    a = a + 3;
+                    int tempo = MatricePixel[i, j].R;
+                    MatricePixel[i, j].R = MatricePixel[i, j].B;
+                    MatricePixel[i, j].B = MatricePixel[i, j].G;
+                    MatricePixel[i, j].G = tempo;
                 }
             }
-            return MatricePixel;
         }
 
+ 
+        /// <summary>
+        /// Permet de modifier les attributs d'une image après une modification
+        /// </summary>
+        /// <param name="ImageACorriger">notre image</param>
         public void CorrigerImageApresModif(Image ImageACorriger)
         {
 
@@ -800,7 +891,11 @@ namespace td1
             // FAIRE OFFSET
 
         }
-
+        /// <summary>
+        /// Build le header pour la sauvegarde
+        /// </summary>
+        /// <param name="ImageAvecLeHeader"></param>
+        /// <returns></returns>
         public byte[] BuildLeBonHeader(Image ImageAvecLeHeader)
         {
             byte[] newHeader = new byte[54]; // creation d'un tab de byte vide
@@ -821,8 +916,11 @@ namespace td1
                 newHeader[i] = 0;
             }
 
-            newHeader[14] = 40; newHeader[15] = 0; newHeader[16] = 0; newHeader[17] = 0;
+            newHeader[14] = 40;
 
+            for (int i = 15; i<= 17; i++) {
+                newHeader[i] = 0;
+            }
             // FLOU AVEC LE 40
 
             byte[] tailleXBytes = Int2ToByte(ImageAvecLeHeader.tailleX);
@@ -842,12 +940,18 @@ namespace td1
             byte[] tailleImageBytes = Int2ToByte(ImageAvecLeHeader.tailleImage);
             Array.Copy(tailleImageBytes, 0, newHeader, 34, 4); // taille image
 
-            newHeader[38] = 0; newHeader[39] = 0; newHeader[40] = 0; newHeader[41] = 0;
-            newHeader[42] = 0; newHeader[43] = 0; newHeader[44] = 0; newHeader[45] = 0;
-
+            for (int i = 38; i<= 45; i++)
+            {
+                newHeader[i] = 0;
+            }
+       
             return newHeader;
         }
-
+        /// <summary>
+        /// Sauvegarde de l'image
+        /// </summary>
+        /// <param name="wantedFileName">nom du fichier voulu</param>
+        /// <param name="Imagesauvegardee"> notre image</param>
         public void SauvegardeImage(string wantedFileName, Image Imagesauvegardee)
         {
             // Construction du header du fichier BMP
