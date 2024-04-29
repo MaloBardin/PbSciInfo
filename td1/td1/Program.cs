@@ -458,21 +458,30 @@ namespace td1
 
                         if (rchoix == 1)
                         {
-
-                        } else if (rchoix == 2)
-                        {
-
-                        } else if (rchoix == 3)
-                        {
-
-                        } else if (rchoix == 4)
+                            Huffman huffman = new Huffman(ImageEnCours.MatricePixel);
+                            string res = huffman.EncodageImage(ImageEnCours.MatricePixel);
+                            Console.WriteLine("Nombre de caractères : " + res.Length);
+                            Console.WriteLine("Nombre de bytes : " + res.Length / 8);
+                            Console.WriteLine("Poids en Ko : " + res.Length / 8 / 1024 + " Ko");
+                            Console.WriteLine(res);
+                        }
+                        else if (rchoix == 2)
                         {
 
                         }
-
+                        else if (rchoix == 3)
+                        {
+                            Huffman huffman = new Huffman(ImageEnCours.MatricePixel);
+                            huffman.AffichageDicoImage(ImageEnCours.MatricePixel);
+                        }
+                        else if (rchoix == 4)
+                        {
+                            Huffman huffman = new Huffman(ImageEnCours.MatricePixel);
+                            huffman.AffichageDicoFqImage(ImageEnCours.MatricePixel);
+                        }
+                        Console.ReadKey();
                         Console.Clear();
                         Dessin();
-
                         break;
 
                     case "14":

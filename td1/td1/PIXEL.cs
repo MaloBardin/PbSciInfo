@@ -39,7 +39,7 @@ namespace td1
                 set { blue = Convert.ToByte(value); }
 
         }
-        public string toString()
+        public string ToString()
             {
                 return "R" + red + " G" + green + " B" + blue;
             }
