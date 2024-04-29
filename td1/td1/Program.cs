@@ -100,20 +100,26 @@ namespace td1
             Console.SetCursorPosition(52, 29); Console.Write("█                                                                                                     █");
             Console.SetCursorPosition(52, 30); Console.Write("█                                                                                                     █");
             Console.SetCursorPosition(52, 31); Console.Write("█                                                                                                     █");
-            Console.SetCursorPosition(52, 32); Console.Write("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
-            Console.SetCursorPosition(75, 34); Console.WriteLine("Image : " + filename);
-            Console.SetCursorPosition(115, 34); Console.Write("    Source : " + filesource);
-            Console.SetCursorPosition(62, 23); Console.WriteLine("1 Noir et Blanc");
-            Console.SetCursorPosition(62, 25); Console.WriteLine("2 Nuances de Gris");
-            Console.SetCursorPosition(62, 27); Console.WriteLine("3 Agrandissement");
-            Console.SetCursorPosition(62, 29); Console.WriteLine("4 Rotation");
-            Console.SetCursorPosition(97, 23); Console.WriteLine("5 Filtres");
-            Console.SetCursorPosition(97, 25); Console.WriteLine("6 Fractales");
-            Console.SetCursorPosition(97, 27); Console.WriteLine("7 Cacher une image");
-            Console.SetCursorPosition(97, 29); Console.WriteLine("8 Reveler une image");
-            Console.SetCursorPosition(132, 23); Console.WriteLine("9 Sauvegarder l'image");
-            Console.SetCursorPosition(132, 25); Console.WriteLine("10 Changer d'image");
-            Console.SetCursorPosition(132, 27); Console.WriteLine("11 Quitter");
+            Console.SetCursorPosition(52, 32); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 33); Console.Write("█                                                                                                     █");
+            Console.SetCursorPosition(52, 34); Console.Write("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
+            Console.SetCursorPosition(75, 36); Console.WriteLine("Image : " + filename);
+            Console.SetCursorPosition(115, 36); Console.Write("    Source : " + filesource);
+            Console.SetCursorPosition(62, 23); Console.WriteLine("Noir et Blanc");
+            Console.SetCursorPosition(62, 25); Console.WriteLine("Nuances de Gris");
+            Console.SetCursorPosition(62, 27); Console.WriteLine("Agrandissement");
+            Console.SetCursorPosition(62, 29); Console.WriteLine("Rotation");
+            Console.SetCursorPosition(97, 23); Console.WriteLine("Filtres");
+            Console.SetCursorPosition(97, 25); Console.WriteLine("Fractales");
+            Console.SetCursorPosition(97, 27); Console.WriteLine("Cacher une image");
+            Console.SetCursorPosition(97, 29); Console.WriteLine("Reveler une image");
+            Console.SetCursorPosition(132, 23); Console.Write("Heufmann");
+            Console.SetCursorPosition(132, 25); Console.WriteLine("Changer d'image");
+            Console.SetCursorPosition(132, 27); Console.WriteLine("Sauvegarder l'image");
+            Console.SetCursorPosition(132, 29); Console.WriteLine("Quitter");
+            Console.SetCursorPosition(62, 31); Console.WriteLine("Changement de couleur");
+            Console.SetCursorPosition(97, 31); Console.Write("Visualisation console");
+
         }
 
 
@@ -162,11 +168,11 @@ namespace td1
 
                 if (turnModifOnMessage == 1)
                 {
-                    Console.SetCursorPosition(87, 37); Console.Write("Modifications effectuées avec succès !       ");
+                    Console.SetCursorPosition(87, 39); Console.Write("Modifications effectuées avec succès !       ");
                 }
                 else if (turnModifOnMessage == 2)
                 {
-                    Console.SetCursorPosition(87, 37); Console.Write("Sauvegarde effectuée avec succès !           ");
+                    Console.SetCursorPosition(87, 39); Console.Write("Sauvegarde effectuée avec succès !           ");
                 }
 
 
@@ -190,7 +196,7 @@ namespace td1
                         posY=posY-2;
                         AffichageMenu(filename, filesource);
                     }
-                    else if ((toucheclavier.Key == ConsoleKey.S || toucheclavier.Key == ConsoleKey.DownArrow ) && posY<28 )
+                    else if ((toucheclavier.Key == ConsoleKey.S || toucheclavier.Key == ConsoleKey.DownArrow ) && posY<30 )
                     {
                         posY = posY + 2;
                         AffichageMenu(filename, filesource);
@@ -241,6 +247,15 @@ namespace td1
                     choixMenu = "10";
                 } else if (posX == 131 && posY == 26) {
                     choixMenu = "11";
+                } else if (posX==131 && posY== 28)
+                {
+                    choixMenu = "12";
+                } else if (posX==61 && posY == 30)
+                {
+                    choixMenu = "13";
+                } else if (posX==96 && posY == 30)
+                {
+                    choixMenu = "14";
                 }
                 
 
@@ -299,6 +314,7 @@ namespace td1
 
                     case "5":
                         Console.Clear();
+                        Dessin();
                         //On va appliquer un filtre sur notre image
                         ImageEnCours.MatricePixel = ImageEnCours.Filtrerimage(ImageEnCours);
                         ImageEnCours.CorrigerImageApresModif(ImageEnCours);
@@ -373,14 +389,14 @@ namespace td1
                         Console.SetCursorPosition(52, 23); Console.Write("█                                                                                                     █");
                         Console.SetCursorPosition(52, 24); Console.Write("█                                                                                                     █");
                         Console.SetCursorPosition(52, 25); Console.Write("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
-                        Console.SetCursorPosition(70, 22); Console.WriteLine("Vous souhaitez 1: garder l'image qui était cachée ou "); Console.SetCursorPosition(70, 23); Console.Write(" 2: sauvegarder l'image visible sans image qui se cache ?");
+                        Console.SetCursorPosition(75, 22); Console.WriteLine("Vous souhaitez 1: garder l'image qui était cachée ou "); Console.SetCursorPosition(70, 23); Console.Write(" 2: sauvegarder l'image visible sans image qui se cache ?");
                         Console.SetCursorPosition(130, 23); int reponseChoix = int.Parse(Console.ReadLine());
                         ImageEnCours.RevelerLImage(reponseChoix);
                         ImageEnCours.CorrigerImageApresModif(ImageEnCours);
                         turnModifOnMessage = 1;
                         break;
 
-                    case "9":
+                    case "11":
                         Console.Clear();
                         Dessin(); // on ramène nos colonnes
                         Console.SetCursorPosition(52, 20); Console.Write("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
@@ -410,10 +426,26 @@ namespace td1
                         ImageEnCours.CorrigerImageApresModif(ImageEnCours);
                         break;
 
-                    case "11":
+
+                    case "13":
+                        ImageEnCours.ChangementCouleur();
+                        ImageEnCours.CorrigerImageApresModif(ImageEnCours);
+                        turnModifOnMessage = 1;
+                        break;
+
+                    case "12":
 
                         Console.Clear();
                         System.Environment.Exit(0); // exit  si on veut
+                        break;
+
+                    case "9":
+                        //heufmann
+                        break;
+
+                    case "14":
+
+                        //console
                         break;
                                        
 
