@@ -113,7 +113,7 @@ namespace td1
             Console.SetCursorPosition(97, 25); Console.WriteLine("Fractales");
             Console.SetCursorPosition(97, 27); Console.WriteLine("Cacher une image");
             Console.SetCursorPosition(97, 29); Console.WriteLine("Reveler une image");
-            Console.SetCursorPosition(132, 23); Console.Write("Heufmann");
+            Console.SetCursorPosition(132, 23); Console.Write("Huffman");
             Console.SetCursorPosition(132, 25); Console.WriteLine("Changer d'image");
             Console.SetCursorPosition(132, 27); Console.WriteLine("Sauvegarder l'image");
             Console.SetCursorPosition(132, 29); Console.WriteLine("Quitter");
@@ -257,12 +257,12 @@ namespace td1
                 {
                     choixMenu = "14";
                 }
-                
-
-                
 
 
 
+
+
+                Console.SetCursorPosition(90, 45);Console.Write("                                                                                   ");//reset de du message d'erreur
                 switch (choixMenu)
                 {
                     case "1":
@@ -440,17 +440,47 @@ namespace td1
                         break;
 
                     case "9":
-                        //heufmann
+                        Console.Clear();
+                        Dessin(); // on ramène nos colonnes
+                        Console.SetCursorPosition(52, 20); Console.Write("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
+                        Console.SetCursorPosition(52, 21); Console.Write("█                                                                                                     █");
+                        Console.SetCursorPosition(52, 22); Console.Write("█                                                                                                     █");
+                        Console.SetCursorPosition(52, 23); Console.Write("█                                                                                                     █");
+                        Console.SetCursorPosition(52, 24); Console.Write("█                                                                                                     █");
+                        Console.SetCursorPosition(52, 25); Console.Write("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
+                        Console.SetCursorPosition(75, 22); Console.WriteLine("1 : Encoder     2 : Decoder");
+                        Console.SetCursorPosition(60, 23); Console.WriteLine("3 : Afficher le dictionnaire  4 : Afficher le dictionnaire des fréquences");
+
+                        Console.SetCursorPosition(105, 24); int rchoix = int.Parse(Console.ReadLine());
+
+                        if (rchoix == 1)
+                        {
+
+                        } else if (rchoix == 2)
+                        {
+
+                        } else if (rchoix == 3)
+                        {
+
+                        } else if (rchoix == 4)
+                        {
+
+                        }
+
+                        Console.Clear();
+                        Dessin();
+
                         break;
 
                     case "14":
 
                         //console
+                        ImageEnCours.AffichageIntoConsole();
                         break;
                                        
 
                     default:
-                        Console.SetCursorPosition(90, 37); Console.WriteLine("Erreur choix invalide");
+                        Console.SetCursorPosition(90, 45); Console.WriteLine("Erreur choix invalide");
                         turnModifOnMessage = 0;
                         break;
 

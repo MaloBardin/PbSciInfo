@@ -113,7 +113,7 @@ namespace td1
             int valeur = (couleur.R + couleur.G + couleur.B) / 3;
             if (valeur < 125)
             {
-                gris.R = 0; gris.B=0; gris.G = 0;
+                gris.R = 0; gris.B = 0; gris.G = 0;
             } else
             {
                 gris.R = 255; gris.B = 255; gris.G = 255;
@@ -169,7 +169,7 @@ namespace td1
             // création vide
         }
         public Image(Pixel[,] MatricePixel, byte[] Header, int tailleX, int tailleY, int tailleFichier, int tailleImage)
-        { 
+        {
             this.MatricePixel = MatricePixel;
             this.Header = Header;
             this.tailleX = tailleX;
@@ -183,7 +183,7 @@ namespace td1
         /// <summary>
         /// Convertion des nombre en int et byte
         /// </summary>
-     
+
         public byte[] Int2ToByte(int nombre)
 
         {
@@ -215,7 +215,7 @@ namespace td1
         /// <param name="degre">le nombre de degré pour la rotation (en sens anti horaire)</param>
         public void RotationDegre(int degre)
         {
-           
+
             double rad = degre * Math.PI / 180.0; //convertion en radiant
 
             // Calcul des dimensions de l'image de sortie
@@ -339,7 +339,7 @@ namespace td1
                 for (int j = 0; j < ImageACacher.TailleY; j++)
                 {
                     //bit point fort du background (donc devant)  bit point fort de l'image à cacher ( derriere)
-                    MatricePixel[i, j].R = 16 * (int)(MatricePixel[i, j].R / 16) + (int)(ImageACacher.MatricePixel[i, j].R/16);
+                    MatricePixel[i, j].R = 16 * (int)(MatricePixel[i, j].R / 16) + (int)(ImageACacher.MatricePixel[i, j].R / 16);
                     MatricePixel[i, j].G = 16 * (int)(MatricePixel[i, j].G / 16) + (int)(ImageACacher.MatricePixel[i, j].G / 16);
                     MatricePixel[i, j].B = 16 * (int)(MatricePixel[i, j].B / 16) + (int)(ImageACacher.MatricePixel[i, j].B / 16);
 
@@ -371,9 +371,9 @@ namespace td1
                         MatricePixel[i, j].G = 16 * (int)(MatricePixel[i, j].G / 16); ;
                         MatricePixel[i, j].B = 16 * (int)(MatricePixel[i, j].B / 16);
                     }
-                   
 
-                  
+
+
                 }
             }
         }
@@ -404,11 +404,11 @@ namespace td1
             Console.SetCursorPosition(52, 26); Console.Write("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
 
             Console.SetCursorPosition(54, 21);
-            Console.WriteLine("Veuillez entrer la taille de la matrice souhaitée: "); Console.SetCursorPosition(120, 21); 
+            Console.WriteLine("Veuillez entrer la taille de la matrice souhaitée: "); Console.SetCursorPosition(120, 21);
             int coeff = Convert.ToInt32(Console.ReadLine());
             while (coeff % 2 == 0)
             {
-                
+
                 Console.SetCursorPosition(54, 22); Console.WriteLine("Erreur, votre matrice n'est pas impair.");
                 Console.SetCursorPosition(54, 23); Console.WriteLine("Veuillez entrer la taille de la matrice souhaitée: ");
                 Console.SetCursorPosition(120, 23);
@@ -429,7 +429,7 @@ namespace td1
             Console.SetCursorPosition(52, 25); Console.Write("█                                                                                                     █");
             Console.SetCursorPosition(52, 26); Console.Write("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
 
-           
+
             Console.SetCursorPosition(95, 18); Console.WriteLine("Vos choix sont : ");
             Console.SetCursorPosition(90, 21); Console.WriteLine("1.Détection de contour");
             Console.SetCursorPosition(90, 22); Console.WriteLine("2.Renforcement des bords");
@@ -473,7 +473,7 @@ namespace td1
                             for (int j = 0; j < copy; j++)
                             {
                                 Console.SetCursorPosition(55, 22);
-                                Console.WriteLine("Veuillez saisir la valeur de la ligne" + i + " et de la colonne " + j+"                      ");
+                                Console.WriteLine("Veuillez saisir la valeur de la ligne" + i + " et de la colonne " + j + "                      ");
                                 Console.SetCursorPosition(115, 22);
                                 MatriceConvContour[i, j] = Convert.ToInt32(Console.ReadLine());
                             }
@@ -566,10 +566,10 @@ namespace td1
                             for (int j = 0; j < copy; j++)
                             {
                                 Console.SetCursorPosition(55, 22);
-                                Console.WriteLine("Veuillez saisir la valeur de la ligne" + i + " et de la colonne " + j  + "                      ");
+                                Console.WriteLine("Veuillez saisir la valeur de la ligne" + i + " et de la colonne " + j + "                      ");
                                 Console.SetCursorPosition(115, 22);
                                 MatriceConvRenfort[i, j] = Convert.ToInt32(Console.ReadLine());
-                                
+
                             }
                         }
                     }
@@ -672,7 +672,7 @@ namespace td1
                             for (int j = 0; j < copy; j++)
                             {
                                 Console.SetCursorPosition(55, 22);
-                                Console.WriteLine("Veuillez saisir la valeur de la ligne" + i + " et de la colonne " + j+"                         ");
+                                Console.WriteLine("Veuillez saisir la valeur de la ligne" + i + " et de la colonne " + j + "                         ");
                                 Console.SetCursorPosition(115, 22);
                                 MatriceConvRepoussage[i, j] = Convert.ToInt32(Console.ReadLine());
                             }
@@ -751,14 +751,14 @@ namespace td1
         /// <param name="CoefAggrandissement">coefficient d'agrandissement</param>
         public void Agrandissement(int CoefAggrandissement)
         {
-            
+
             Pixel[,] matriceAgrandie = new Pixel[tailleX * CoefAggrandissement, tailleY * CoefAggrandissement];//on créée une matrice agarandie
 
             for (int i = 0; i < tailleX; i++)
             {
                 for (int j = 0; j < tailleY; j++) //balade matrice classique
                 {
-                    for (int k = 0; k < CoefAggrandissement; k++) 
+                    for (int k = 0; k < CoefAggrandissement; k++)
                     {
                         for (int l = 0; l < CoefAggrandissement; l++)
                         {
@@ -772,6 +772,56 @@ namespace td1
             tailleY = tailleY * CoefAggrandissement;
             MatricePixel = matriceAgrandie; //on change notre matrice ainsi que les tailles de l'image
         }
+
+
+
+        /// <summary>
+        /// Affiche l'image dans la console avec des couleurs
+        /// </summary>
+        public void AffichageIntoConsole()
+        {
+            int newTX = tailleX;
+            int newTY = tailleY;
+            int diviX = 1;
+            int diviY = 1;
+
+            // Calculer le diviseur pour ajuster la taille de l'image
+            while (newTX > 210)
+            {
+                diviX++;
+                newTX = tailleX / diviX;
+            }
+
+            while (newTY > 52)
+            {
+                diviY++;
+                newTY = tailleY / diviY;
+            }
+
+            // Parcourir les pixels et les afficher avec la couleur appropriée
+            for (int i = 0; i < tailleX; i += diviX)
+            {
+                for (int k = 0; k < tailleY; k += diviY) // boucle pour prendre un pixel tout les x afin de ne pas etre en dehors de la consolooe
+                {
+                    Console.SetCursorPosition(i / diviX, (tailleY - k - 1) / diviY); // Définir la position du curseur, le principe est assez simple la position en colonne on inverse car notre matrice commence par le bas et on écrit par le haut normalement sur la console (0,0) est sur le coin supérieur gauche
+                    Console.WriteLine("\x1b[38;2;" + MatricePixel[i, k].R + ";" + MatricePixel[i, k].G + ";" + MatricePixel[i, k].B + "m█\x1b[0m"); // code pour la couleur en ANSI -> voir lien https://talyian.github.io/ansicolors/      \x1b[48;2;r;g;bm - background
+                }
+            }
+
+            Console.SetCursorPosition(104, 50);
+            Console.WriteLine("Merci d'appuyer sur une touche pour continuer");
+            Console.ReadLine();//tempo le temps d'avoir l'image
+
+            Console.Clear();
+
+
+
+
+        }
+
+
+
+
         /// <summary>
         /// Crééé une fractale 
         /// </summary>
@@ -850,6 +900,8 @@ namespace td1
 
             MatricePixel = matrice;
         }
+
+    
 
         public void ChangementCouleur()
         {
