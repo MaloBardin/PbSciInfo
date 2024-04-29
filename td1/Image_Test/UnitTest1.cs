@@ -1,6 +1,4 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using td1;
-using System.IO;
 
 namespace Image_Tests // Ajout d'un espace de noms approprié pour encapsuler les tests
 {
@@ -28,10 +26,10 @@ namespace Image_Tests // Ajout d'un espace de noms approprié pour encapsuler les
         {
             // Arrange
             var image = CréerImageTest(2, 2);
-            int agrandissementFactor = 2;
+            int agrand = 2;
 
             // Act
-            image.Agrandissement(agrandissementFactor);
+            image.Agrandissement(agrand);
 
             // Assert
             Assert.AreEqual(4, image.TailleX);
@@ -59,9 +57,9 @@ namespace Image_Tests // Ajout d'un espace de noms approprié pour encapsuler les
             // Assert
             foreach (Pixel p in resultat.MatricePixel)
             {
-                Assert.IsTrue(p.R == 0 || p.R == 255, "La couleur R n'est pas noir ou blanc.");
-                Assert.IsTrue(p.G == 0 || p.G == 255, "La couleur G n'est pas noir ou blanc.");
-                Assert.IsTrue(p.B == 0 || p.B == 255, "La couleur B n'est pas noir ou blanc.");
+                Assert.IsTrue(p.R == 0 || p.R == 255); //La couleur R est noir ou blanc
+                Assert.IsTrue(p.G == 0 || p.G == 255); //La couleur G est noir ou blanc
+                Assert.IsTrue(p.B == 0 || p.B == 255); //La couleur B est noir ou blanc
             }
         }
 
@@ -77,24 +75,23 @@ namespace Image_Tests // Ajout d'un espace de noms approprié pour encapsuler les
             // Assert
             foreach (Pixel p in resultat.MatricePixel)
             {
-                Assert.AreEqual(p.R, p.G, "Les valeurs R et G ne sont pas égales.");
-                Assert.AreEqual(p.G, p.B, "Les valeurs G et B ne sont pas égales.");
+                Assert.AreEqual(p.R, p.G); // R et G sont égaux
+                Assert.AreEqual(p.G, p.B); // G et B sont égaux
             }
         }
 
         [TestMethod]
-        public void TestRotationDegre()
+        public void TestRotationDegree()
         {
             // Arrange
             var image = CréerImageTest(2, 2);
-            int degre = 90;
+            int degree = 90;
 
             // Act
-            image.RotationDegre(degre);
+            image.RotationDegre(degree);
 
             // Assert
-            // Nous vérifions simplement que la méthode a été appelée sans exception et que les dimensions changent.
-            Assert.IsTrue(image.TailleX > 0 && image.TailleY > 0, "Les dimensions de l'image ne sont pas correctes après la rotation.");
+            Assert.IsTrue(image.TailleX > 0 && image.TailleY > 0);
         }
 
         [TestMethod]
