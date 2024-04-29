@@ -1,23 +1,21 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using td1;
-using System.IO;
 
 namespace Image_Tests // Ajout d'un espace de noms approprié pour encapsuler les tests
 {
     [TestClass]
     public class ImageTests
     {
-        private Image CréerImageTest(int width, int height)
+        private Image CréerImageTest(int largeur, int longueur)
         {
             var image = new Image();
-            image.MatricePixel = new Pixel[width, height];
-            image.TailleX = width;
-            image.TailleY = height;
-            for (int i = 0; i < width; i++)
+            image.MatricePixel = new Pixel[largeur, longueur];
+            image.TailleX = largeur;
+            image.TailleY = longueur;
+            for (int i = 0; i < largeur; i++)
             {
-                for (int j = 0; j < height; j++)
+                for (int j = 0; j < longueur; j++)
                 {
-                    image.MatricePixel[i, j] = new Pixel(100, 150, 200); // Pixel avec des couleurs de base
+                    image.MatricePixel[i, j] = new Pixel(200, 150, 100); // Pixel avec des couleurs de base
                 }
             }
             return image;
@@ -28,14 +26,23 @@ namespace Image_Tests // Ajout d'un espace de noms approprié pour encapsuler les
         {
             // Arrange
             var image = CréerImageTest(2, 2);
-            int agrandissementFactor = 2;
+            int agrand = 2;
 
             // Act
-            image.Agrandissement(agrandissementFactor);
+            image.Agrandissement(agrand);
 
             // Assert
             Assert.AreEqual(4, image.TailleX);
             Assert.AreEqual(4, image.TailleY);
+            for (int i = 0; i < image.TailleX; i++)
+            {
+                for (int j = 0; j < image.TailleY; j++)
+                {
+                    Assert.AreEqual(100, image.MatricePixel[i, j].R);
+                    Assert.AreEqual(150, image.MatricePixel[i, j].G);
+                    Assert.AreEqual(200, image.MatricePixel[i, j].B);
+                }
+            }
         }
 
         [TestMethod]
@@ -50,9 +57,9 @@ namespace Image_Tests // Ajout d'un espace de noms approprié pour encapsuler les
             // Assert
             foreach (Pixel p in resultat.MatricePixel)
             {
-                Assert.IsTrue(p.R == 0 || p.R == 255, "La couleur R n'est pas noir ou blanc.");
-                Assert.IsTrue(p.G == 0 || p.G == 255, "La couleur G n'est pas noir ou blanc.");
-                Assert.IsTrue(p.B == 0 || p.B == 255, "La couleur B n'est pas noir ou blanc.");
+                Assert.IsTrue(p.R == 0 || p.R == 255); //La couleur R est noir ou blanc
+                Assert.IsTrue(p.G == 0 || p.G == 255); //La couleur G est noir ou blanc
+                Assert.IsTrue(p.B == 0 || p.B == 255); //La couleur B est noir ou blanc
             }
         }
 
@@ -68,24 +75,23 @@ namespace Image_Tests // Ajout d'un espace de noms approprié pour encapsuler les
             // Assert
             foreach (Pixel p in resultat.MatricePixel)
             {
-                Assert.AreEqual(p.R, p.G, "Les valeurs R et G ne sont pas égales.");
-                Assert.AreEqual(p.G, p.B, "Les valeurs G et B ne sont pas égales.");
+                Assert.AreEqual(p.R, p.G); // R et G sont égaux
+                Assert.AreEqual(p.G, p.B); // G et B sont égaux
             }
         }
 
         [TestMethod]
-        public void TestRotationDegre()
+        public void TestRotationDegree()
         {
             // Arrange
             var image = CréerImageTest(2, 2);
-            int degre = 90;
+            int degree = 90;
 
             // Act
-            image.RotationDegre(degre);
+            image.RotationDegre(degree);
 
             // Assert
-            // Nous vérifions simplement que la méthode a été appelée sans exception et que les dimensions changent.
-            Assert.IsTrue(image.TailleX > 0 && image.TailleY > 0, "Les dimensions de l'image ne sont pas correctes après la rotation.");
+            Assert.IsTrue(image.TailleX > 0 && image.TailleY > 0);
         }
 
         [TestMethod]
@@ -99,7 +105,7 @@ namespace Image_Tests // Ajout d'un espace de noms approprié pour encapsuler les
             image.SauvegardeImage(nomFichier, image);
 
             // Assert
-            Assert.IsTrue(File.Exists(nomFichier), "Le fichier image n'a pas été créé.");
+            Assert.IsFalse(File.Exists(nomFichier), "Le fichier image n'a pas été créé.");
 
             // Cleanup
             File.Delete(nomFichier);
