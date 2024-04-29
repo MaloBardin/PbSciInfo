@@ -12,20 +12,20 @@ namespace td1
         private Noeud gauche;
         private Noeud droit;
         private Pixel pix;
-
+        //constructeur pour les feuilles
         public Noeud(int frequence, Pixel pix)
         {
             this.frequence = frequence;
             this.pix = pix;
         }
-
+        //constructeur pour les noeuds internes
         public Noeud(int frequence, Noeud gauche, Noeud droit)
         {
             this.frequence = frequence;
             this.gauche = gauche;
             this.droit = droit;
         }
-
+        
         public int Frequence
         {
             get { return frequence; }
