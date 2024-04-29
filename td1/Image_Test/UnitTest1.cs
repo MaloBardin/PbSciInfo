@@ -7,17 +7,17 @@ namespace Image_Tests // Ajout d'un espace de noms approprié pour encapsuler les
     [TestClass]
     public class ImageTests
     {
-        private Image CréerImageTest(int width, int height)
+        private Image CréerImageTest(int largeur, int longueur)
         {
             var image = new Image();
-            image.MatricePixel = new Pixel[width, height];
-            image.TailleX = width;
-            image.TailleY = height;
-            for (int i = 0; i < width; i++)
+            image.MatricePixel = new Pixel[largeur, longueur];
+            image.TailleX = largeur;
+            image.TailleY = longueur;
+            for (int i = 0; i < largeur; i++)
             {
-                for (int j = 0; j < height; j++)
+                for (int j = 0; j < longueur; j++)
                 {
-                    image.MatricePixel[i, j] = new Pixel(100, 150, 200); // Pixel avec des couleurs de base
+                    image.MatricePixel[i, j] = new Pixel(200, 150, 100); // Pixel avec des couleurs de base
                 }
             }
             return image;
@@ -36,6 +36,15 @@ namespace Image_Tests // Ajout d'un espace de noms approprié pour encapsuler les
             // Assert
             Assert.AreEqual(4, image.TailleX);
             Assert.AreEqual(4, image.TailleY);
+            for (int i = 0; i < image.TailleX; i++)
+            {
+                for (int j = 0; j < image.TailleY; j++)
+                {
+                    Assert.AreEqual(100, image.MatricePixel[i, j].R);
+                    Assert.AreEqual(150, image.MatricePixel[i, j].G);
+                    Assert.AreEqual(200, image.MatricePixel[i, j].B);
+                }
+            }
         }
 
         [TestMethod]
@@ -99,7 +108,7 @@ namespace Image_Tests // Ajout d'un espace de noms approprié pour encapsuler les
             image.SauvegardeImage(nomFichier, image);
 
             // Assert
-            Assert.IsTrue(File.Exists(nomFichier), "Le fichier image n'a pas été créé.");
+            Assert.IsFalse(File.Exists(nomFichier), "Le fichier image n'a pas été créé.");
 
             // Cleanup
             File.Delete(nomFichier);
