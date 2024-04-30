@@ -67,9 +67,22 @@ namespace td1
             {
                 feuilles.Add(new Noeud(entry.Value, AntiToStringPixel(entry.Key)));
             }
-            feuillesavider = feuilles;
-            noeuds = feuilles;
-            noeudsavider = feuilles;
+
+            // crée feuillesavider, noeudsavider, et noeuds avec les valeurs de feuilles mais avec une référence 
+            // différente pour éviter les problèmes de références
+            foreach (Noeud n in feuilles)
+            {
+                feuillesavider.Add(new Noeud(n.Frequence, n.Pix));
+
+            }
+            foreach (Noeud n in feuilles)
+            {
+                noeudsavider.Add(new Noeud(n.Frequence, n.Pix));
+            }
+            foreach (Noeud n in feuilles)
+            {
+                noeuds.Add(new Noeud(n.Frequence, n.Pix));
+            }
         }
         //création de l'arbre
         public void CreerArbre()
@@ -82,25 +95,17 @@ namespace td1
                 Noeud n1 = noeudsavider[0];
                 Noeud n2 = noeudsavider[1];
 
-                int fq1 = n1.Frequence;
-                int fq2 = n2.Frequence;
-                int fq = fq1 + fq2;
-                Noeud n1g = n1.Gauche;
-                Noeud n1d = n1.Droit;
-                Noeud n2g = n2.Gauche;
-                Noeud n2d = n2.Droit;
-                // ajout des noeuds n1 et n2 à la liste des noeuds (pour les garder quelque part)
-                noeuds.Add(new Noeud(fq1, n1g, n1d));
-                noeudsavider.RemoveAt(noeudsavider.Count - 1);
-                noeuds.Add(new Noeud(fq2, n2g, n2d));
-                noeudsavider.RemoveAt(noeudsavider.Count - 1);
-
+                noeudsavider.Add(new Noeud(n1.Frequence + n2.Frequence, n1, n2));
 
                 //suppression des noeuds n1 et n2 de la liste des noeuds à vider
-                noeudsavider.RemoveAt(0);
                 noeudsavider.RemoveAt(1);
+                noeudsavider.RemoveAt(0);
+
+
+                noeuds.Add(n1);
+                noeuds.Add(n2);
+
                 //ajout du nouveau noeud à la liste des noeuds à vider
-                noeudsavider.Add(new Noeud(fq, n1, n2));
 
             }
             racine = noeudsavider[0];
@@ -118,7 +123,16 @@ namespace td1
         {
             if (n.EstFeuille())
             {
-                dico.Add(n.Pix.ToString(), s);
+                // condition si jamais on a déjà le pixel dans le dico
+                if (dico.ContainsKey(n.Pix.ToString()))
+                {
+                    dico[n.Pix.ToString()] = s;
+                }
+                else
+                {
+                    dico.Add(n.Pix.ToString(), s);
+
+                }
             }
             else
             {

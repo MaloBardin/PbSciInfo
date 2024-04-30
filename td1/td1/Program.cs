@@ -454,7 +454,7 @@ namespace td1
                         Console.SetCursorPosition(52, 23); Console.Write("█                                                                                                     █");
                         Console.SetCursorPosition(52, 24); Console.Write("█                                                                                                     █");
                         Console.SetCursorPosition(52, 25); Console.Write("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
-                        Console.SetCursorPosition(75, 22); Console.WriteLine("1 : Encoder     2 : Decoder");
+                        Console.SetCursorPosition(75, 22); Console.WriteLine("1 : Encoder     2 : Decoder       ATTENTION ne marche qu'avec des petites images type test ou malo");
                         Console.SetCursorPosition(60, 23); Console.WriteLine("3 : Afficher le dictionnaire  4 : Afficher le dictionnaire des fréquences");
 
                         Console.SetCursorPosition(105, 24); int rchoix = int.Parse(Console.ReadLine());
@@ -470,6 +470,10 @@ namespace td1
                         }
                         else if (rchoix == 2)
                         {
+                            Huffman huffman = new Huffman(ImageEnCours.MatricePixel);
+                            string str = huffman.EncodageImage(ImageEnCours.MatricePixel);
+                            ImageEnCours.MatricePixel = huffman.Decodage(str, ImageEnCours.MatricePixel.GetLength(0), ImageEnCours.MatricePixel.GetLength(1));
+                            ImageEnCours.CorrigerImageApresModif(ImageEnCours);
 
                         }
                         else if (rchoix == 3)
