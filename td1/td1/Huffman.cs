@@ -182,7 +182,7 @@ namespace td1
             string s = "";
             // parcours de la chaine de caractères
             foreach (char c in resultat)
-            {
+            {   
 
                 s += c;
                 foreach (KeyValuePair<string, string> entry in dico)
