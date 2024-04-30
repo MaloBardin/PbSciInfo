@@ -168,11 +168,14 @@ namespace td1
 
                 if (turnModifOnMessage == 1)
                 {
-                    Console.SetCursorPosition(87, 39); Console.Write("Modifications effectuées avec succès !       ");
+                    Console.SetCursorPosition(87, 39); Console.Write("Modifications effectuées avec succès !                       ");
                 }
                 else if (turnModifOnMessage == 2)
                 {
-                    Console.SetCursorPosition(87, 39); Console.Write("Sauvegarde effectuée avec succès !           ");
+                    Console.SetCursorPosition(87, 39); Console.Write("Sauvegarde effectuée avec succès !                       ");
+                } else if (turnModifOnMessage == 3)
+                {
+                    Console.SetCursorPosition(87, 39); Console.Write(" Charlie est caché ! Il est à trouver dans le charlie.bmp !                                 ");
                 }
 
 
@@ -242,23 +245,23 @@ namespace td1
                 else if (posX == 96 && posY == 28) {
                     choixMenu = "8";
                 } else if (posX == 131 && posY == 22) {
-                    choixMenu = "9";
+                    choixMenu = "9"; //huffman
                 } else if (posX == 131 && posY == 24) {
-                    choixMenu = "10";
+                    choixMenu = "10";//changer image
                 } else if (posX == 131 && posY == 26) {
-                    choixMenu = "11";
+                    choixMenu = "15"; // save
                 } else if (posX==131 && posY== 28)
                 {
-                    choixMenu = "12";
+                    choixMenu = "11"; //save
                 } else if (posX==61 && posY == 30)
                 {
-                    choixMenu = "15";
+                    choixMenu = "13"; //swap colors
                 } else if (posX==96 && posY == 30)
                 {
-                    choixMenu = "13";
+                    choixMenu = "14"; //
                 } else if (posX==131 && posY == 30)
                 {
-                    choixMenu = "14";
+                    choixMenu = "12"; // exit
                 }
 
 
@@ -503,9 +506,10 @@ namespace td1
                         charlie.Lecture("./Images/charlie.bmp");
                         if (charlie.TailleX < ImageEnCours.TailleX && charlie.TailleY < ImageEnCours.TailleY)
                         {
-                            Console.SetCursorPosition(75, 22); Console.Write("Charlie est caché ! Il est a trouvé dans le charlie.bmp !");
+                            Console.SetCursorPosition(75, 22); Console.Write("Charlie est caché ! Il est à trouver dans le charlie.bmp !");
                             ImageEnCours.OuEstCharlie(charlie);
                             ImageEnCours.SauvegardeImage("Charlie", ImageEnCours);
+                            turnModifOnMessage = 3;
                             break;
                         }
                         Console.SetCursorPosition(75, 22); Console.Write("Charlie est trop grand pour être caché dans cette image !");
