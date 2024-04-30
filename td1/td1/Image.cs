@@ -407,7 +407,7 @@ namespace td1
             Console.SetCursorPosition(54, 21);
             Console.WriteLine("Veuillez entrer la taille de la matrice souhaitée: "); Console.SetCursorPosition(120, 21);
             int coeff = Convert.ToInt32(Console.ReadLine());
-            while (coeff % 2 == 0)
+            while (coeff % 2 == 0) // On cherche une matrice impair
             {
 
                 Console.SetCursorPosition(54, 22); Console.WriteLine("Erreur, votre matrice n'est pas impair.");
@@ -417,7 +417,7 @@ namespace td1
             }
             int copy = coeff;
             int a = 0;
-            while (coeff != 1)
+            while (coeff != 1) //On calcule la distance au centre du noyau
             {
                 coeff -= 2;
                 a++;
@@ -467,7 +467,7 @@ namespace td1
             {
                 case "1": /// Filtre: Détection de contour                                          
                     int[,] MatriceConvContour = new int[copy, copy];
-                    if (copy != 3 && copy != 5)
+                    if (copy != 3 && copy != 5) //Si la matrice n'est pas 3 ou 5, on demande à ce que l'utilisateur créer sa matrice
                     {
                         for (int i = 0; i < copy; i++)
                         {
@@ -548,7 +548,7 @@ namespace td1
                                 ajouteurB = 0;
                             }
 
-                            MatricePixel[i, j].R = ajouteurR;
+                            MatricePixel[i, j].R = ajouteurR; //On met les resultats de la convolution dans la matrice créé
                             MatricePixel[i, j].G = ajouteurG;
                             MatricePixel[i, j].B = ajouteurB;
                         }
@@ -560,7 +560,7 @@ namespace td1
                 case "2":// Filtre: Renforcement des bords
 
                     int[,] MatriceConvRenfort = new int[copy, copy];
-                    if (copy != 3)
+                    if (copy != 3) //Si la matrice n'est pas 3 on demande à ce que l'utilisateur créer sa matrice
                     {
                         for (int i = 0; i < copy; i++)
                         {
@@ -629,7 +629,7 @@ namespace td1
                                 ajouteurB = 0;
                             }
 
-                            MatricePixel[i, j].R = ajouteurR;
+                            MatricePixel[i, j].R = ajouteurR; //On met les resultats de la convolution dans la matrice créé
                             MatricePixel[i, j].G = ajouteurG;
                             MatricePixel[i, j].B = ajouteurB;
                         }
@@ -648,14 +648,14 @@ namespace td1
                             {
                                 for (int l = -a; l <= a; l++)
                                 {
-                                    ajouteurR += image.MatricePixel[i + k, j + l].R;
+                                    ajouteurR += image.MatricePixel[i + k, j + l].R; //On somme tous les pixels situés dans le noyau
                                     ajouteurG += image.MatricePixel[i + k, j + l].G;
                                     ajouteurB += image.MatricePixel[i + k, j + l].B;
                                 }
                             }
 
 
-                            MatricePixel[i, j].R = ajouteurR / (copy * copy);
+                            MatricePixel[i, j].R = ajouteurR / (copy * copy); //On moyenne la somme par le nombre de pixels sommés
                             MatricePixel[i, j].G = ajouteurG / (copy * copy);
                             MatricePixel[i, j].B = ajouteurB / (copy * copy);
 
@@ -666,7 +666,7 @@ namespace td1
                 case "4": /// Filtre: Repoussage
 
                     int[,] MatriceConvRepoussage = new int[copy, copy];
-                    if (copy != 3)
+                    if (copy != 3) //Si la matrice n'est pas 3 on demande à ce que l'utilisateur créer sa matrice
                     {
                         for (int i = 0; i < copy; i++)
                         {
@@ -747,7 +747,7 @@ namespace td1
 
 
         /// <summary>
-        /// Permet d'agrnadir une image avec un coefficient entier
+        /// Permet d'agrandir une image avec un coefficient entier
         /// </summary>
         /// <param name="CoefAggrandissement">coefficient d'agrandissement</param>
         public void Agrandissement(int CoefAggrandissement)
