@@ -82,16 +82,25 @@ namespace td1
                 Noeud n1 = noeudsavider[0];
                 Noeud n2 = noeudsavider[1];
 
+                int fq1 = n1.Frequence;
+                int fq2 = n2.Frequence;
+                int fq = fq1 + fq2;
+                Noeud n1g = n1.Gauche;
+                Noeud n1d = n1.Droit;
+                Noeud n2g = n2.Gauche;
+                Noeud n2d = n2.Droit;
                 // ajout des noeuds n1 et n2 à la liste des noeuds (pour les garder quelque part)
-                noeuds.Add(new Noeud(n1.Frequence, n1.Gauche, n1.Droit));
-                noeuds.Add(new Noeud(n2.Frequence, n2.Gauche, n2.Droit));
+                noeuds.Add(new Noeud(fq1, n1g, n1d));
+                noeudsavider.RemoveAt(noeudsavider.Count - 1);
+                noeuds.Add(new Noeud(fq2, n2g, n2d));
+                noeudsavider.RemoveAt(noeudsavider.Count - 1);
 
 
                 //suppression des noeuds n1 et n2 de la liste des noeuds à vider
                 noeudsavider.RemoveAt(0);
                 noeudsavider.RemoveAt(1);
                 //ajout du nouveau noeud à la liste des noeuds à vider
-                noeudsavider.Add(new Noeud(n1.Frequence + n2.Frequence, n1, n2));
+                noeudsavider.Add(new Noeud(fq, n1, n2));
 
             }
             racine = noeudsavider[0];
