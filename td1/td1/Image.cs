@@ -785,7 +785,7 @@ namespace td1
             int newTY = tailleY;
             int diviX = 1;
             int diviY = 1;
-
+            Console.Clear();
             // Calculer le diviseur pour ajuster la taille de l'image
             while (newTX > 210)
             {
@@ -806,10 +806,10 @@ namespace td1
                 {
                     Console.SetCursorPosition(i / diviX, (tailleY - k - 1) / diviY); // Définir la position du curseur, le principe est assez simple la position en colonne on inverse car notre matrice commence par le bas et on écrit par le haut normalement sur la console (0,0) est sur le coin supérieur gauche
                     Console.WriteLine("\x1b[38;2;" + MatricePixel[i, k].R + ";" + MatricePixel[i, k].G + ";" + MatricePixel[i, k].B + "m█\x1b[0m"); // code pour la couleur en ANSI -> voir lien https://talyian.github.io/ansicolors/      \x1b[48;2;r;g;bm - background
-                }
+                } /// le 38,2 indique une couleur avant et ensuite chaque matrice pixel c'est pour le rgb
             }
 
-            Console.SetCursorPosition(104, 50);
+            Console.SetCursorPosition(104, 54);
             Console.WriteLine("Merci d'appuyer sur une touche pour continuer");
             Console.ReadKey();//tempo le temps d'avoir l'image
 
@@ -817,7 +817,10 @@ namespace td1
         }
 
 
-
+        /// <summary>
+        /// Permet de cacher charlie dans une imagezz (fonctionne de préférence avec les deux fonds)
+        /// </summary>
+        /// <param name="Charlie">mon image avec cahrlie dedans</param>
         public void OuEstCharlie(Image Charlie)
         {
             Random r = new Random();
@@ -826,22 +829,17 @@ namespace td1
             int randomY = r.Next(0, tailleY - Charlie.TailleY); // trouve un point bas gauche pour poser  charlie
 
 
-            for (int i = 0; i < tailleX; i++)
+            for (int i = 0; i < Charlie.TailleX; i++)
             {
-                for (int j=0;j<tailleY;j++)
+                for (int j=0;j<Charlie.TailleY;j++)
                 {
-                    if (i >= randomX && i < randomX + Charlie.TailleX && j >= randomY && j < randomY + Charlie.TailleY)
-                    {
-
-                        if (Charlie.MatricePixel[i-randomX,j-randomY].R==247 && Charlie.MatricePixel[i - randomX, j - randomY].G==247 && Charlie.MatricePixel[i - randomX, j - randomY].B == 247)
+                        if (Charlie.MatricePixel[i,j].R==247 && Charlie.MatricePixel[i , j].G==247 && Charlie.MatricePixel[i, j].B == 247) //détourage
                         {
                             MatricePixel[i, j] = MatricePixel[i, j]; // on détoure le blanc autour de charlie
                         } else
                         {
-                            MatricePixel[i, j] = Charlie.MatricePixel[i - randomX, j - randomY];
-
+                            MatricePixel[randomX+i, randomY+j] = Charlie.MatricePixel[i, j];                       
                         }
-                    }
                 }
             }
 

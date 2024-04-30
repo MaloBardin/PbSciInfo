@@ -168,14 +168,14 @@ namespace td1
 
                 if (turnModifOnMessage == 1)
                 {
-                    Console.SetCursorPosition(87, 39); Console.Write("Modifications effectuées avec succès !                       ");
+                    Console.SetCursorPosition(78, 39); Console.Write("Modifications effectuées avec succès !                       ");
                 }
                 else if (turnModifOnMessage == 2)
                 {
-                    Console.SetCursorPosition(87, 39); Console.Write("Sauvegarde effectuée avec succès !                       ");
+                    Console.SetCursorPosition(78, 39); Console.Write("Sauvegarde effectuée avec succès !                       ");
                 } else if (turnModifOnMessage == 3)
                 {
-                    Console.SetCursorPosition(87, 39); Console.Write(" Charlie est caché ! Il est à trouver dans le charlie.bmp !                                 ");
+                    Console.SetCursorPosition(78, 39); Console.Write(" Charlie est caché ! Il est à trouver dans le charlie.bmp !                                 ");
                 }
 
 
