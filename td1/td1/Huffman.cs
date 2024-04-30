@@ -113,7 +113,7 @@ namespace td1
         }
 
 
-
+        //récursif, parcours de l'arbre pour remplir le dico
         private void Parcours(Noeud n, string s = "")
         {
             if (n.EstFeuille())
@@ -133,7 +133,7 @@ namespace td1
 
 
 
-
+        
         public void AfficherDico()
         {
             foreach (KeyValuePair<string, string> entry in dico)
@@ -165,15 +165,20 @@ namespace td1
             Pixel[,] res = new Pixel[tailleX, tailleY];
             int x = 0;
             int y = 0;
+            // parcours de la chaine de caractères
             foreach (char c in resultat)
             {
+
                 string s = "";
                 s += c;
                 foreach (KeyValuePair<string, string> entry in dico)
                 {
+                    // si la valeur du dico est égale à s, on ajoute la clé correspondante à la matrice
                     if (entry.Value == s)
                     {
                         res[x, y] = AntiToStringPixel(entry.Key);
+                        // incrémente x ou y en fonction de la position pour se balader dans la matrice
+                        // équivalent à une double boucle for imbriquée
                         if (x == tailleX - 1)
                         {
                             x = 0;
