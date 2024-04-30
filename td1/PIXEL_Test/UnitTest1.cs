@@ -33,12 +33,12 @@ namespace PIXEL_Test
             // Act
             pixel.R = 200;
             pixel.G = 250;
-            pixel.B = 300;  // Note that this will wrap around since byte max value is 255
+            pixel.B = 300;  
 
             // Assert
             Assert.AreEqual(200, pixel.R);
             Assert.AreEqual(250, pixel.G);
-            Assert.AreEqual(44, pixel.B);  // 300 % 256 = 44
+            Assert.AreEqual(44, pixel.B);
         }
 
         [TestMethod]
