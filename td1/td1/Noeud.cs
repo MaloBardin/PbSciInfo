@@ -49,7 +49,7 @@ namespace td1
             get { return pix; }
             set { pix = value; }
         }
-
+        // vérifie si un noeud est une feuille cad si c'est un pixel
         public bool EstFeuille()
         {
             return gauche == null && droit == null;

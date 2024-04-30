@@ -165,11 +165,11 @@ namespace td1
             Pixel[,] res = new Pixel[tailleX, tailleY];
             int x = 0;
             int y = 0;
+            string s = "";
             // parcours de la chaine de caractères
             foreach (char c in resultat)
             {
 
-                string s = "";
                 s += c;
                 foreach (KeyValuePair<string, string> entry in dico)
                 {
@@ -177,6 +177,8 @@ namespace td1
                     if (entry.Value == s)
                     {
                         res[x, y] = AntiToStringPixel(entry.Key);
+                        // on réinitialise s pour recommencer à zéro 
+                        s = "";
                         // incrémente x ou y en fonction de la position pour se balader dans la matrice
                         // équivalent à une double boucle for imbriquée
                         if (x == tailleX - 1)
